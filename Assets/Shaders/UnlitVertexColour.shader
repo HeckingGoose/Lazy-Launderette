@@ -20,14 +20,16 @@ Shader "LL/Unlit Vertex Colour"
 
         #pragma vertex vert
         #pragma fragment frag
+        #pragma multi_compile_instancing
 
         #include "UnityCG.cginc"
 
         struct v2f
         {
-            float4 position : SV_POSITION;
+            float4 position : POSITION;
             float3 normal : NORMAL;
             half4 colour : COLOR0;
+            UNITY_VERTEX_INPUT_INSTANCE_ID
         };
 
         ENDCG
@@ -39,18 +41,20 @@ Shader "LL/Unlit Vertex Colour"
 
 
             v2f vert(
-                float4 position : POSITION,
-                float3 normal : NORMAL,
-                half4 colour : COLOR0
+                v2f vert
             )
             {
                 // Declare output
                 v2f output;
 
+                // Handle instancing stuff
+                UNITY_SETUP_INSTANCE_ID(vert);
+                UNITY_TRANSFER_INSTANCE_ID(vert, output);
+
                 // Pass in values
-                output.position = UnityObjectToClipPos(position);
-                output.normal = normalize(normal);
-                output.colour = colour;
+                output.position = UnityObjectToClipPos(vert.position);
+                output.normal = normalize(vert.normal);
+                output.colour = vert.colour;
 
                 // Return output
                 return output;
@@ -58,6 +62,8 @@ Shader "LL/Unlit Vertex Colour"
 
             half4 frag (v2f input) : SV_Target
             {
+                UNITY_SETUP_INSTANCE_ID(input);
+
                 // Declare output
                 half4 output;
 

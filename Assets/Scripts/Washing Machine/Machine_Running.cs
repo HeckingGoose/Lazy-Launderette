@@ -5,11 +5,13 @@ public class Machine_Running : MonoBehaviour
 {
     // Editor variables
     [SerializeField]
-    private float timeToStart;
+    private float timeToStart = 0.5f;
     [SerializeField]
-    private float minTimeBetweenRolls = 1f;
+    private float minTimeBetweenRolls = 10f;
     [SerializeField]
-    private float maxTimeBetweenRolls = 5f;
+    private float maxTimeBetweenRolls = 20f;
+    [SerializeField]
+    private float volume = 0.7f;
     [SerializeField]
     private AudioClip rollingAmbient;
     [SerializeField]
@@ -18,7 +20,7 @@ public class Machine_Running : MonoBehaviour
     // Internal variables
     private Machine_Main main;
     private AudioSource source;
-    private float timer;
+    private float rollTimer;
     private float nextRollTime;
     private System.Random rand;
 
@@ -57,12 +59,22 @@ public class Machine_Running : MonoBehaviour
             // If the machine is currently running
             if (main.Running)
             {
-                // Increment timer
-                timer += Time.deltaTime;
+                // Increment rollTimer
+                rollTimer += Time.deltaTime;
 
                 // Added inertia so sound doesn't play while door is closing
-                if (timer > timeToStart)
+                if (rollTimer > timeToStart)
                 {
+                    // Roll in volume
+                    if (rollTimer <= timeToStart + 1)
+                    {   
+                        source.volume = rollTimer - timeToStart;
+                    }
+                    else if (source.volume < 1)
+                    {
+                        source.volume = 1;
+                    }
+
                     // Play ambient sound if there is no sound playing
                     if (!source.isPlaying)
                     {
@@ -73,10 +85,10 @@ public class Machine_Running : MonoBehaviour
                     }
 
                     // Play random roll sound when needed
-                    if (timer > nextRollTime)
+                    if (rollTimer > nextRollTime)
                     {
-                        // Reset timer, ignoring the initial time to start on door close
-                        timer = timeToStart;
+                        // Reset rollTimer, ignoring the initial time to start on door close
+                        rollTimer = timeToStart;
 
                         // Play random roll sound effect
                         source.clip = rollingDrop[rand.Next(0, rollingDrop.Length)];
@@ -88,8 +100,11 @@ public class Machine_Running : MonoBehaviour
             // If the machine is not running
             else
             {
-                // Set timer to 0
-                timer = 0;
+                // Set rollTimer to 0
+                rollTimer = 0;
+
+                // Reset volume
+                source.volume = 0;
             }
         }
     }

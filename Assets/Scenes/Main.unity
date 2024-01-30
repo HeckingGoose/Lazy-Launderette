@@ -246,6 +246,14 @@ PrefabInstance:
       propertyPath: m_ExcludeLayers.m_Bits
       value: 128
       objectReference: {fileID: 0}
+    - target: {fileID: 1353585867385559988, guid: 5c69abf3fd3c7a44393a8449250c1f09, type: 3}
+      propertyPath: running
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2831809937003015630, guid: 5c69abf3fd3c7a44393a8449250c1f09, type: 3}
+      propertyPath: referenceCamera
+      value: 
+      objectReference: {fileID: 963194228}
     - target: {fileID: 4002259487110420146, guid: 5c69abf3fd3c7a44393a8449250c1f09, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2
@@ -376,6 +384,10 @@ PrefabInstance:
       propertyPath: m_IncludeLayers.m_Bits
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2831809937003015630, guid: 5c69abf3fd3c7a44393a8449250c1f09, type: 3}
+      propertyPath: referenceCamera
+      value: 
+      objectReference: {fileID: 963194228}
     - target: {fileID: 3391753852177586493, guid: 5c69abf3fd3c7a44393a8449250c1f09, type: 3}
       propertyPath: m_ExcludeLayers.m_Bits
       value: 128
@@ -781,6 +793,10 @@ PrefabInstance:
       propertyPath: m_IncludeLayers.m_Bits
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2831809937003015630, guid: 5c69abf3fd3c7a44393a8449250c1f09, type: 3}
+      propertyPath: referenceCamera
+      value: 
+      objectReference: {fileID: 963194228}
     - target: {fileID: 3391753852177586493, guid: 5c69abf3fd3c7a44393a8449250c1f09, type: 3}
       propertyPath: m_ExcludeLayers.m_Bits
       value: 128
@@ -1413,6 +1429,10 @@ PrefabInstance:
       propertyPath: m_ExcludeLayers.m_Bits
       value: 128
       objectReference: {fileID: 0}
+    - target: {fileID: 2831809937003015630, guid: 5c69abf3fd3c7a44393a8449250c1f09, type: 3}
+      propertyPath: referenceCamera
+      value: 
+      objectReference: {fileID: 963194228}
     - target: {fileID: 4002259487110420146, guid: 5c69abf3fd3c7a44393a8449250c1f09, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.1
@@ -1474,6 +1494,10 @@ PrefabInstance:
       propertyPath: m_ExcludeLayers.m_Bits
       value: 128
       objectReference: {fileID: 0}
+    - target: {fileID: 2831809937003015630, guid: 5c69abf3fd3c7a44393a8449250c1f09, type: 3}
+      propertyPath: referenceCamera
+      value: 
+      objectReference: {fileID: 963194228}
     - target: {fileID: 4002259487110420146, guid: 5c69abf3fd3c7a44393a8449250c1f09, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.6
@@ -2027,6 +2051,10 @@ PrefabInstance:
       propertyPath: m_ExcludeLayers.m_Bits
       value: 128
       objectReference: {fileID: 0}
+    - target: {fileID: 2831809937003015630, guid: 5c69abf3fd3c7a44393a8449250c1f09, type: 3}
+      propertyPath: referenceCamera
+      value: 
+      objectReference: {fileID: 963194228}
     - target: {fileID: 2899593112035953069, guid: 5c69abf3fd3c7a44393a8449250c1f09, type: 3}
       propertyPath: m_Size.z
       value: 0.27084786
@@ -2401,6 +2429,10 @@ PrefabInstance:
       propertyPath: m_ExcludeLayers.m_Bits
       value: 128
       objectReference: {fileID: 0}
+    - target: {fileID: 2831809937003015630, guid: 5c69abf3fd3c7a44393a8449250c1f09, type: 3}
+      propertyPath: referenceCamera
+      value: 
+      objectReference: {fileID: 963194228}
     - target: {fileID: 4002259487110420146, guid: 5c69abf3fd3c7a44393a8449250c1f09, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.1
@@ -5116,6 +5148,10 @@ PrefabInstance:
       propertyPath: m_ExcludeLayers.m_Bits
       value: 128
       objectReference: {fileID: 0}
+    - target: {fileID: 2831809937003015630, guid: 5c69abf3fd3c7a44393a8449250c1f09, type: 3}
+      propertyPath: referenceCamera
+      value: 
+      objectReference: {fileID: 963194228}
     - target: {fileID: 4002259487110420146, guid: 5c69abf3fd3c7a44393a8449250c1f09, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2
@@ -5991,6 +6027,10 @@ PrefabInstance:
       propertyPath: m_ExcludeLayers.m_Bits
       value: 128
       objectReference: {fileID: 0}
+    - target: {fileID: 2831809937003015630, guid: 5c69abf3fd3c7a44393a8449250c1f09, type: 3}
+      propertyPath: referenceCamera
+      value: 
+      objectReference: {fileID: 963194228}
     - target: {fileID: 4002259487110420146, guid: 5c69abf3fd3c7a44393a8449250c1f09, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.7
@@ -6196,6 +6236,10 @@ PrefabInstance:
       propertyPath: m_ExcludeLayers.m_Bits
       value: 128
       objectReference: {fileID: 0}
+    - target: {fileID: 2831809937003015630, guid: 5c69abf3fd3c7a44393a8449250c1f09, type: 3}
+      propertyPath: referenceCamera
+      value: 
+      objectReference: {fileID: 963194228}
     - target: {fileID: 4002259487110420146, guid: 5c69abf3fd3c7a44393a8449250c1f09, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.7
@@ -6786,6 +6830,10 @@ PrefabInstance:
       propertyPath: m_IncludeLayers.m_Bits
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2831809937003015630, guid: 5c69abf3fd3c7a44393a8449250c1f09, type: 3}
+      propertyPath: referenceCamera
+      value: 
+      objectReference: {fileID: 963194228}
     - target: {fileID: 3391753852177586493, guid: 5c69abf3fd3c7a44393a8449250c1f09, type: 3}
       propertyPath: m_ExcludeLayers.m_Bits
       value: 128
@@ -7327,6 +7375,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2070751994}
     m_Modifications:
+    - target: {fileID: 457336979121729717, guid: 5c69abf3fd3c7a44393a8449250c1f09, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 755176223991576420, guid: 5c69abf3fd3c7a44393a8449250c1f09, type: 3}
       propertyPath: m_ExcludeLayers.m_Bits
       value: 128
@@ -7335,10 +7387,10 @@ PrefabInstance:
       propertyPath: m_IncludeLayers.m_Bits
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1353585867385559988, guid: 5c69abf3fd3c7a44393a8449250c1f09, type: 3}
-      propertyPath: running
-      value: 1
-      objectReference: {fileID: 0}
+    - target: {fileID: 2831809937003015630, guid: 5c69abf3fd3c7a44393a8449250c1f09, type: 3}
+      propertyPath: referenceCamera
+      value: 
+      objectReference: {fileID: 963194228}
     - target: {fileID: 3391753852177586493, guid: 5c69abf3fd3c7a44393a8449250c1f09, type: 3}
       propertyPath: m_ExcludeLayers.m_Bits
       value: 128

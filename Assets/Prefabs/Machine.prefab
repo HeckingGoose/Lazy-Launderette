@@ -110,6 +110,10 @@ PrefabInstance:
       value: Machine
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 3e5fa3ed3ad583c4c9f721e8c5e791af, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3e5fa3ed3ad583c4c9f721e8c5e791af, type: 3}
       propertyPath: m_TagString
       value: Untagged
       objectReference: {fileID: 0}
@@ -199,7 +203,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ea01680d37bcb7479f432e420a5f6dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  running: 1
+  running: 0
 --- !u!114 &5655192783580645906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -215,6 +219,7 @@ MonoBehaviour:
   timeToStart: 1
   minTimeBetweenRolls: 10
   maxTimeBetweenRolls: 20
+  volume: 0.7
   rollingAmbient: {fileID: 8300000, guid: c1161960ea573b24ebfa53b98a3ad8f6, type: 3}
   rollingDrop:
   - {fileID: 8300000, guid: ec0eddf69fe93234da03abdf7d8df388, type: 3}
