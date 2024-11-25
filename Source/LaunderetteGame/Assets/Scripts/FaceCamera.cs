@@ -3,34 +3,28 @@ using UnityEngine;
 public class FaceCamera : MonoBehaviour
 {
     // Const
-    private const int SPEED_MODIFIER = 500;
+    private const int SPEED_MODIFIER = 5;
 
     // Editor variables
     [SerializeField]
     private Transform referenceCamera;
 
-    // Private variables
-    private Vector3 initialRotation;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        // Cache initial rotation to do rotation locking
-        initialRotation = transform.eulerAngles;
-    }
-
     // Update is called once per frame
     void Update()
     {
-        // Calculate and set forward vector
-        Vector3 forwardVector = referenceCamera.position - transform.position;
-        transform.forward = Vector3.Lerp(transform.forward, forwardVector, Time.deltaTime / SPEED_MODIFIER);
+        // Cache facing angle
+        Vector3 cache = transform.eulerAngles;
 
-        // Lock rotation
-        transform.eulerAngles = new Vector3(
-            initialRotation.x,
-            transform.eulerAngles.y,
-            initialRotation.z
-            );
+        // Get direction between this and camera
+        Vector3 directionBetween = referenceCamera.transform.position - transform.position;
+
+        // Set it
+        transform.forward = directionBetween;
+
+        // Lerp it
+        cache.y = Mathf.Lerp(cache.y, transform.eulerAngles.y, Mathf.Min(Time.deltaTime * SPEED_MODIFIER, 1));
+
+        // Set it
+        transform.eulerAngles = cache;
     }
 }
