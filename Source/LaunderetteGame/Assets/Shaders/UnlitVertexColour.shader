@@ -21,6 +21,7 @@ Shader "Lazy Launderette/Unlit Vertex Colour"
         #pragma vertex vert
         #pragma fragment frag
         #pragma multi_compile_instancing
+        #pragma multi_compile_shadowcaster
 
         #include "UnityCG.cginc"
 
@@ -76,5 +77,8 @@ Shader "Lazy Launderette/Unlit Vertex Colour"
 
             ENDCG
         }
+
+        // Yoink unity shadowcaster pass
+        UsePass "Legacy Shaders/VertexLit/SHADOWCASTER"
     }
 }

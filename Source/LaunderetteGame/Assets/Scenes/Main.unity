@@ -4483,7 +4483,7 @@ MeshCollider:
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 1330494100390507480, guid: 3290adb7a782acf4b80e898436373175, type: 3}
+  m_Mesh: {fileID: -1357422614337538888, guid: c873c1fbb02569e40a4c2c034e08030a, type: 3}
 --- !u!4 &1142886518 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 3290adb7a782acf4b80e898436373175, type: 3}
@@ -7631,7 +7631,6 @@ MonoBehaviour:
   timeToMaxSize: 0.2
   maxScale: 1.5
   crosshair: {fileID: 1736156779}
-  cursor: {fileID: 2800000, guid: 36267f06925c86043a065f5a459e000a, type: 3}
   crosshairImage: {fileID: 1736156780}
   describeText: {fileID: 619891687}
   manageCoins: {fileID: 2091255119}
