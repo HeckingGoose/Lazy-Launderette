@@ -1,0 +1,6 @@
+# Ignore Blender backup files
+.blend1
+
+# Ignore Exported types
+.fbx
+.obj

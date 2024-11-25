@@ -1,0 +1,5 @@
+# Ignore exported Character Images
+*.png
+*.gif
+*.jpg
+*.jpeg
