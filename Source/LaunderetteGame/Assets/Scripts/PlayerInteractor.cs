@@ -17,8 +17,6 @@ public class PlayerInteractor : MonoBehaviour
     [SerializeField]
     private float rayDistance = 2f;
     [SerializeField]
-    private string[] layerNames = { "SpeechRaycast" };
-    [SerializeField]
     private float timeToMaxSize;
     [SerializeField]
     private float maxScale;
@@ -62,7 +60,7 @@ public class PlayerInteractor : MonoBehaviour
 
     private void Start()
     {
-        mask = ~LayerMask.GetMask(layerNames);
+        mask = LayerMask.GetMask(new string[] { "PickupRaycast", "SpeechRaycast" });
         baseSize = crosshair.localScale;
         maxSize = baseSize * maxScale;
         baseOpacity = crosshairImage.color;
@@ -86,7 +84,8 @@ public class PlayerInteractor : MonoBehaviour
 
         // Do raycast
         Ray ray = view.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
-        if (Physics.Raycast(ray, out hit, rayDistance, mask))
+
+        if (Physics.Raycast(ray, out hit, rayDistance))
         {
             if (hit.transform != null)
             {
