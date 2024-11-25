@@ -23,8 +23,6 @@ public class PlayerInteractor : MonoBehaviour
     [SerializeField]
     private RectTransform crosshair;
     [SerializeField]
-    private Texture2D cursor;
-    [SerializeField]
     private Image crosshairImage;
     [SerializeField]
     private TextMeshProUGUI describeText;
@@ -46,7 +44,6 @@ public class PlayerInteractor : MonoBehaviour
     private EndScene endScene;
 
     // Private variables
-    private int mask;
     private HandleInteractBubble h;
     private RaycastHit hit;
     private bool talking = false;
@@ -60,13 +57,11 @@ public class PlayerInteractor : MonoBehaviour
 
     private void Start()
     {
-        mask = LayerMask.GetMask(new string[] { "PickupRaycast", "SpeechRaycast" });
         baseSize = crosshair.localScale;
         maxSize = baseSize * maxScale;
         baseOpacity = crosshairImage.color;
         maxOpacity = crosshairImage.color;
         maxOpacity.w = 1;
-        Cursor.SetCursor(cursor, Vector2.zero, CursorMode.Auto);
     }
 
     // Raycast is done here
