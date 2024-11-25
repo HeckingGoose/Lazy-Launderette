@@ -1,4 +1,4 @@
-Shader "Lazy Launderette/Unlit Vertex Colour"
+Shader "Lazy Launderette/Unlit Vertex Colour (Double Sided)"
 {
     Properties
     {
@@ -12,7 +12,7 @@ Shader "Lazy Launderette/Unlit Vertex Colour"
             "RenderType" = "Opaque"
         }
 
-        Cull back
+        Cull Off
         LOD 200
 
         // Include

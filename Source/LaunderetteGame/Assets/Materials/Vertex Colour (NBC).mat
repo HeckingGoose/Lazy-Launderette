@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Vertex Colour
-  m_Shader: {fileID: 4800000, guid: 2d48998dd961b3547bd5ebae330e56f7, type: 3}
+  m_Name: Vertex Colour (NBC)
+  m_Shader: {fileID: 4800000, guid: e7a7e6ab03a385e4c9922d1b292ef02a, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
