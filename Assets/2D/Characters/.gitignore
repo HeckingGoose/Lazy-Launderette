@@ -1,0 +1,5 @@
+# Ignore exported types
+*.jpg
+*.jpeg
+*.png
+*.gif
