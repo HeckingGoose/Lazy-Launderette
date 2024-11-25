@@ -100,7 +100,7 @@ GameObject:
   - component: {fileID: 8088218069485073834}
   - component: {fileID: 2037665494295476851}
   - component: {fileID: 4494118350106985806}
-  - component: {fileID: 9210279533467582417}
+  - component: {fileID: 2799727581629381045}
   m_Layer: 7
   m_Name: TestPerson
   m_TagString: Talkable
@@ -236,8 +236,8 @@ MonoBehaviour:
   eyeLevel: {fileID: 4867569905417455755}
   rotationRange: 10
   timeBetweenSwitches: 0.2
---- !u!136 &9210279533467582417
-CapsuleCollider:
+--- !u!65 &2799727581629381045
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -254,11 +254,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.002
-  m_Height: 0.02
-  m_Direction: 2
-  m_Center: {x: 0, y: 0, z: 0.01}
+  serializedVersion: 3
+  m_Size: {x: 0.012, y: 0.0002, z: 0.019999998}
+  m_Center: {x: 0, y: 0, z: 0.009999999}
 --- !u!1 &6365116767278990314
 GameObject:
   m_ObjectHideFlags: 0
