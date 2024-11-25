@@ -1,9 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class FaceCamera : MonoBehaviour
 {
+    // Const
+    private const int SPEED_MODIFIER = 500;
+
     // Editor variables
     [SerializeField]
     private Transform referenceCamera;
@@ -23,7 +24,7 @@ public class FaceCamera : MonoBehaviour
     {
         // Calculate and set forward vector
         Vector3 forwardVector = referenceCamera.position - transform.position;
-        transform.forward = forwardVector;
+        transform.forward = Vector3.Lerp(transform.forward, forwardVector, Time.deltaTime / SPEED_MODIFIER);
 
         // Lock rotation
         transform.eulerAngles = new Vector3(
