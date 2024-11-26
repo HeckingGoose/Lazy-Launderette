@@ -1,5 +1,4 @@
 using UnityEngine;
-using System;
 
 public class Machine_Running : MonoBehaviour
 {
@@ -67,12 +66,12 @@ public class Machine_Running : MonoBehaviour
                 {
                     // Roll in volume
                     if (rollTimer <= timeToStart + 1)
-                    {   
-                        source.volume = rollTimer - timeToStart;
-                    }
-                    else if (source.volume < 1)
                     {
-                        source.volume = 1;
+                        source.volume = (rollTimer - timeToStart) * volume;
+                    }
+                    else if (source.volume < volume)
+                    {
+                        source.volume = volume;
                     }
 
                     // Play ambient sound if there is no sound playing
