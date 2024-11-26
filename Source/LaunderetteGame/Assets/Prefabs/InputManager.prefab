@@ -1,0 +1,87 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2854615726699074056
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1282715150933449152}
+  - component: {fileID: 6458382075760852629}
+  m_Layer: 0
+  m_Name: InputManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1282715150933449152
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2854615726699074056}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6458382075760852629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2854615726699074056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c83c1da9532c02a4ebf471ea5c815f83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _xbox360Sprites:
+  - {fileID: -1160344218, guid: 640b85f64ddfcd6439be18f6d9ed43a6, type: 3}
+  - {fileID: 919022852, guid: 640b85f64ddfcd6439be18f6d9ed43a6, type: 3}
+  - {fileID: 1039716132, guid: 640b85f64ddfcd6439be18f6d9ed43a6, type: 3}
+  - {fileID: -558745323, guid: 640b85f64ddfcd6439be18f6d9ed43a6, type: 3}
+  - {fileID: 2087465926, guid: 640b85f64ddfcd6439be18f6d9ed43a6, type: 3}
+  - {fileID: -1620598382, guid: 640b85f64ddfcd6439be18f6d9ed43a6, type: 3}
+  - {fileID: -673853546, guid: 640b85f64ddfcd6439be18f6d9ed43a6, type: 3}
+  - {fileID: -2075935404, guid: 640b85f64ddfcd6439be18f6d9ed43a6, type: 3}
+  - {fileID: 845484758, guid: 640b85f64ddfcd6439be18f6d9ed43a6, type: 3}
+  - {fileID: 1141697478, guid: 640b85f64ddfcd6439be18f6d9ed43a6, type: 3}
+  - {fileID: 878832699, guid: 640b85f64ddfcd6439be18f6d9ed43a6, type: 3}
+  - {fileID: -229684551, guid: 640b85f64ddfcd6439be18f6d9ed43a6, type: 3}
+  - {fileID: 1227560342, guid: 640b85f64ddfcd6439be18f6d9ed43a6, type: 3}
+  - {fileID: -1399492303, guid: 640b85f64ddfcd6439be18f6d9ed43a6, type: 3}
+  - {fileID: -1212864330, guid: 640b85f64ddfcd6439be18f6d9ed43a6, type: 3}
+  - {fileID: 1972777901, guid: 640b85f64ddfcd6439be18f6d9ed43a6, type: 3}
+  - {fileID: 1036817305, guid: 640b85f64ddfcd6439be18f6d9ed43a6, type: 3}
+  - {fileID: 301211065, guid: 640b85f64ddfcd6439be18f6d9ed43a6, type: 3}
+  - {fileID: 1448182531, guid: 640b85f64ddfcd6439be18f6d9ed43a6, type: 3}
+  _playstation3Sprites:
+  - {fileID: -1337752893, guid: 213992efbe0259e43800cb100028d6e7, type: 3}
+  - {fileID: -1958013524, guid: 213992efbe0259e43800cb100028d6e7, type: 3}
+  - {fileID: 1257659625, guid: 213992efbe0259e43800cb100028d6e7, type: 3}
+  - {fileID: -1094021178, guid: 213992efbe0259e43800cb100028d6e7, type: 3}
+  - {fileID: 1096000858, guid: 213992efbe0259e43800cb100028d6e7, type: 3}
+  - {fileID: 1158025741, guid: 213992efbe0259e43800cb100028d6e7, type: 3}
+  - {fileID: -1177334094, guid: 213992efbe0259e43800cb100028d6e7, type: 3}
+  - {fileID: 585728829, guid: 213992efbe0259e43800cb100028d6e7, type: 3}
+  - {fileID: 842443065, guid: 213992efbe0259e43800cb100028d6e7, type: 3}
+  - {fileID: -144422291, guid: 213992efbe0259e43800cb100028d6e7, type: 3}
+  - {fileID: -1509561910, guid: 213992efbe0259e43800cb100028d6e7, type: 3}
+  - {fileID: 1577591669, guid: 213992efbe0259e43800cb100028d6e7, type: 3}
+  - {fileID: -280580895, guid: 213992efbe0259e43800cb100028d6e7, type: 3}
+  - {fileID: -1734412709, guid: 213992efbe0259e43800cb100028d6e7, type: 3}
+  - {fileID: 1472370652, guid: 213992efbe0259e43800cb100028d6e7, type: 3}
+  - {fileID: -1352349081, guid: 213992efbe0259e43800cb100028d6e7, type: 3}
+  - {fileID: -1011080413, guid: 213992efbe0259e43800cb100028d6e7, type: 3}
+  - {fileID: -653283055, guid: 213992efbe0259e43800cb100028d6e7, type: 3}
+  - {fileID: 1256025495, guid: 213992efbe0259e43800cb100028d6e7, type: 3}
+  _errorSprite: {fileID: -945846360, guid: cab57730a65f742408438f612073eedf, type: 3}

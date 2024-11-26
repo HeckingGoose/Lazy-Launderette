@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -53,7 +51,7 @@ public class ManageConversation : MonoBehaviour
     {
         // If we are currently talking
         if (talking)
-        {   
+        {
 
             // Check if we actually have data to work with
             if (characterData != null && lineNumber < characterData.conversations.Length)
@@ -64,7 +62,7 @@ public class ManageConversation : MonoBehaviour
                     // Command
                     string command = characterData.conversations[lineNumber].Split(' ')[0];
                     string data = characterData.conversations[lineNumber].Remove(0, characterData.conversations[lineNumber].IndexOf(' ') + 1);
-                
+
                     // Figure out what needs to be done
                     switch (command)
                     {
@@ -77,7 +75,7 @@ public class ManageConversation : MonoBehaviour
                             lineNumber++;
                             break;
                         case "!STRIPHELD":
-                            manageInventory.TryRemoveItem(manageInventory.selectedItem);
+                            manageInventory.TryRemoveItem(manageInventory.currentSlot);
                             lineNumber++;
                             break;
                         case "!SATISFY":

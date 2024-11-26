@@ -3,7 +3,7 @@ using UnityEngine;
 public class VentZone : MonoBehaviour
 {
     // Cache
-    private PlayerController? playerControllerCache = null;
+    private PlayerController playerControllerCache = null;
 
     private void OnTriggerEnter(Collider other)
     {

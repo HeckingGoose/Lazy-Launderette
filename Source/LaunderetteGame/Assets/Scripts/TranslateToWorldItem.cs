@@ -36,8 +36,8 @@ public class TranslateToWorldItem : MonoBehaviour
         if (ready)
         {
             // Ensure itemID is in range
-            if (itemID > itemPrefabs.Length - 1 &&
-                itemID > 0
+            if (itemID >= itemPrefabs.Length ||
+                itemID < 0
                 )
             {
                 // Not in length, so log error and skip

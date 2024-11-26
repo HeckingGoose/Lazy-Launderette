@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,13 +7,7 @@ public class ManageInventory : MonoBehaviour
     [SerializeField]
     private RectTransform[] inventorySlots;
     [SerializeField]
-    private Image[] inventoryImages;
-    [SerializeField]
-    private TextMeshProUGUI[] inventoryText;
-    [SerializeField]
-    private string[] itemNames;
-    [SerializeField]
-    private Sprite[] itemSprites;
+    private InventorySlot[] _slots;
     [SerializeField]
     private Image heldItemImage;
     [SerializeField]
@@ -34,29 +24,25 @@ public class ManageInventory : MonoBehaviour
     private AudioClip[] dropSounds;
 
     // Private variables
-    private int[] inventoryItems;
     private Vector3[] baseScales;
     private Vector3[] maxScales;
     private Vector3[] baseRotations;
     private Vector3[] maxRotations;
-    public int selectedItem;
+    public int currentSlot;
     private float[] timers;
     private int gState = 0;
 
     private void Start()
     {
         // Initialise inventory items
-        inventoryItems = new int[inventorySlots.Length];
         baseScales = new Vector3[inventorySlots.Length];
         maxScales = new Vector3[inventorySlots.Length];
         baseRotations = new Vector3[inventorySlots.Length];
         maxRotations = new Vector3[inventorySlots.Length];
         timers = new float[inventorySlots.Length];
 
-        for(int i = 0; i < inventoryItems.Length; i++)
+        for (int i = 0; i < _slots.Length; i++)
         {
-            inventoryItems[i] = -1;
-
             // Setup visual scaling stuff
             baseScales[i] = inventorySlots[i].localScale;
             maxScales[i] = baseScales[i] * scaleAmount;
@@ -72,7 +58,7 @@ public class ManageInventory : MonoBehaviour
         // Set first item to be a bag
         TryAddItem(0);
 
-        selectedItem = 0;
+        currentSlot = 0;
     }
 
     private void Update()
@@ -91,7 +77,7 @@ public class ManageInventory : MonoBehaviour
         for (int i = 0; i < timers.Length; i++)
         {
             // Update timer value
-            if (selectedItem == i)
+            if (currentSlot == i)
             {
                 timers[i] += Time.deltaTime;
                 if (timers[i] > maxTimer)
@@ -114,26 +100,26 @@ public class ManageInventory : MonoBehaviour
         }
 
         // Poll keys
-        if (Input.GetAxis("Inv1") > 0 && selectedItem != 0)
+        if (Input.GetAxis("Inv1") > 0 && currentSlot != 0)
         {
-            selectedItem = 0;
+            currentSlot = 0;
             UpdateHand();
         }
-        else if (Input.GetAxis("Inv2") > 0 && selectedItem != 1)
+        else if (Input.GetAxis("Inv2") > 0 && currentSlot != 1)
         {
-            selectedItem = 1;
+            currentSlot = 1;
             UpdateHand();
         }
-        else if (Input.GetAxis("Inv3") > 0 && selectedItem != 2)
+        else if (Input.GetAxis("Inv3") > 0 && currentSlot != 2)
         {
-            selectedItem = 2;
+            currentSlot = 2;
             UpdateHand();
         }
 
         // Drop current item if g is pressed
-        if (gState == 1 && inventoryItems[selectedItem] != -1)
+        if (gState == 1 && _slots[currentSlot].Item != InventorySlot.NO_ITEM)
         {
-            switch (inventoryItems[selectedItem])
+            switch (_slots[currentSlot].Item)
             {
                 case 1: // Chocolate
                     dropSource.clip = dropSounds[0];
@@ -150,8 +136,7 @@ public class ManageInventory : MonoBehaviour
                     break;
             }
             // Drop item
-            translate.DropItem(inventoryItems[selectedItem]);
-            TryRemoveItem(selectedItem);
+            translate.DropItem(_slots[currentSlot].TryRemoveItem());
             UpdateHand();
         }
     }
@@ -160,9 +145,9 @@ public class ManageInventory : MonoBehaviour
     public void UpdateHand()
     {
         // There is an item in the hand now
-        if (inventoryItems[selectedItem] != -1)
+        if (_slots[currentSlot].Item != InventorySlot.NO_ITEM)
         {
-            heldItemImage.sprite = itemSprites[inventoryItems[selectedItem]];
+            heldItemImage.sprite = _slots[currentSlot].Sprite;
             heldItemImage.enabled = true;
         }
         // We need to remove an item from the hand
@@ -174,9 +159,9 @@ public class ManageInventory : MonoBehaviour
     public bool TryAddItem(int itemID)
     {
         int pointer = -1;
-        for (int i = 0; i < inventoryItems.Length; i++)
+        for (int i = 0; i < _slots.Length; i++)
         {
-            if (inventoryItems[i] == -1)
+            if (_slots[i].Item == InventorySlot.NO_ITEM)
             {
                 pointer = i;
                 break;
@@ -187,47 +172,36 @@ public class ManageInventory : MonoBehaviour
             Debug.Log("Inventory is full.");
             return false;
         }
-        else if (itemID > itemNames.Length)
-        {
-            Debug.Log($"Item ID {itemID} does not exist.");
-            return false;
-        }
-        else if (itemID > itemSprites.Length)
-        {
-            Debug.Log($"Item ID {itemID} has no sprite.");
-            return false;
-        }
 
-        inventoryItems[pointer] = itemID;
-        inventoryImages[pointer].sprite = itemSprites[itemID];
-        inventoryImages[pointer].enabled = true;
-        inventoryText[pointer].text = itemNames[itemID];
+        // Update item in slot
+        _slots[pointer].SetItem(itemID);
+
         UpdateHand();
         return true;
     }
     public bool TryRemoveItem(int index)
     {
-        if (inventoryItems[index] == -1)
+        if (_slots[index].Item == InventorySlot.NO_ITEM)
         {
             Debug.Log("Inventory slot is currently empty! Cannot remove item.");
             return false;
         }
 
-        inventoryItems[index] = -1;
-        inventoryImages[index].enabled = false;
-        inventoryText[index].text = "";
         UpdateHand();
         return true;
     }
+    /// <summary>
+    /// Returns item name in lowercase.
+    /// </summary>
     public string GetHeldItemName()
     {
-        if (inventoryItems[selectedItem] == -1)
+        if (_slots[currentSlot].Item == InventorySlot.NO_ITEM)
         {
-            return "Empty";
+            return "empty";
         }
         else
         {
-            return itemNames[inventoryItems[selectedItem]];
+            return _slots[currentSlot].ItemName.ToLower();
         }
     }
 }

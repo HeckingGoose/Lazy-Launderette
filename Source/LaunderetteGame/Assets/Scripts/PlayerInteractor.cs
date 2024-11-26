@@ -121,13 +121,13 @@ public class PlayerInteractor : MonoBehaviour
 
                         if (p != null)
                         {
-                            if (p.itemID == -2 && inventory.GetHeldItemName() != "Empty Bag")
+                            if (p.itemID == -2 && inventory.GetHeldItemName() != "empty bag")
                             {
                                 describeText.text = "Need empty bag";
                             }
                             else if (p.itemID == -3)
                             {
-                                if (inventory.GetHeldItemName() == "Screwdriver")
+                                if (inventory.GetHeldItemName() == "screwdriver")
                                 {
                                     describeText.text = "Remove";
                                 }
@@ -152,9 +152,9 @@ public class PlayerInteractor : MonoBehaviour
 
                                     // clothes without bag
                                     case -2:
-                                        if (inventory.GetHeldItemName() == "Empty Bag")
+                                        if (inventory.GetHeldItemName() == "empty bag")
                                         {
-                                            inventory.TryRemoveItem(inventory.selectedItem);
+                                            inventory.TryRemoveItem(inventory.currentSlot);
                                             success = inventory.TryAddItem(2);
 
                                             if (success)
@@ -168,7 +168,7 @@ public class PlayerInteractor : MonoBehaviour
 
                                     // vent
                                     case -3:
-                                        if (inventory.GetHeldItemName() == "Screwdriver")
+                                        if (inventory.GetHeldItemName() == "screwdriver")
                                         {
                                             // Add screws
                                             success = inventory.TryAddItem(5);
@@ -246,7 +246,7 @@ public class PlayerInteractor : MonoBehaviour
                     case "WashSpot":
                         if (manageCoins.numCoins >= 5)
                         {
-                            if (inventory.GetHeldItemName() == "Clothes Bag")
+                            if (inventory.GetHeldItemName() == "clothes bag")
                             {
                                 describeText.text = "Wash clothes?";
 
