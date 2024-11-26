@@ -56,7 +56,7 @@ public class ManageInventory : MonoBehaviour
         }
 
         // Set first item to be a bag
-        TryAddItem(0);
+        TryAddItem(Inventory.Item.ClothesBag);
 
         currentSlot = 0;
     }
@@ -117,16 +117,16 @@ public class ManageInventory : MonoBehaviour
         }
 
         // Drop current item if g is pressed
-        if (gState == 1 && _slots[currentSlot].Item != InventorySlot.NO_ITEM)
+        if (gState == 1 && _slots[currentSlot].Item != Inventory.Item.None)
         {
             switch (_slots[currentSlot].Item)
             {
-                case 1: // Chocolate
+                case Inventory.Item.Choccy: // Chocolate
                     dropSource.clip = dropSounds[0];
                     dropSource.Play();
                     break;
-                case 5: // Screws
-                case 4: // Screwdriver
+                case Inventory.Item.Screws: // Screws
+                case Inventory.Item.Screwdriver: // Screwdriver
                     dropSource.clip = dropSounds[2];
                     dropSource.Play();
                     break;
@@ -145,7 +145,7 @@ public class ManageInventory : MonoBehaviour
     public void UpdateHand()
     {
         // There is an item in the hand now
-        if (_slots[currentSlot].Item != InventorySlot.NO_ITEM)
+        if (_slots[currentSlot].Item != Inventory.Item.None)
         {
             heldItemImage.sprite = _slots[currentSlot].Sprite;
             heldItemImage.enabled = true;
@@ -156,12 +156,12 @@ public class ManageInventory : MonoBehaviour
             heldItemImage.enabled = false;
         }
     }
-    public bool TryAddItem(int itemID)
+    public bool TryAddItem(Inventory.Item item)
     {
         int pointer = -1;
         for (int i = 0; i < _slots.Length; i++)
         {
-            if (_slots[i].Item == InventorySlot.NO_ITEM)
+            if (_slots[i].Item == Inventory.Item.None)
             {
                 pointer = i;
                 break;
@@ -174,34 +174,30 @@ public class ManageInventory : MonoBehaviour
         }
 
         // Update item in slot
-        _slots[pointer].SetItem(itemID);
+        _slots[pointer].SetItem(item);
 
         UpdateHand();
         return true;
     }
     public bool TryRemoveItem(int index)
     {
-        if (_slots[index].Item == InventorySlot.NO_ITEM)
+        if (_slots[index].Item == Inventory.Item.None)
         {
             Debug.Log("Inventory slot is currently empty! Cannot remove item.");
             return false;
         }
 
+        // Remove item
+        _slots[index].TryRemoveItem();
+
         UpdateHand();
         return true;
     }
     /// <summary>
-    /// Returns item name in lowercase.
+    /// Returns the enum representation of the currently selected item.
     /// </summary>
-    public string GetHeldItemName()
+    public Inventory.Item GetHeldItem()
     {
-        if (_slots[currentSlot].Item == InventorySlot.NO_ITEM)
-        {
-            return "empty";
-        }
-        else
-        {
-            return _slots[currentSlot].ItemName.ToLower();
-        }
+        return _slots[currentSlot].Item;
     }
 }

@@ -4,9 +4,6 @@ using UnityEngine.UI;
 
 public class InventorySlot : MonoBehaviour
 {
-    // Const
-    public const int NO_ITEM = -1;
-
     // Editor values
     [Header("Inventory")]
     [SerializeField]
@@ -18,32 +15,32 @@ public class InventorySlot : MonoBehaviour
     private TextMeshProUGUI _itemText;
 
     // Private values
-    private int _item = NO_ITEM;
+    private Inventory.Item _item = Inventory.Item.None;
 
     // Methods
     /// <summary>
     /// Given an itemID, set's this slot to represent that ID. No error handling.
     /// </summary>
     /// <param name="itemID">The ItemID to set to.</param>
-    public void SetItem(int itemID)
+    public void SetItem(Inventory.Item item)
     {
         // Attempt to update sprite and text
-        (_itemText.text, _itemImage.sprite) = _inventory.GetInventoryItem(itemID);
+        (_itemText.text, _itemImage.sprite) = _inventory.GetInventoryItem(item);
 
         // Set image colour to white
         _itemImage.color = Color.white;
 
         // Set itemID
-        _item = itemID;
+        _item = item;
     }
 
-    public int TryRemoveItem()
+    public Inventory.Item TryRemoveItem()
     {
         // Cache item
-        int temp = _item;
+        Inventory.Item temp = _item;
 
         // Set item to be invalid
-        _item = NO_ITEM;
+        _item = Inventory.Item.None;
 
         // Reset item text
         _itemText.text = string.Empty;
@@ -56,7 +53,7 @@ public class InventorySlot : MonoBehaviour
     }
 
     // Accessors
-    public int Item
+    public Inventory.Item Item
     {
         get { return _item; }
     }
@@ -66,9 +63,6 @@ public class InventorySlot : MonoBehaviour
     }
     public Sprite Sprite
     {
-        get
-        {
-            return _itemImage.sprite;
-        }
+        get { return _itemImage.sprite; }
     }
 }

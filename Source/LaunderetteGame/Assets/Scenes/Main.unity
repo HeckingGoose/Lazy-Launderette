@@ -220,7 +220,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 535721e6453dcb0449589b6af403eefa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemID: -2
+  item: 8
 --- !u!65 &38985659
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1999,7 +1999,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 535721e6453dcb0449589b6af403eefa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemID: -3
+  item: 9
 --- !u!4 &677498222 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c26e99e9a617bcb47b8f0c9f7eb74821, type: 3}
@@ -3554,7 +3554,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 535721e6453dcb0449589b6af403eefa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemID: -3
+  item: 9
 --- !u!4 &1099966034 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c26e99e9a617bcb47b8f0c9f7eb74821, type: 3}

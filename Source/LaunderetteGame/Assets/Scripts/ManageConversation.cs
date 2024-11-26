@@ -102,10 +102,10 @@ public class ManageConversation : MonoBehaviour
                                     lineNumber++;
                                     break;
                                 case "Empty Bag":
-                                    success = manageInventory.TryAddItem(3);
+                                    success = manageInventory.TryAddItem(Inventory.Item.EmptyBag);
                                     if (!success)
                                     {
-                                        translateToWorldItem.DropItem(3);
+                                        translateToWorldItem.DropItem(Inventory.Item.EmptyBag);
                                         altSource.clip = altSounds[0];
                                         altSource.Play();
                                     }
@@ -117,10 +117,10 @@ public class ManageConversation : MonoBehaviour
                                     lineNumber++;
                                     break;
                                 case "Choccy":
-                                    success = manageInventory.TryAddItem(1);
+                                    success = manageInventory.TryAddItem(Inventory.Item.Choccy);
                                     if (!success)
                                     {
-                                        translateToWorldItem.DropItem(1);
+                                        translateToWorldItem.DropItem(Inventory.Item.Choccy);
                                         altSource.clip = altSounds[1];
                                         altSource.Play();
                                     }

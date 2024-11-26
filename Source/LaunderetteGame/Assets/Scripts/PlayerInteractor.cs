@@ -121,13 +121,13 @@ public class PlayerInteractor : MonoBehaviour
 
                         if (p != null)
                         {
-                            if (p.itemID == -2 && inventory.GetHeldItemName() != "empty bag")
+                            if (p.item == Inventory.Item.WashedClothes && inventory.GetHeldItem() != Inventory.Item.EmptyBag)
                             {
                                 describeText.text = "Need empty bag";
                             }
-                            else if (p.itemID == -3)
+                            else if (p.item == Inventory.Item.VentCover)
                             {
-                                if (inventory.GetHeldItemName() == "screwdriver")
+                                if (inventory.GetHeldItem() == Inventory.Item.Screwdriver)
                                 {
                                     describeText.text = "Remove";
                                 }
@@ -140,10 +140,10 @@ public class PlayerInteractor : MonoBehaviour
                             if (eState == 1)
                             {
                                 bool success;
-                                switch (p.itemID)
+                                switch (p.item)
                                 {
                                     // coin
-                                    case -1:
+                                    case Inventory.Item.Coin:
                                         manageCoins.numCoins++;
                                         coinSource.clip = coinPickup;
                                         coinSource.Play();
@@ -151,11 +151,11 @@ public class PlayerInteractor : MonoBehaviour
                                         break;
 
                                     // clothes without bag
-                                    case -2:
-                                        if (inventory.GetHeldItemName() == "empty bag")
+                                    case Inventory.Item.WashedClothes:
+                                        if (inventory.GetHeldItem() == Inventory.Item.EmptyBag)
                                         {
                                             inventory.TryRemoveItem(inventory.currentSlot);
-                                            success = inventory.TryAddItem(2);
+                                            success = inventory.TryAddItem(Inventory.Item.BagHoldingSamsClothes);
 
                                             if (success)
                                             {
@@ -167,16 +167,16 @@ public class PlayerInteractor : MonoBehaviour
                                         break;
 
                                     // vent
-                                    case -3:
-                                        if (inventory.GetHeldItemName() == "screwdriver")
+                                    case Inventory.Item.VentCover:
+                                        if (inventory.GetHeldItem() == Inventory.Item.Screwdriver)
                                         {
                                             // Add screws
-                                            success = inventory.TryAddItem(5);
+                                            success = inventory.TryAddItem(Inventory.Item.Screws);
 
                                             // If inventory is full then drop screws
                                             if (!success)
                                             {
-                                                translate.DropItem(5);
+                                                translate.DropItem(Inventory.Item.Screws);
                                             }
                                             else
                                             {
@@ -194,21 +194,21 @@ public class PlayerInteractor : MonoBehaviour
 
                                     // regular item
                                     default:
-                                        success = inventory.TryAddItem(p.itemID);
+                                        success = inventory.TryAddItem(p.item);
 
                                         if (success)
                                         {
                                             Destroy(p.gameObject);
                                         }
 
-                                        switch (p.itemID)
+                                        switch (p.item)
                                         {
-                                            case 1: // Chocolate
+                                            case Inventory.Item.Choccy: // Chocolate
                                                 pickupSource.clip = pickupSounds[0];
                                                 pickupSource.Play();
                                                 break;
-                                            case 5: // screws
-                                            case 4: // Screwdriver
+                                            case Inventory.Item.Screws: // screws
+                                            case Inventory.Item.Screwdriver: // Screwdriver
                                                 pickupSource.clip = pickupSounds[2];
                                                 pickupSource.Play();
                                                 break;
@@ -246,7 +246,7 @@ public class PlayerInteractor : MonoBehaviour
                     case "WashSpot":
                         if (manageCoins.numCoins >= 5)
                         {
-                            if (inventory.GetHeldItemName() == "clothes bag")
+                            if (inventory.GetHeldItem() == Inventory.Item.ClothesBag)
                             {
                                 describeText.text = "Wash clothes?";
 
@@ -337,7 +337,7 @@ public class PlayerInteractor : MonoBehaviour
             Cursor.lockState = CursorLockMode.Confined;
 
             // Move into conversation
-            conversationManager.StartTalk(in characterData, in target, inventory.GetHeldItemName());
+            conversationManager.StartTalk(in characterData, in target, Inventory.GetItemName(inventory.GetHeldItem()));
         }
     }
     public void EndTalk()

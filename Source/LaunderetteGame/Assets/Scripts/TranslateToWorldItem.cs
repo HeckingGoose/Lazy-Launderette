@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class TranslateToWorldItem : MonoBehaviour
@@ -12,6 +13,15 @@ public class TranslateToWorldItem : MonoBehaviour
 
     // Private stuff
     private bool ready = true;
+    private Dictionary<Inventory.Item, int> _itemToObjectIndexMap = new Dictionary<Inventory.Item, int>
+    {
+        { Inventory.Item.ClothesBag, 0 },
+        { Inventory.Item.Choccy, 1 },
+        { Inventory.Item.BagHoldingSamsClothes, 2 },
+        { Inventory.Item.EmptyBag, 3 },
+        { Inventory.Item.Screwdriver, 4 },
+        { Inventory.Item.Screws, 5 }
+    };
 
     // Methods
     public void Start()
@@ -30,27 +40,25 @@ public class TranslateToWorldItem : MonoBehaviour
     /// Given an ItemID, attempts to generate a worldItem as the owner's root.
     /// </summary>
     /// <param name="itemID">The ItemID to generate.</param>
-    public void DropItem(int itemID)
+    public void DropItem(Inventory.Item item)
     {
         // Ensure script is even ready
         if (ready)
         {
             // Ensure itemID is in range
-            if (itemID >= itemPrefabs.Length ||
-                itemID < 0
-                )
+            if (!_itemToObjectIndexMap.ContainsKey(item))
             {
                 // Not in length, so log error and skip
-                Debug.LogWarning($"Failed to translate object to worldItem (Given ID: {itemID}, valid range is IDs: 0 - {itemPrefabs.Length - 1}).");
+                Debug.LogWarning($"Failed to translate object to worldItem (Given item '{item.ToString()}' is not a valid worldItem).");
                 return;
             }
 
             // Create a new item matching the ID provided
             Instantiate
             (
-                itemPrefabs[itemID],
+                itemPrefabs[_itemToObjectIndexMap[item]],
                 new Vector3(owner.position.x, owner.position.y - ownerController.height + 0.01f, owner.position.z),
-                itemPrefabs[itemID].transform.rotation
+                itemPrefabs[_itemToObjectIndexMap[item]].transform.rotation
             );
         }
         // Otherwise
