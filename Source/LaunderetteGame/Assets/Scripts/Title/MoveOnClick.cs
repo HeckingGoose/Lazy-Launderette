@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Threading;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -31,7 +28,5 @@ public class MoveOnClickj : MonoBehaviour
             clickText.color.b,
             Mathf.Lerp(0, 1, Mathf.Clamp((timer - beginFadeAt) / (doneAt - beginFadeAt), 0, 1))
             );
-
-        timer += Time.deltaTime;
     }
 }
