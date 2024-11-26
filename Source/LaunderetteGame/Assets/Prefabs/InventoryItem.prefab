@@ -54,6 +54,7 @@ MonoBehaviour:
   _inventory: {fileID: 0}
   _itemImage: {fileID: 4664475450692671963}
   _itemText: {fileID: 5720842428024207739}
+  _selfTransform: {fileID: 7841392648306204551}
 --- !u!1 &2237693848834596707
 GameObject:
   m_ObjectHideFlags: 0
