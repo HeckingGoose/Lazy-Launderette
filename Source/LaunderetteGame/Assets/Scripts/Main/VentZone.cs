@@ -16,7 +16,7 @@ public class VentZone : MonoBehaviour
                 playerControllerCache = other.gameObject.GetComponent<PlayerController>();
 
                 // Tell it that it is now in the vent
-                playerControllerCache.inVentZone = true;
+                playerControllerCache.InVentZone = true;
             }
             catch { }
         }
@@ -30,12 +30,12 @@ public class VentZone : MonoBehaviour
             if (playerControllerCache != null)
             {
                 // Modify this and return
-                playerControllerCache.inVentZone = true;
+                playerControllerCache.InVentZone = true;
             }
             // Otherwise barrel ahead
             try
             {
-                other.gameObject.GetComponent<PlayerController>().inVentZone = true;
+                other.gameObject.GetComponent<PlayerController>().InVentZone = true;
             }
             catch { }
         }
@@ -49,14 +49,14 @@ public class VentZone : MonoBehaviour
             if (playerControllerCache != null)
             {
                 // Tell it that it has left, then return
-                playerControllerCache.inVentZone = false;
+                playerControllerCache.InVentZone = false;
                 return;
             }
 
             // Otherwise we just barrel ahead as usual
             try
             {
-                other.gameObject.GetComponent<PlayerController>().inVentZone = false;
+                other.gameObject.GetComponent<PlayerController>().InVentZone = false;
             }
             catch { }
         }

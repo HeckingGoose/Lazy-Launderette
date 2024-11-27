@@ -7049,12 +7049,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea5478037843e7a44909c09a5c2b1dc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: 6
-  lookRange: 120
-  cameraTransform: {fileID: 963194228}
-  crouchHeight: 0.9
-  timeToCrouch: 0.3
-  inVentZone: 0
+  _cameraTransform: {fileID: 963194228}
+  _velocity: 6
+  _lookRange: 120
+  _lookSensitivity: 0.25
+  _lookDeadZone: 0.1
+  _crouchHeight: 0.9
+  _timeToCrouch: 0.3
+  _crouching: 0
 --- !u!143 &2091255116
 CharacterController:
   m_ObjectHideFlags: 0

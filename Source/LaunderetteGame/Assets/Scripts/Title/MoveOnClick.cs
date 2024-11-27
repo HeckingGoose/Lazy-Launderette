@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class MoveOnClick : MonoBehaviour
@@ -16,12 +17,22 @@ public class MoveOnClick : MonoBehaviour
 
     // Private variables
     private float _timer = 0;
+    private InputActionMap _menuActionMap;
+    private InputAction _goToMainAction;
 
     // Unity methods
+    private void Start()
+    {
+        // Fetch a reference to the MainMenu action map
+        _menuActionMap = InputSystem.actions.FindActionMap("MainMenu");
+
+        // Fetch a reference to the GoToMain action
+        _goToMainAction = _menuActionMap.FindAction("GoToMain");
+    }
     private void Update()
     {
         // Wait for left mouse axis, and text starting to fade in
-        if (Input.GetAxis("LeftMouse") > 0 && _timer > _beginFadeAt)
+        if (_goToMainAction.WasPressedThisFrame() && _timer > _beginFadeAt)
         {
             // Set the load target to the main scene and begin loading
             GLOBAL.LoadTarget = "Main";
