@@ -3,46 +3,56 @@ using UnityEngine;
 public class Machine_Main : MonoBehaviour
 {
     // Editor variables
+    [Header("Is the machine in use?")]
     [SerializeField]
-    private bool running;
+    private bool _running;
 
-    // Internal variables
-    private Animator animator;
-    private BoxCollider boxCollider;
+    // Private variables
+    private Animator _animator;
+    private BoxCollider _boxCollider;
 
+    // Unity Methods
     private void Start()
     {
-        // Fetch components, throw error on fail
-        bool success = TryGetComponent(out animator) ? TryGetComponent(out boxCollider) ? true : false : false;
+        // Fetch components, return false on any fail
+        bool success = TryGetComponent(out _animator) ? TryGetComponent(out _boxCollider) ? true : false : false;
 
+        // Did we fail
         if (!success)
         {
+            // Log the error
             Debug.LogError($"Failed to fetch Animator/BoxCollider on {name}!");
         }
     }
 
     // Externally accessible methods
+    /// <summary>
+    /// Toggles the door state between open and closed, as long as the machine is not running.
+    /// </summary>
     public void ToggleDoor()
     {
         // If machine isn't currently running
-        if (!running)
+        if (!_running)
         {
             // Flip door state
-            bool doorOpen = animator.GetBool("DoorOpen");
-            animator.SetBool("DoorOpen", !doorOpen);
-            boxCollider.enabled = doorOpen;
+            bool doorOpen = _animator.GetBool("DoorOpen");
+            _animator.SetBool("DoorOpen", !doorOpen);
+            _boxCollider.enabled = doorOpen;
         }
         // If machine is running
         else
         {
             // Close door just in case
-            animator.SetBool("DoorOpen", false);
+            _animator.SetBool("DoorOpen", false);
         }
     }
 
     // Accessors
+    /// <summary>
+    /// Fetches whether this washing machine is in use or not.
+    /// </summary>
     public bool Running
     {
-        get { return running; }
+        get { return _running; }
     }
 }
