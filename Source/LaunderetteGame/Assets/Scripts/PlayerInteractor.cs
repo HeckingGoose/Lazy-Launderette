@@ -144,9 +144,14 @@ public class PlayerInteractor : MonoBehaviour
                                 {
                                     // coin
                                     case Inventory.Item.Coin:
+                                        // Increment coin counter
                                         manageCoins.numCoins++;
+
+                                        // Playback pickup sound
                                         coinSource.clip = coinPickup;
                                         coinSource.Play();
+
+                                        // Destroy coin
                                         Destroy(p.gameObject);
                                         break;
 
@@ -154,15 +159,23 @@ public class PlayerInteractor : MonoBehaviour
                                     case Inventory.Item.WashedClothes:
                                         if (inventory.GetHeldItem() == Inventory.Item.EmptyBag)
                                         {
-                                            inventory.TryRemoveItem(inventory.currentSlot);
+                                            // Remove bag
+                                            inventory.TryRemoveItem();
+
+                                            // Add full bag
                                             success = inventory.TryAddItem(Inventory.Item.BagHoldingSamsClothes);
 
+                                            // If we were able to add the item
                                             if (success)
                                             {
-                                                Destroy(p.gameObject);
+                                                // Play pickup sounds
                                                 pickupSource.clip = pickupSounds[1];
                                                 pickupSource.Play();
                                             }
+
+                                            // Destroy clothes pile
+                                            Destroy(p.gameObject);
+
                                         }
                                         break;
 
@@ -173,19 +186,18 @@ public class PlayerInteractor : MonoBehaviour
                                             // Add screws
                                             success = inventory.TryAddItem(Inventory.Item.Screws);
 
-                                            // If inventory is full then drop screws
-                                            if (!success)
+                                            // If succeeded
+                                            if (success)
                                             {
-                                                translate.DropItem(Inventory.Item.Screws);
-                                            }
-                                            else
-                                            {
+                                                // Then play pickup sound
                                                 pickupSource.clip = pickupSounds[2];
                                                 pickupSource.Play();
                                             }
 
                                             // Remove vent
                                             Destroy(p.gameObject);
+
+                                            // Play vent destroy sound effect
                                             pickupSource.clip = pickupSounds[3];
                                             pickupSource.Play();
 
@@ -194,28 +206,32 @@ public class PlayerInteractor : MonoBehaviour
 
                                     // regular item
                                     default:
-                                        success = inventory.TryAddItem(p.item);
+                                        // Add item to inventory
+                                        success = inventory.TryAddItem(p.item, false);
 
+                                        // If we succeeded
                                         if (success)
                                         {
+                                            // Destroy object
                                             Destroy(p.gameObject);
-                                        }
 
-                                        switch (p.item)
-                                        {
-                                            case Inventory.Item.Choccy: // Chocolate
-                                                pickupSource.clip = pickupSounds[0];
-                                                pickupSource.Play();
-                                                break;
-                                            case Inventory.Item.Screws: // screws
-                                            case Inventory.Item.Screwdriver: // Screwdriver
-                                                pickupSource.clip = pickupSounds[2];
-                                                pickupSource.Play();
-                                                break;
-                                            default: // Bag
-                                                pickupSource.clip = pickupSounds[1];
-                                                pickupSource.Play();
-                                                break;
+                                            // Playback correct sound file
+                                            switch (p.item)
+                                            {
+                                                case Inventory.Item.Choccy: // Chocolate
+                                                    pickupSource.clip = pickupSounds[0];
+                                                    pickupSource.Play();
+                                                    break;
+                                                case Inventory.Item.Screws: // screws
+                                                case Inventory.Item.Screwdriver: // Screwdriver
+                                                    pickupSource.clip = pickupSounds[2];
+                                                    pickupSource.Play();
+                                                    break;
+                                                default: // Bag
+                                                    pickupSource.clip = pickupSounds[1];
+                                                    pickupSource.Play();
+                                                    break;
+                                            }
                                         }
                                         break;
                                 }

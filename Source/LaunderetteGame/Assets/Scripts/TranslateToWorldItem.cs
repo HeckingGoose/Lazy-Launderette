@@ -40,7 +40,7 @@ public class TranslateToWorldItem : MonoBehaviour
     /// Given an ItemID, attempts to generate a worldItem as the owner's root.
     /// </summary>
     /// <param name="itemID">The ItemID to generate.</param>
-    public void DropItem(Inventory.Item item)
+    public void DropItem(Inventory.Item item) // Add this playing back the sounds for dropping
     {
         // Ensure script is even ready
         if (ready)

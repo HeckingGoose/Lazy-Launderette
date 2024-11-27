@@ -7,121 +7,212 @@ public class ManageInventory : MonoBehaviour
     [SerializeField]
     private InventorySlot[] _slots;
     [SerializeField]
-    private Image heldItemImage;
+    private Image _heldItemDisplay;
     [SerializeField]
-    private TranslateToWorldItem translate;
+    private TranslateToWorldItem _toWorldItemHandler;
     [SerializeField]
-    private AudioSource dropSource;
+    private AudioSource _itemDropAudioPlayer;
     [SerializeField]
-    private AudioClip[] dropSounds;
+    private AudioClip[] _itemDropSoundClips;
 
     // Private variables
-    public int currentSlot;
-    private int gState = 0;
+    private int _currentSlot;
+    private int _dropInputState = 0;
 
+    // Unity methods
     private void Start()
     {
-        // Set first item to be a bag
-        TryAddItem(Inventory.Item.ClothesBag);
-
+        // Select slot as 0
         SelectSlot(0);
+
+        // Set this item to be a washing up bag
+        TryAddItem(Inventory.Item.ClothesBag);
     }
 
     private void Update()
     {
-        // Handle g press
-        if (Input.GetAxis("Drop") > 0 && gState < 2)
+        // Is drop axis being pressed, and is not already held
+        if (Input.GetAxis("Drop") > 0 && _dropInputState < 2)
         {
-            gState++;
+            // Increment counter for tracking how long it has been held
+            _dropInputState++;
         }
+        // Has drop axis been released
         else if (Input.GetAxis("Drop") <= 0)
         {
-            gState = 0;
+            // Reset counter to 0
+            _dropInputState = 0;
         }
 
         // Poll keys
-        if (Input.GetAxis("Inv1") > 0 && currentSlot != 0)
+        if (Input.GetAxis("Inv1") > 0 && _currentSlot != 0)
         {
+            // Select 1st inventory slot
             SelectSlot(0);
-            UpdateHand();
         }
-        else if (Input.GetAxis("Inv2") > 0 && currentSlot != 1)
+        else if (Input.GetAxis("Inv2") > 0 && _currentSlot != 1)
         {
+            // Select 2nd inventory slot
             SelectSlot(1);
-            UpdateHand();
         }
-        else if (Input.GetAxis("Inv3") > 0 && currentSlot != 2)
+        else if (Input.GetAxis("Inv3") > 0 && _currentSlot != 2)
         {
+            // Select 3rd inventory slot
             SelectSlot(2);
-            UpdateHand();
         }
 
-        // Drop current item if g is pressed
-        if (gState == 1 && _slots[currentSlot].Item != Inventory.Item.None)
+        // Drop current item if drop axis is pressed, but not held
+        if (_dropInputState == 1 && _slots[_currentSlot].Item != Inventory.Item.None)
         {
-            switch (_slots[currentSlot].Item)
+            // What is the currently held item?
+            switch (_slots[_currentSlot].Item)
             {
-                case Inventory.Item.Choccy: // Chocolate
-                    dropSource.clip = dropSounds[0];
-                    dropSource.Play();
+                // Play choccy drop sound
+                case Inventory.Item.Choccy:
+                    _itemDropAudioPlayer.clip = _itemDropSoundClips[0];
+                    _itemDropAudioPlayer.Play();
                     break;
-                case Inventory.Item.Screws: // Screws
-                case Inventory.Item.Screwdriver: // Screwdriver
-                    dropSource.clip = dropSounds[2];
-                    dropSource.Play();
+
+                // Play screws drop sound
+                case Inventory.Item.Screws:
+                // Play screwdriver drop sound
+                case Inventory.Item.Screwdriver:
+                    _itemDropAudioPlayer.clip = _itemDropSoundClips[2];
+                    _itemDropAudioPlayer.Play();
                     break;
-                default: // Bag
-                    dropSource.clip = dropSounds[1];
-                    dropSource.Play();
+
+                // Play bag drop sound effect
+                default:
+                    _itemDropAudioPlayer.clip = _itemDropSoundClips[1];
+                    _itemDropAudioPlayer.Play();
                     break;
             }
+
             // Drop item
-            translate.DropItem(_slots[currentSlot].TryRemoveItem());
+            _toWorldItemHandler.DropItem(_slots[_currentSlot].TryRemoveItem());
+
+            // Update visuals
             UpdateHand();
         }
     }
 
-    // Other
+    // Public methods
+    /// <summary>
+    /// Increment the currently selected slot, automatically manages wrapping.
+    /// </summary>
     public void IncrementSlot()
     {
         // Increment slot
-        currentSlot++;
-
-        // Check for wrap
-        WrapSlot();
-
-        // Select
-        SelectSlot(currentSlot);
+        SlotIndex++;
     }
+    /// <summary>
+    /// Decrement the currently selected slot, automatically manages wrapping.
+    /// </summary>
     public void DecrementSlot()
     {
-        // Increment slot
-        currentSlot--;
-
-        // Check for wrap
-        WrapSlot();
-
-        // Select
-        SelectSlot(currentSlot);
+        // Decrement slot
+        SlotIndex--;
     }
+    /// <summary>
+    /// Given an item, attempts to add it to the inventory.
+    /// </summary>
+    /// <param name="item">The item to add.</param>
+    /// <param name="dropOnFail">When true, creates a worlditem on fail, when false, does nothing.</param>
+    /// <returns>True on the item being added to the inventory, false on the item being spawned as a world item.</returns>
+    public bool TryAddItem(Inventory.Item item, bool dropOnFail = true)
+    {
+        // Check if current slot is empty
+        if (_slots[SlotIndex].Item == Inventory.Item.None)
+        {
+            // Add to this slot
+            _slots[SlotIndex].SetItem(item);
+
+            // Update the hand visuals and return true
+            UpdateHand();
+            return true;
+        }
+
+        // Set pointer to invalid value
+        int pointer = -1;
+
+        // Loop through all slots
+        for (int i = 0; i < _slots.Length; i++)
+        {
+            // If this slot contains no item
+            if (_slots[i].Item == Inventory.Item.None)
+            {
+                // Set this as the target slot and early out
+                pointer = i;
+                break;
+            }
+        }
+
+        // If there are no valid slots to place an item in
+        if (pointer < 0)
+        {
+            // Log that we have no space
+            Debug.Log("Inventory is full.");
+
+            // If we are to do nothing then early out
+            if (!dropOnFail) { return false; }
+
+            // Create a new item that would have otherwise been placed in our inventory
+            _toWorldItemHandler.DropItem(item);
+
+            // Return fail
+            return false;
+        }
+
+        // Update item in slot
+        _slots[pointer].SetItem(item);
+
+        // Update the hand visuals and return true
+        UpdateHand();
+        return true;
+    }
+    /// <summary>
+    /// Attempts to remove an item from the player's currently selected inventory slot.
+    /// </summary>
+    /// <returns>True on an item being removed, false if there is no item to remove.</returns>
+    public bool TryRemoveItem()
+    {
+        // Call main method using current slot.
+        return TryRemoveItem(SlotIndex);
+    }
+    /// <summary>
+    /// Returns the enum representation of the currently selected item.
+    /// </summary>
+    public Inventory.Item GetHeldItem()
+    {
+        return _slots[_currentSlot].Item;
+    }
+
+    // Private methods
+    /// <summary>
+    /// Ensures that slot index remains within range.
+    /// </summary>
     private void WrapSlot()
     {
         // Check lower bound
-        if (currentSlot < 0)
+        if (_currentSlot < 0)
         {
             // Wrap
-            currentSlot = _slots.Length - 1;
+            _currentSlot = _slots.Length - 1;
             return;
         }
 
         // Check upper bound
-        if (currentSlot >= _slots.Length)
+        if (_currentSlot >= _slots.Length)
         {
             // Wrap
-            currentSlot = 0;
+            _currentSlot = 0;
             return;
         }
     }
+    /// <summary>
+    /// Marks the slot at the given index as selected, and tells all other slots to be unselected.
+    /// </summary>
+    /// <param name="slotIndex">The index to mark as selected.</param>
     private void SelectSlot(int slotIndex)
     {
         // Ensure slot index is in range
@@ -151,46 +242,17 @@ public class ManageInventory : MonoBehaviour
         }
 
         // Set slot
-        currentSlot = slotIndex;
-    }
-    public void UpdateHand()
-    {
-        // There is an item in the hand now
-        if (_slots[currentSlot].Item != Inventory.Item.None)
-        {
-            heldItemImage.sprite = _slots[currentSlot].Sprite;
-            heldItemImage.enabled = true;
-        }
-        // We need to remove an item from the hand
-        else
-        {
-            heldItemImage.enabled = false;
-        }
-    }
-    public bool TryAddItem(Inventory.Item item)
-    {
-        int pointer = -1;
-        for (int i = 0; i < _slots.Length; i++)
-        {
-            if (_slots[i].Item == Inventory.Item.None)
-            {
-                pointer = i;
-                break;
-            }
-        }
-        if (pointer < 0)
-        {
-            Debug.Log("Inventory is full.");
-            return false;
-        }
+        _currentSlot = slotIndex;
 
-        // Update item in slot
-        _slots[pointer].SetItem(item);
-
+        // Update visuals
         UpdateHand();
-        return true;
     }
-    public bool TryRemoveItem(int index)
+    /// <summary>
+    /// Attempts to remove the item at the provided index from the inventory.
+    /// </summary>
+    /// <param name="index">The index of the item to remove.</param>
+    /// <returns>True on an item being removed, false if there is no item to remove.</returns>
+    private bool TryRemoveItem(int index)
     {
         if (_slots[index].Item == Inventory.Item.None)
         {
@@ -205,10 +267,42 @@ public class ManageInventory : MonoBehaviour
         return true;
     }
     /// <summary>
-    /// Returns the enum representation of the currently selected item.
+    /// Updates the visual representing the player's hand.
     /// </summary>
-    public Inventory.Item GetHeldItem()
+    private void UpdateHand()
     {
-        return _slots[currentSlot].Item;
+        // There is an item in the hand now
+        if (_slots[_currentSlot].Item != Inventory.Item.None)
+        {
+            // Set the sprite and enable the image
+            _heldItemDisplay.sprite = _slots[_currentSlot].Sprite;
+            _heldItemDisplay.enabled = true;
+        }
+        // We need to remove an item from the hand
+        else
+        {
+            // Hide the image
+            _heldItemDisplay.enabled = false;
+        }
+    }
+
+    // Accessors
+    /// <summary>
+    /// Gets or sets the index of the currently selected inventory slot.
+    /// </summary>
+    public int SlotIndex
+    {
+        get { return _currentSlot; }
+        private set
+        {
+            // Set value
+            _currentSlot = value;
+
+            // Ensure valid
+            WrapSlot();
+
+            // Update visuals
+            SelectSlot(_currentSlot);
+        }
     }
 }

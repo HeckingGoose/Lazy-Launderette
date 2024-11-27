@@ -75,7 +75,7 @@ public class ManageConversation : MonoBehaviour
                             lineNumber++;
                             break;
                         case "!STRIPHELD":
-                            manageInventory.TryRemoveItem(manageInventory.currentSlot);
+                            manageInventory.TryRemoveItem();
                             lineNumber++;
                             break;
                         case "!SATISFY":
@@ -91,7 +91,6 @@ public class ManageConversation : MonoBehaviour
                             }
                             break;
                         case "!GIVE":
-                            bool success;
                             switch (data)
                             {
                                 case "Coin":
@@ -102,8 +101,8 @@ public class ManageConversation : MonoBehaviour
                                     lineNumber++;
                                     break;
                                 case "Empty Bag":
-                                    success = manageInventory.TryAddItem(Inventory.Item.EmptyBag);
-                                    if (!success)
+                                    manageInventory.TryAddItem(Inventory.Item.EmptyBag);
+                                    /*if (!success)
                                     {
                                         translateToWorldItem.DropItem(Inventory.Item.EmptyBag);
                                         altSource.clip = altSounds[0];
@@ -113,12 +112,12 @@ public class ManageConversation : MonoBehaviour
                                     {
                                         altSource.clip = altSounds[2];
                                         altSource.Play();
-                                    }
+                                    }*/
                                     lineNumber++;
                                     break;
                                 case "Choccy":
-                                    success = manageInventory.TryAddItem(Inventory.Item.Choccy);
-                                    if (!success)
+                                    manageInventory.TryAddItem(Inventory.Item.Choccy);
+                                    /*if (!success)
                                     {
                                         translateToWorldItem.DropItem(Inventory.Item.Choccy);
                                         altSource.clip = altSounds[1];
@@ -128,7 +127,7 @@ public class ManageConversation : MonoBehaviour
                                     {
                                         altSource.clip = altSounds[3];
                                         altSource.Play();
-                                    }
+                                    }*/
                                     lineNumber++;
                                     break;
                             }
