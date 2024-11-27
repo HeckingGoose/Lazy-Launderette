@@ -1,31 +1,34 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Bob : MonoBehaviour
 {
     // Editor variables
+    [Header("Bob Control Values")]
     [SerializeField]
-    private float amplitude;
+    private float _amplitude = 20;
     [SerializeField]
-    private float speed;
+    private float _speed = 7;
 
     // Internal variables
-    private Vector3 basePos;
-    private RectTransform cache;
-    private float timer = 0;
+    private Vector3 _basePosition;
+    private RectTransform _selfRectTransformCache;
+    private float _timer = 0;
     void Start()
     {
-        // Fetch starting position
-        cache = GetComponent<RectTransform>();
-        basePos = cache.position;
+        // Cache self rect transform
+        _selfRectTransformCache = GetComponent<RectTransform>();
+
+        // Cache starting position
+        _basePosition = _selfRectTransformCache.position;
     }
 
     // Update is called once per frame
     void Update()
     {
-        cache.position = basePos + new Vector3(0, amplitude * Mathf.Sin(timer), 0);
+        // Update position relative to start, using a Sine wave and time
+        _selfRectTransformCache.position = _basePosition + new Vector3(0, _amplitude * Mathf.Sin(_timer), 0);
 
-        timer += Time.deltaTime * speed;
+        // Increment timer by speed relative to time
+        _timer += Time.deltaTime * _speed;
     }
 }

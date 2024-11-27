@@ -2,31 +2,41 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MoveOnClickj : MonoBehaviour
+public class MoveOnClick : MonoBehaviour
 {
     // Editor variables
+    [Header("Scene References")]
     [SerializeField]
-    private TextMeshProUGUI clickText;
+    private TextMeshProUGUI _clickText;
+    [Header("Timer Values")]
     [SerializeField]
-    private float doneAt = 6;
+    private float _fadeDoneAt = 3;
     [SerializeField]
-    private float beginFadeAt = 5;
+    private float _beginFadeAt = 2;
 
-    // Internal variables
-    private float timer = 0;
+    // Private variables
+    private float _timer = 0;
+
+    // Unity methods
     private void Update()
     {
-        if (Input.GetAxis("LeftMouse") > 0 && timer > beginFadeAt)
+        // Wait for left mouse axis, and text starting to fade in
+        if (Input.GetAxis("LeftMouse") > 0 && _timer > _beginFadeAt)
         {
+            // Set the load target to the main scene and begin loading
             GLOBAL.LoadTarget = "Main";
             SceneManager.LoadScene("Loading");
         }
 
-        clickText.color = new Color(
-            clickText.color.r,
-            clickText.color.g,
-            clickText.color.b,
-            Mathf.Lerp(0, 1, Mathf.Clamp((timer - beginFadeAt) / (doneAt - beginFadeAt), 0, 1))
+        // Lerp in the fade text
+        _clickText.color = new Color(
+            _clickText.color.r,
+            _clickText.color.g,
+            _clickText.color.b,
+            Mathf.Lerp(0, 1, Mathf.Clamp((_timer - _beginFadeAt) / (_fadeDoneAt - _beginFadeAt), 0, 1))
             );
+
+        // Increment timer
+        _timer += Mathf.Clamp(Time.deltaTime, 0, _fadeDoneAt);
     }
 }
