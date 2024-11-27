@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -8,61 +6,74 @@ using UnityEngine.UI;
 public class LoadScene : MonoBehaviour
 {
     // Editor variables
+    [Header("Scene Object References")]
     [SerializeField]
-    private TextMeshProUGUI doneText;
+    private TextMeshProUGUI _doneText;
     [SerializeField]
-    private Image loadingImage;
+    private Image _loadingImage;
     [SerializeField]
-    private Image loadingImageBackground;
+    private Image _loadingImageBackground;
+    [Header("Potential Loading Screen Sprites")]
     [SerializeField]
-    private Sprite[] loadingSprites;
+    private Sprite[] _loadingSprites;
+    [Header("Text Fade In Timer")]
     [SerializeField]
-    private float timeUntilReady;
+    private float _textFadeTime = 1;
 
     // Internal values
-    private float timer = 0f;
-    private bool loaded = false;
-    private AsyncOperation loadingOperation;
+    private float _textFadeTimer = 0f;
+    private bool _loaded = false;
+    private AsyncOperation _sceneLoadingHandle;
 
     private void Start()
     {
         // Begin load
-        loadingOperation = SceneManager.LoadSceneAsync(GLOBAL.LoadTarget);
-        loadingOperation.allowSceneActivation = false;
+        _sceneLoadingHandle = SceneManager.LoadSceneAsync(GLOBAL.LoadTarget);
+        _sceneLoadingHandle.allowSceneActivation = false;
 
         // Prepare the sprites
-        Sprite loadingIcon = loadingSprites[Random.Range(0, loadingSprites.Length)];
-        loadingImage.sprite = loadingIcon;
-        loadingImageBackground.sprite = loadingIcon;
+        Sprite loadingIcon = _loadingSprites[Random.Range(0, _loadingSprites.Length)];
+        _loadingImage.sprite = loadingIcon;
+        _loadingImageBackground.sprite = loadingIcon;
     }
     private void Update()
     {
-        if (loadingOperation.progress >= 0.89f)
+        // If we are done loading
+        if (_sceneLoadingHandle.progress >= 0.89f)
         {
-            loadingImage.fillAmount = 1f;
-            loaded = true;
+            // Set sprites to show we are done
+            _loadingImage.fillAmount = 1f;
+            _loaded = true;
         }
+        // Otherwise
         else
         {
-            loadingImage.fillAmount = loadingOperation.progress;
+            // Show loading progress
+            _loadingImage.fillAmount = _sceneLoadingHandle.progress;
         }
 
-        if (loaded)
+        // If we are done loading
+        if (_loaded)
         {
-            timer += Time.deltaTime;
+            // Begin incrementing text fade timer
+            _textFadeTimer += Time.deltaTime;
 
-            doneText.color = new Color(
-                doneText.color.r,
-                doneText.color.g,
-                doneText.color.b,
-                Mathf.Lerp(0, 1, timer / timeUntilReady)
+            // Fade in text, according to time
+            _doneText.color = new Color(
+                _doneText.color.r,
+                _doneText.color.g,
+                _doneText.color.b,
+                Mathf.Lerp(0, 1, _textFadeTimer / _textFadeTime)
                 );
 
-            if (timer > timeUntilReady)
+            // If text has faded in fully
+            if (_textFadeTimer > _textFadeTime)
             {
+                // If mouse is held
                 if (Input.GetAxis("LeftMouse") > 0)
                 {
-                    loadingOperation.allowSceneActivation = true;
+                    // Switch to next scene
+                    _sceneLoadingHandle.allowSceneActivation = true;
                 }
             }
         }

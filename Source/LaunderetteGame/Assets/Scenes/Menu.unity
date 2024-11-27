@@ -528,8 +528,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 659f7f9b417be0b4e94c348dc6a0eea6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amplitude: 20
-  speed: 7
+  _amplitude: 20
+  _speed: 7
 --- !u!1001 &1126823525
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1243,9 +1243,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2b5e92c486e02e4eaead6dfa709e269, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clickText: {fileID: 823307533}
-  doneAt: 6
-  beginFadeAt: 5
+  _clickText: {fileID: 823307533}
+  _fadeDoneAt: 3
+  _beginFadeAt: 2
 --- !u!1 &2075392608
 GameObject:
   m_ObjectHideFlags: 0
