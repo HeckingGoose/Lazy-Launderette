@@ -988,6 +988,14 @@ PrefabInstance:
       propertyPath: m_text
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 3792639239720411005, guid: 71060195afd2544488e3d61ee91f3f6f, type: 3}
+      propertyPath: _keyboardPrompt
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3792639239720411005, guid: 71060195afd2544488e3d61ee91f3f6f, type: 3}
+      propertyPath: _controllerPrompt
+      value: 
+      objectReference: {fileID: 1096000858, guid: 213992efbe0259e43800cb100028d6e7, type: 3}
     - target: {fileID: 7841392648306204551, guid: 71060195afd2544488e3d61ee91f3f6f, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -4766,6 +4774,14 @@ PrefabInstance:
       propertyPath: m_text
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 3792639239720411005, guid: 71060195afd2544488e3d61ee91f3f6f, type: 3}
+      propertyPath: _keyboardPrompt
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3792639239720411005, guid: 71060195afd2544488e3d61ee91f3f6f, type: 3}
+      propertyPath: _controllerPrompt
+      value: 
+      objectReference: {fileID: 1158025741, guid: 213992efbe0259e43800cb100028d6e7, type: 3}
     - target: {fileID: 7841392648306204551, guid: 71060195afd2544488e3d61ee91f3f6f, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -7444,6 +7460,14 @@ PrefabInstance:
       propertyPath: m_fontColor32.rgba
       value: 4294967295
       objectReference: {fileID: 0}
+    - target: {fileID: 3792639239720411005, guid: 71060195afd2544488e3d61ee91f3f6f, type: 3}
+      propertyPath: _keyboardPrompt
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3792639239720411005, guid: 71060195afd2544488e3d61ee91f3f6f, type: 3}
+      propertyPath: _controllerPrompt
+      value: 
+      objectReference: {fileID: 585728829, guid: 213992efbe0259e43800cb100028d6e7, type: 3}
     - target: {fileID: 7113504247164168966, guid: 71060195afd2544488e3d61ee91f3f6f, type: 3}
       propertyPath: _dealer
       value: 
