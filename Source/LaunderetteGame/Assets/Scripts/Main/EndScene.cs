@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -18,7 +16,7 @@ public class EndScene : MonoBehaviour
     private float timer = 0f;
     private float finTime = 1f;
     private string charactersToAdd;
-    private float textSpeed = 0.1f;
+    private float textSpeed = 0.05f;
     public void Begin()
     {
         playerController.enabled = false;
