@@ -133,14 +133,23 @@ public class InventorySlot : MonoBehaviour
     }
 
     // Accessors
+    /// <summary>
+    /// Fetches the item currently in this slot.
+    /// </summary>
     public Inventory.Item Item
     {
         get { return _item; }
     }
+    /// <summary>
+    /// Fetches the text related to the item currently in this slot.
+    /// </summary>
     public string ItemName
     {
         get { return _itemText.text; }
     }
+    /// <summary>
+    /// Fetches the sprite related to the item currently in this slot.
+    /// </summary>
     public Sprite Sprite
     {
         get { return _itemImage.sprite; }
