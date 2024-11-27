@@ -4,15 +4,22 @@ using UnityEngine;
 public class TranslateToWorldItem : MonoBehaviour
 {
     // Editor variables
+    [Header("Dropper Location References")]
     [SerializeField]
     private Transform owner;
     [SerializeField]
     private CharacterController ownerController;
+    [Header("Item Prefab References")]
     [SerializeField]
     private GameObject[] itemPrefabs;
+    [Header("Sound Effect References")]
+    [SerializeField]
+    private AudioSource _itemDropAudioPlayer;
+    [SerializeField]
+    private AudioClip[] _itemDropSoundClips;
 
     // Private stuff
-    private bool ready = true;
+    private bool _ready = true;
     private Dictionary<Inventory.Item, int> _itemToObjectIndexMap = new Dictionary<Inventory.Item, int>
     {
         { Inventory.Item.ClothesBag, 0 },
@@ -33,17 +40,18 @@ public class TranslateToWorldItem : MonoBehaviour
             )
         {
             // Tell the script we're not ready
-            ready = false;
+            _ready = false;
         }
     }
     /// <summary>
     /// Given an ItemID, attempts to generate a worldItem as the owner's root.
     /// </summary>
-    /// <param name="itemID">The ItemID to generate.</param>
-    public void DropItem(Inventory.Item item) // Add this playing back the sounds for dropping
+    /// <param name="item">The item to generate.</param>
+    /// <param name="playSound">Whether we should play back a sound effect.</param>
+    public void DropItem(Inventory.Item item, bool playSound = true) // Add this playing back the sounds for dropping
     {
         // Ensure script is even ready
-        if (ready)
+        if (_ready)
         {
             // Ensure itemID is in range
             if (!_itemToObjectIndexMap.ContainsKey(item))
@@ -60,6 +68,35 @@ public class TranslateToWorldItem : MonoBehaviour
                 new Vector3(owner.position.x, owner.position.y - ownerController.height + 0.01f, owner.position.z),
                 itemPrefabs[_itemToObjectIndexMap[item]].transform.rotation
             );
+
+            // If we should play a sound
+            if (playSound)
+            {
+                // What is the item we're dropping?
+                switch (item)
+                {
+                    // Play choccy drop sound
+                    case Inventory.Item.Choccy:
+                        _itemDropAudioPlayer.clip = _itemDropSoundClips[0];
+                        _itemDropAudioPlayer.Play();
+                        break;
+
+                    // Play screws drop sound
+                    case Inventory.Item.Screws:
+                    // Play screwdriver drop sound
+                    case Inventory.Item.Screwdriver:
+                        _itemDropAudioPlayer.clip = _itemDropSoundClips[2];
+                        _itemDropAudioPlayer.Play();
+                        break;
+
+                    // Play bag drop sound effect
+                    default:
+                        _itemDropAudioPlayer.clip = _itemDropSoundClips[1];
+                        _itemDropAudioPlayer.Play();
+                        break;
+                }
+            }
+
         }
         // Otherwise
         else

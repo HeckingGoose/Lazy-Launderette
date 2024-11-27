@@ -10,10 +10,6 @@ public class ManageInventory : MonoBehaviour
     private Image _heldItemDisplay;
     [SerializeField]
     private TranslateToWorldItem _toWorldItemHandler;
-    [SerializeField]
-    private AudioSource _itemDropAudioPlayer;
-    [SerializeField]
-    private AudioClip[] _itemDropSoundClips;
 
     // Private variables
     private int _currentSlot;
@@ -64,30 +60,6 @@ public class ManageInventory : MonoBehaviour
         // Drop current item if drop axis is pressed, but not held
         if (_dropInputState == 1 && _slots[_currentSlot].Item != Inventory.Item.None)
         {
-            // What is the currently held item?
-            switch (_slots[_currentSlot].Item)
-            {
-                // Play choccy drop sound
-                case Inventory.Item.Choccy:
-                    _itemDropAudioPlayer.clip = _itemDropSoundClips[0];
-                    _itemDropAudioPlayer.Play();
-                    break;
-
-                // Play screws drop sound
-                case Inventory.Item.Screws:
-                // Play screwdriver drop sound
-                case Inventory.Item.Screwdriver:
-                    _itemDropAudioPlayer.clip = _itemDropSoundClips[2];
-                    _itemDropAudioPlayer.Play();
-                    break;
-
-                // Play bag drop sound effect
-                default:
-                    _itemDropAudioPlayer.clip = _itemDropSoundClips[1];
-                    _itemDropAudioPlayer.Play();
-                    break;
-            }
-
             // Drop item
             _toWorldItemHandler.DropItem(_slots[_currentSlot].TryRemoveItem());
 

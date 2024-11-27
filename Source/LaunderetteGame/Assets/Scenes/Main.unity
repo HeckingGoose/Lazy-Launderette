@@ -7114,14 +7114,8 @@ MonoBehaviour:
   - {fileID: 351974662}
   - {fileID: 1090026684}
   - {fileID: 240989538}
-  heldItemImage: {fileID: 879527502}
-  translate: {fileID: 2091255120}
-  dropSource: {fileID: 1120961220}
-  dropSounds:
-  - {fileID: 8300000, guid: f4250c677dee6c44faa7f174e0c6753d, type: 3}
-  - {fileID: 8300000, guid: 5ab043670a001fd4295b2463bb4bc283, type: 3}
-  - {fileID: 8300000, guid: b97d8eb3e2bf49046a1e0a74ef979f3a, type: 3}
-  currentSlot: 0
+  _heldItemDisplay: {fileID: 879527502}
+  _toWorldItemHandler: {fileID: 2091255120}
 --- !u!114 &2091255119
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7157,6 +7151,12 @@ MonoBehaviour:
   - {fileID: 8676853549979304631, guid: 5f8a749db8edd324aa158f086bcd0e06, type: 3}
   - {fileID: 825534917479766765, guid: 6d144ead55602a4448b1c86c84707c86, type: 3}
   - {fileID: 1677760480513922861, guid: 19f116a6fd7d1b14ca920de287c120a5, type: 3}
+  _itemDropAudioPlayer: {fileID: 963194230}
+  _itemDropSoundClips:
+  - {fileID: 8300000, guid: f4250c677dee6c44faa7f174e0c6753d, type: 3}
+  - {fileID: 8300000, guid: 5ab043670a001fd4295b2463bb4bc283, type: 3}
+  - {fileID: 8300000, guid: b97d8eb3e2bf49046a1e0a74ef979f3a, type: 3}
+  - {fileID: 8300000, guid: 6c2578de35c0fcd4597706d7775fac0e, type: 3}
 --- !u!114 &2091255121
 MonoBehaviour:
   m_ObjectHideFlags: 0
