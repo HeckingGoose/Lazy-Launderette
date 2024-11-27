@@ -972,6 +972,18 @@ PrefabInstance:
       propertyPath: _inventory
       value: 
       objectReference: {fileID: 1156849459}
+    - target: {fileID: 2080791954570991840, guid: 71060195afd2544488e3d61ee91f3f6f, type: 3}
+      propertyPath: _animationTime
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2080791954570991840, guid: 71060195afd2544488e3d61ee91f3f6f, type: 3}
+      propertyPath: _rotationAmount
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2080791954570991840, guid: 71060195afd2544488e3d61ee91f3f6f, type: 3}
+      propertyPath: _scaleMultiplier
+      value: 1.2
+      objectReference: {fileID: 0}
     - target: {fileID: 2237503655645819931, guid: 71060195afd2544488e3d61ee91f3f6f, type: 3}
       propertyPath: m_text
       value: 2
@@ -4738,6 +4750,18 @@ PrefabInstance:
       propertyPath: _inventory
       value: 
       objectReference: {fileID: 1156849459}
+    - target: {fileID: 2080791954570991840, guid: 71060195afd2544488e3d61ee91f3f6f, type: 3}
+      propertyPath: _animationTime
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2080791954570991840, guid: 71060195afd2544488e3d61ee91f3f6f, type: 3}
+      propertyPath: _rotationAmount
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2080791954570991840, guid: 71060195afd2544488e3d61ee91f3f6f, type: 3}
+      propertyPath: _scaleMultiplier
+      value: 1.2
+      objectReference: {fileID: 0}
     - target: {fileID: 2237503655645819931, guid: 71060195afd2544488e3d61ee91f3f6f, type: 3}
       propertyPath: m_text
       value: 3
@@ -7086,18 +7110,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69de9db395dddba40ba989183e7ecea2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventorySlots:
-  - {fileID: 351974661}
-  - {fileID: 1067029808}
-  - {fileID: 732139}
   _slots:
   - {fileID: 351974662}
   - {fileID: 1090026684}
   - {fileID: 240989538}
   heldItemImage: {fileID: 879527502}
-  scaleAmount: 1.2
-  rotationAmount: 10
-  maxTimer: 0.1
   translate: {fileID: 2091255120}
   dropSource: {fileID: 1120961220}
   dropSounds:
@@ -7407,6 +7424,18 @@ PrefabInstance:
       propertyPath: _inventory
       value: 
       objectReference: {fileID: 1156849459}
+    - target: {fileID: 2080791954570991840, guid: 71060195afd2544488e3d61ee91f3f6f, type: 3}
+      propertyPath: _animationTime
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2080791954570991840, guid: 71060195afd2544488e3d61ee91f3f6f, type: 3}
+      propertyPath: _rotationAmount
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2080791954570991840, guid: 71060195afd2544488e3d61ee91f3f6f, type: 3}
+      propertyPath: _scaleMultiplier
+      value: 1.2
+      objectReference: {fileID: 0}
     - target: {fileID: 2237503655645819931, guid: 71060195afd2544488e3d61ee91f3f6f, type: 3}
       propertyPath: m_text
       value: 1
