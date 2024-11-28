@@ -50,12 +50,12 @@ public class PlayerController : MonoBehaviour
         _baseHeight = _characterController.height;
 
         // Fetch action map
-        _freeRoamActionMap = InputSystem.actions.FindActionMap("FreeRoam");
+        _freeRoamActionMap = InputSystem.actions.FindActionMap(InputDefinitions.ACTIONMAP_FREEROAM);
 
         // Fetch relevant actions
-        _walkAction = _freeRoamActionMap.FindAction("Walk");
-        _lookAction = _freeRoamActionMap.FindAction("Look");
-        _crouchAction = _freeRoamActionMap.FindAction("Crouch");
+        _walkAction = _freeRoamActionMap.FindAction(InputDefinitions.FRAM_WALK);
+        _lookAction = _freeRoamActionMap.FindAction(InputDefinitions.FRAM_LOOK);
+        _crouchAction = _freeRoamActionMap.FindAction(InputDefinitions.FRAM_CROUCH);
     }
     void Update()
     {

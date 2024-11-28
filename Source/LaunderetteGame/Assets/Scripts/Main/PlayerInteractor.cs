@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -53,7 +54,13 @@ public class PlayerInteractor : MonoBehaviour
     private Vector3 maxSize;
     private Vector4 baseOpacity;
     private Vector4 maxOpacity;
-    private int eState = 0;
+    private bool _interacting;
+
+    // Action map
+    private InputActionMap _freeRoamActionMap;
+
+    // Actions
+    private InputAction _interactAction;
 
     private void Start()
     {
@@ -62,20 +69,21 @@ public class PlayerInteractor : MonoBehaviour
         baseOpacity = crosshairImage.color;
         maxOpacity = crosshairImage.color;
         maxOpacity.w = 1;
-    }
 
-    // Raycast is done here
-    private void FixedUpdate()
+        // Fetch action map
+        _freeRoamActionMap = InputSystem.actions.FindActionMap(InputDefinitions.ACTIONMAP_FREEROAM);
+
+        // Fetch relevant actions
+        _interactAction = _freeRoamActionMap.FindAction(InputDefinitions.FRAM_INTERACT);
+    }
+    private void Update()
     {
-        // Handle e press
-        if (Input.GetAxis("Talk") > 0 && eState < 2)
-        {
-            eState++;
-        }
-        else if (Input.GetAxis("Talk") <= 0)
-        {
-            eState = 0;
-        }
+        // Check if interact button has been pressed this frame
+        if (_interactAction.WasPressedThisFrame()) { _interacting = true; }
+        else { _interacting = false; }
+
+        // IDEALLY RAYCAST SHOULD BE DONE IN FIXED UPDATE!
+        // BUT FOR THAT TO BE DONE, THIS CODE NEEDS TO BE REFACTORED!
 
         // Do raycast
         Ray ray = view.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
@@ -98,7 +106,7 @@ public class PlayerInteractor : MonoBehaviour
                                 h.ShowBubble();
 
                                 // If player then attempts to speak to the hit object
-                                if (eState == 1)
+                                if (_interacting)
                                 {
                                     describeText.text = "";
                                     h.StartTalk(this);
@@ -137,7 +145,7 @@ public class PlayerInteractor : MonoBehaviour
                                 }
                             }
 
-                            if (eState == 1)
+                            if (_interacting)
                             {
                                 bool success;
                                 switch (p.item)
@@ -249,9 +257,17 @@ public class PlayerInteractor : MonoBehaviour
                         if (m != null)
                         {
                             // Wait for input
-                            if (eState == 1)
+                            if (_interacting)
                             {
+                                // Toggle the machine door
                                 m.ToggleDoor();
+                            }
+
+                            // If the machine is running
+                            if (m.Running)
+                            {
+                                // Change text accordingly
+                                describeText.text = "Someone else is using this machine";
                             }
                         }
                         else
@@ -266,7 +282,7 @@ public class PlayerInteractor : MonoBehaviour
                             {
                                 describeText.text = "Wash clothes?";
 
-                                if (eState == 1)
+                                if (_interacting)
                                 {
                                     manageCoins.numCoins -= 5;
                                     try

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class ManageInventory : MonoBehaviour
@@ -13,7 +14,15 @@ public class ManageInventory : MonoBehaviour
 
     // Private variables
     private int _currentSlot;
-    private int _dropInputState = 0;
+
+    // Action map
+    private InputActionMap _freeRoamActionMap;
+
+    // Actions
+    private InputAction _slotOneAction;
+    private InputAction _slotTwoAction;
+    private InputAction _slotThreeAction;
+    private InputAction _dropAction;
 
     // Unity methods
     private void Start()
@@ -23,42 +32,39 @@ public class ManageInventory : MonoBehaviour
 
         // Set this item to be a washing up bag
         TryAddItem(Inventory.Item.ClothesBag);
+
+        // Fetch action map
+        _freeRoamActionMap = InputSystem.actions.FindActionMap(InputDefinitions.ACTIONMAP_FREEROAM);
+
+        // Fetch actions
+        _slotOneAction = _freeRoamActionMap.FindAction(InputDefinitions.FRAM_INVSLOTONE);
+        _slotTwoAction = _freeRoamActionMap.FindAction(InputDefinitions.FRAM_INVSLOTTWO);
+        _slotThreeAction = _freeRoamActionMap.FindAction(InputDefinitions.FRAM_INVSLOTTHREE);
+        _dropAction = _freeRoamActionMap.FindAction(InputDefinitions.FRAM_DROPITEM);
     }
 
     private void Update()
     {
-        // Is drop axis being pressed, and is not already held
-        if (Input.GetAxis("Drop") > 0 && _dropInputState < 2)
-        {
-            // Increment counter for tracking how long it has been held
-            _dropInputState++;
-        }
-        // Has drop axis been released
-        else if (Input.GetAxis("Drop") <= 0)
-        {
-            // Reset counter to 0
-            _dropInputState = 0;
-        }
-
         // Poll keys
-        if (Input.GetAxis("Inv1") > 0 && _currentSlot != 0)
+        if (_slotOneAction.WasPressedThisFrame() && _currentSlot != 0)
         {
             // Select 1st inventory slot
             SelectSlot(0);
         }
-        else if (Input.GetAxis("Inv2") > 0 && _currentSlot != 1)
+        else if (_slotTwoAction.WasPressedThisFrame() && _currentSlot != 1)
+
         {
             // Select 2nd inventory slot
             SelectSlot(1);
         }
-        else if (Input.GetAxis("Inv3") > 0 && _currentSlot != 2)
+        else if (_slotThreeAction.WasPressedThisFrame() && _currentSlot != 2)
         {
             // Select 3rd inventory slot
             SelectSlot(2);
         }
 
         // Drop current item if drop axis is pressed, but not held
-        if (_dropInputState == 1 && _slots[_currentSlot].Item != Inventory.Item.None)
+        if (_dropAction.WasPressedThisFrame())
         {
             // Drop item
             _toWorldItemHandler.DropItem(_slots[_currentSlot].TryRemoveItem());

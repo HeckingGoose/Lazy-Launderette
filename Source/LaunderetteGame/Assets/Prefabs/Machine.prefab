@@ -203,7 +203,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ea01680d37bcb7479f432e420a5f6dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  running: 0
+  _running: 0
 --- !u!114 &5655192783580645906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -216,12 +216,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d2e58d72539c93438bca63e7131aebe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeToStart: 1
-  minTimeBetweenRolls: 10
-  maxTimeBetweenRolls: 20
-  volume: 0.7
-  rollingAmbient: {fileID: 8300000, guid: c1161960ea573b24ebfa53b98a3ad8f6, type: 3}
-  rollingDrop:
+  _timeToStart: 0.5
+  _minTimeBetweenRolls: 10
+  _maxTimeBetweenRolls: 20
+  _volume: 0.7
+  _rollingAmbient: {fileID: 8300000, guid: c1161960ea573b24ebfa53b98a3ad8f6, type: 3}
+  _rollingDrop:
   - {fileID: 8300000, guid: ec0eddf69fe93234da03abdf7d8df388, type: 3}
   - {fileID: 8300000, guid: 5242b2690dc04bd449f6b136b3bb996e, type: 3}
   - {fileID: 8300000, guid: 9a0fe3a9170a44343ad79fbe6bc5240b, type: 3}

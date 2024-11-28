@@ -24,10 +24,10 @@ public class MoveOnClick : MonoBehaviour
     private void Start()
     {
         // Fetch a reference to the MainMenu action map
-        _menuActionMap = InputSystem.actions.FindActionMap("MainMenu");
+        _menuActionMap = InputSystem.actions.FindActionMap(InputDefinitions.ACTIONMAP_MENU);
 
         // Fetch a reference to the GoToMain action
-        _goToMainAction = _menuActionMap.FindAction("GoToMain");
+        _goToMainAction = _menuActionMap.FindAction(InputDefinitions.MMAM_GOTOMAIN);
     }
     private void Update()
     {

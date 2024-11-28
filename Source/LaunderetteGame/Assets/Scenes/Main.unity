@@ -990,8 +990,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3792639239720411005, guid: 71060195afd2544488e3d61ee91f3f6f, type: 3}
       propertyPath: _keyboardPrompt
-      value: 2
-      objectReference: {fileID: 0}
+      value: 
+      objectReference: {fileID: 1661054721, guid: cab57730a65f742408438f612073eedf, type: 3}
     - target: {fileID: 3792639239720411005, guid: 71060195afd2544488e3d61ee91f3f6f, type: 3}
       propertyPath: _controllerPrompt
       value: 
@@ -4820,8 +4820,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3792639239720411005, guid: 71060195afd2544488e3d61ee91f3f6f, type: 3}
       propertyPath: _keyboardPrompt
-      value: 3
-      objectReference: {fileID: 0}
+      value: 
+      objectReference: {fileID: 1695816070, guid: cab57730a65f742408438f612073eedf, type: 3}
     - target: {fileID: 3792639239720411005, guid: 71060195afd2544488e3d61ee91f3f6f, type: 3}
       propertyPath: _controllerPrompt
       value: 
@@ -7509,8 +7509,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3792639239720411005, guid: 71060195afd2544488e3d61ee91f3f6f, type: 3}
       propertyPath: _keyboardPrompt
-      value: 1
-      objectReference: {fileID: 0}
+      value: 
+      objectReference: {fileID: 1662080556, guid: cab57730a65f742408438f612073eedf, type: 3}
     - target: {fileID: 3792639239720411005, guid: 71060195afd2544488e3d61ee91f3f6f, type: 3}
       propertyPath: _controllerPrompt
       value: 
