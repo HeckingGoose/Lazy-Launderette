@@ -1,4 +1,3 @@
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,14 +6,12 @@ public class KeyPrompt : MonoBehaviour
     // Editor variables
     [Header("Representing:")]
     [SerializeField]
-    private string _keyboardPrompt = "None";
+    private Sprite _keyboardPrompt;
     [SerializeField]
     private Sprite _controllerPrompt;
-    [Header("Targets")]
+    [Header("Target")]
     [SerializeField]
-    private TextMeshProUGUI _keyboardDisplay;
-    [SerializeField]
-    private Image _controllerDisplay;
+    private Image _glyphDisplay;
 
     // Private variables
     private GLOBAL.InputMode _deviceLastFrame;
@@ -72,29 +69,29 @@ public class KeyPrompt : MonoBehaviour
     /// </summary>
     private void ShowControllerGlyph()
     {
-        // Unhide controller glyph
-        _controllerDisplay.color = Color.white;
+        // Unhide glyph
+        _glyphDisplay.color = Color.white;
 
         // Set controller glyph
-        _controllerDisplay.sprite = _controllerPrompt;
+        _glyphDisplay.sprite = _controllerPrompt;
     }
     /// <summary>
     /// Shows the keyboard glyph for this prompt.
     /// </summary>
     private void ShowKeyboardGlyph()
     {
-        // Unhide keyboard glyph
-        _keyboardDisplay.text = _keyboardPrompt;
+        // Unhide glyph
+        _glyphDisplay.color = Color.white;
+
+        // Set keyboard glyph
+        _glyphDisplay.sprite = _keyboardPrompt;
     }
     /// <summary>
     /// Hides all glyph displays.
     /// </summary>
     private void HideAll()
     {
-        // Hide keyboard display
-        _keyboardDisplay.text = string.Empty;
-
-        // Hide controller display
-        _controllerDisplay.color = Color.clear;
+        // Hide glyph display
+        _glyphDisplay.color = Color.clear;
     }
 }
