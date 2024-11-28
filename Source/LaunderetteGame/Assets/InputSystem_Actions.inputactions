@@ -1068,7 +1068,7 @@
             "id": "accb42b1-8f50-4040-9044-6fcc111eddd4",
             "actions": [
                 {
-                    "name": "Walk",
+                    "name": "MoveAbout",
                     "type": "Value",
                     "id": "16319fc4-26ff-4f9f-979d-5f7e90a52644",
                     "expectedControlType": "Vector2",
@@ -1077,7 +1077,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Look",
+                    "name": "PanView",
                     "type": "Value",
                     "id": "a6febe8e-1294-4633-9b2f-9501adf93d76",
                     "expectedControlType": "Vector2",
@@ -1157,7 +1157,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Walk",
+                    "action": "MoveAbout",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -1168,7 +1168,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Walk",
+                    "action": "MoveAbout",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -1179,7 +1179,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Walk",
+                    "action": "MoveAbout",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -1190,7 +1190,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Walk",
+                    "action": "MoveAbout",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -1201,7 +1201,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Walk",
+                    "action": "MoveAbout",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -1210,9 +1210,9 @@
                     "id": "04a52400-2773-4cbe-85d8-e3be0590814b",
                     "path": "<Gamepad>/leftStick",
                     "interactions": "",
-                    "processors": "",
+                    "processors": "StickDeadzone",
                     "groups": ";Gamepad",
-                    "action": "Walk",
+                    "action": "MoveAbout",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -1223,7 +1223,7 @@
                     "interactions": "",
                     "processors": "ScaleVector2(x=0.2,y=0.2)",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Look",
+                    "action": "PanView",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -1232,9 +1232,9 @@
                     "id": "713ffa25-857e-4afb-9dbf-e450854f1602",
                     "path": "<Gamepad>/rightStick",
                     "interactions": "",
-                    "processors": "",
+                    "processors": "StickDeadzone",
                     "groups": ";Gamepad",
-                    "action": "Look",
+                    "action": "PanView",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

@@ -6,12 +6,12 @@ public class HandleMenu : MonoBehaviour
 {
     // Editor variables
     [SerializeField]
-    private PlayerController controller;
+    private PlayerController _playerController;
     [SerializeField]
-    private GameObject menuRoot;
+    private GameObject _menuRoot;
 
     // Private variables
-    private bool paused = false;
+    private bool _paused = false;
 
     // Action Maps
     private InputActionMap _freeRoamActionMap;
@@ -45,23 +45,23 @@ public class HandleMenu : MonoBehaviour
     public void TogglePaused()
     {
         // Invert paused
-        paused = !paused;
+        _paused = !_paused;
 
         // Whether we should now be paused or unpaused
-        switch (paused)
+        switch (_paused)
         {
             // We need to pause
             case true:
-                controller.enabled = false;
-                menuRoot.SetActive(true);
+                _playerController.enabled = false;
+                _menuRoot.SetActive(true);
                 Cursor.lockState = CursorLockMode.Confined;
                 Cursor.visible = true;
                 break;
 
             // We need to unpause
             case false:
-                controller.enabled = true;
-                menuRoot.SetActive(false);
+                _playerController.enabled = true;
+                _menuRoot.SetActive(false);
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
                 break;

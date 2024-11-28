@@ -66,6 +66,13 @@ public class PlayerController : MonoBehaviour
         // Read look action
         Vector2 look = _lookAction.ReadValue<Vector2>();
 
+        // If we are working with a controller
+        if (_lookAction.activeControl != null && _lookAction.activeControl.device.layout == "mouse")
+        {
+            // Scale by deltatime
+            look *= Time.deltaTime * 600;
+        }
+
         // Deadzone it
         if (look.magnitude < _lookDeadZone)
         {

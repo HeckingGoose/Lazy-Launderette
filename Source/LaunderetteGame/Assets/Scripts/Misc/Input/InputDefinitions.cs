@@ -9,8 +9,8 @@ public static class InputDefinitions
     public const string MMAM_GOTOMAIN = "GoToMain";
 
     // Free Roam Actions
-    public const string FRAM_WALK = "Walk";
-    public const string FRAM_LOOK = "Look";
+    public const string FRAM_WALK = "MoveAbout";
+    public const string FRAM_LOOK = "PanView";
     public const string FRAM_INTERACT = "Interact";
     public const string FRAM_CROUCH = "Crouch";
     public const string FRAM_INVSLOTONE = "InventorySlot1";

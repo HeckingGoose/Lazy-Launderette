@@ -423,6 +423,10 @@ PrefabInstance:
       propertyPath: m_IncludeLayers.m_Bits
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1353585867385559988, guid: 5c69abf3fd3c7a44393a8449250c1f09, type: 3}
+      propertyPath: _running
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2831809937003015630, guid: 5c69abf3fd3c7a44393a8449250c1f09, type: 3}
       propertyPath: referenceCamera
       value: 
@@ -803,6 +807,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 755176223991576420, guid: 5c69abf3fd3c7a44393a8449250c1f09, type: 3}
       propertyPath: m_IncludeLayers.m_Bits
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1353585867385559988, guid: 5c69abf3fd3c7a44393a8449250c1f09, type: 3}
+      propertyPath: _running
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2831809937003015630, guid: 5c69abf3fd3c7a44393a8449250c1f09, type: 3}
@@ -1400,6 +1408,10 @@ PrefabInstance:
       propertyPath: m_ExcludeLayers.m_Bits
       value: 128
       objectReference: {fileID: 0}
+    - target: {fileID: 1353585867385559988, guid: 5c69abf3fd3c7a44393a8449250c1f09, type: 3}
+      propertyPath: _running
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2831809937003015630, guid: 5c69abf3fd3c7a44393a8449250c1f09, type: 3}
       propertyPath: referenceCamera
       value: 
@@ -1469,6 +1481,10 @@ PrefabInstance:
     - target: {fileID: 755176223991576420, guid: 5c69abf3fd3c7a44393a8449250c1f09, type: 3}
       propertyPath: m_ExcludeLayers.m_Bits
       value: 128
+      objectReference: {fileID: 0}
+    - target: {fileID: 1353585867385559988, guid: 5c69abf3fd3c7a44393a8449250c1f09, type: 3}
+      propertyPath: _running
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2831809937003015630, guid: 5c69abf3fd3c7a44393a8449250c1f09, type: 3}
       propertyPath: referenceCamera
@@ -2287,6 +2303,10 @@ PrefabInstance:
     - target: {fileID: 755176223991576420, guid: 5c69abf3fd3c7a44393a8449250c1f09, type: 3}
       propertyPath: m_ExcludeLayers.m_Bits
       value: 128
+      objectReference: {fileID: 0}
+    - target: {fileID: 1353585867385559988, guid: 5c69abf3fd3c7a44393a8449250c1f09, type: 3}
+      propertyPath: _running
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2831809937003015630, guid: 5c69abf3fd3c7a44393a8449250c1f09, type: 3}
       propertyPath: referenceCamera
@@ -3179,8 +3199,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29d49af1d74cc34469ec0f0696f96fd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 2091255115}
-  menuRoot: {fileID: 963793749}
+  _playerController: {fileID: 2091255115}
+  _menuRoot: {fileID: 963793749}
 --- !u!4 &1039733179 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4002259487110420146, guid: 5c69abf3fd3c7a44393a8449250c1f09, type: 3}
@@ -5070,6 +5090,10 @@ PrefabInstance:
       propertyPath: m_ExcludeLayers.m_Bits
       value: 128
       objectReference: {fileID: 0}
+    - target: {fileID: 1353585867385559988, guid: 5c69abf3fd3c7a44393a8449250c1f09, type: 3}
+      propertyPath: _running
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2831809937003015630, guid: 5c69abf3fd3c7a44393a8449250c1f09, type: 3}
       propertyPath: referenceCamera
       value: 
@@ -5899,6 +5923,10 @@ PrefabInstance:
       propertyPath: m_ExcludeLayers.m_Bits
       value: 128
       objectReference: {fileID: 0}
+    - target: {fileID: 1353585867385559988, guid: 5c69abf3fd3c7a44393a8449250c1f09, type: 3}
+      propertyPath: _running
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2831809937003015630, guid: 5c69abf3fd3c7a44393a8449250c1f09, type: 3}
       propertyPath: referenceCamera
       value: 
@@ -6114,6 +6142,10 @@ PrefabInstance:
     - target: {fileID: 755176223991576420, guid: 5c69abf3fd3c7a44393a8449250c1f09, type: 3}
       propertyPath: m_ExcludeLayers.m_Bits
       value: 128
+      objectReference: {fileID: 0}
+    - target: {fileID: 1353585867385559988, guid: 5c69abf3fd3c7a44393a8449250c1f09, type: 3}
+      propertyPath: _running
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2831809937003015630, guid: 5c69abf3fd3c7a44393a8449250c1f09, type: 3}
       propertyPath: referenceCamera
