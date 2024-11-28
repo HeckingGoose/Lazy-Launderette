@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class ManageConversation : MonoBehaviour
@@ -38,7 +39,6 @@ public class ManageConversation : MonoBehaviour
     private bool talking = false;
     private int lineNumber = -1;
     private CharacterData characterData;
-    private bool released = true;
     private bool doneSaying = false;
     private bool lineRead = false;
     private float timer = 0;
@@ -47,6 +47,25 @@ public class ManageConversation : MonoBehaviour
     private Transform character;
     private Material characterMat;
 
+    // Input maps
+    private InputActionMap _freeRoamActionMap;
+    private InputActionMap _dialogueActionMap;
+
+    // Input actions
+    private InputAction _advanceSpeechAction;
+    private InputAction _skipThroughAction;
+
+    // Unity Methods
+    private void Start()
+    {
+        // Fetch action maps
+        _freeRoamActionMap = InputSystem.actions.FindActionMap(InputDefinitions.ACTIONMAP_FREEROAM);
+        _dialogueActionMap = InputSystem.actions.FindActionMap(InputDefinitions.ACTIONMAP_DIALOGUE);
+
+        // Fetch actions
+        _advanceSpeechAction = _dialogueActionMap.FindAction(InputDefinitions.DAM_ADVANCESPEECH);
+        _skipThroughAction = _dialogueActionMap.FindAction(InputDefinitions.DAM_SKIPTHROUGH);
+    }
     private void Update()
     {
         // If we are currently talking
@@ -191,7 +210,7 @@ public class ManageConversation : MonoBehaviour
                         }
                     }
 
-                    if (Input.GetAxis("LeftMouse") > 0 && released)
+                    if (_advanceSpeechAction.WasPressedThisFrame() || _skipThroughAction.IsPressed())
                     {
                         if (doneSaying)
                         {
@@ -207,11 +226,6 @@ public class ManageConversation : MonoBehaviour
                             speechText.text += lettersToAdd;
                             lettersToAdd = string.Empty;
                         }
-                        released = false;
-                    }
-                    else if (Input.GetAxis("LeftMouse") <= 0)
-                    {
-                        released = true;
                     }
                 }
             }
@@ -251,6 +265,9 @@ public class ManageConversation : MonoBehaviour
                 talking = true;
                 characterData = _characterData;
                 Debug.Log("Entering conversation...");
+
+                // Disable free roam action map
+                _freeRoamActionMap.Disable();
             }
 
             try
@@ -272,5 +289,8 @@ public class ManageConversation : MonoBehaviour
         talking = false;
         crosshair.SetActive(true);
         interactor.EndTalk();
+
+        // Re-enable the free roam controls
+        _freeRoamActionMap.Enable();
     }
 }

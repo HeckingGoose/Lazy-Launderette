@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -25,6 +26,12 @@ public class LoadScene : MonoBehaviour
     private bool _loaded = false;
     private AsyncOperation _sceneLoadingHandle;
 
+    // Action maps
+    private InputActionMap _mainMenuActionMap;
+
+    // Actions
+    private InputAction _goToNextScene;
+
     private void Start()
     {
         // Begin load
@@ -35,6 +42,12 @@ public class LoadScene : MonoBehaviour
         Sprite loadingIcon = _loadingSprites[Random.Range(0, _loadingSprites.Length)];
         _loadingImage.sprite = loadingIcon;
         _loadingImageBackground.sprite = loadingIcon;
+
+        // Fetch action map
+        _mainMenuActionMap = InputSystem.actions.FindActionMap(InputDefinitions.ACTIONMAP_MENU);
+
+        // Fetch actions
+        _goToNextScene = _mainMenuActionMap.FindAction(InputDefinitions.MMAM_GOTOMAIN);
     }
     private void Update()
     {
@@ -69,8 +82,8 @@ public class LoadScene : MonoBehaviour
             // If text has faded in fully
             if (_textFadeTimer > _textFadeTime)
             {
-                // If mouse is held
-                if (Input.GetAxis("LeftMouse") > 0)
+                // If next scene is to be triggered
+                if (_goToNextScene.WasPressedThisFrame())
                 {
                     // Switch to next scene
                     _sceneLoadingHandle.allowSceneActivation = true;

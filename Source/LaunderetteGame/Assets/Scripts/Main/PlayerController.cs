@@ -67,7 +67,9 @@ public class PlayerController : MonoBehaviour
         Vector2 look = _lookAction.ReadValue<Vector2>();
 
         // If we are working with a controller
-        if (_lookAction.activeControl != null && _lookAction.activeControl.device.layout == "mouse")
+        if (_lookAction.activeControl != null &&
+            _lookAction.activeControl.device.layout.ToLower() != "mouse" &&
+            _lookAction.activeControl.device.layout.ToLower() != "keyboard")
         {
             // Scale by deltatime
             look *= Time.deltaTime * 600;
