@@ -23,23 +23,27 @@ public class InputSwitcher : MonoBehaviour
         // Cast action to action
         InputAction action = (InputAction)inputAction;
 
-        // Fetch last device used
-        InputDevice lastDevice = action.activeControl.device;
-
-
-        // Switch device type
-        switch (lastDevice.layout.ToLower())
+        // Given there is an active control is not null
+        if (action.activeControl != null)
         {
-            // KbnM layout
-            case "mouse":
-            case "keyboard":
-                GLOBAL.CurrentInputDevice = GLOBAL.InputMode.Keyboard;
-                break;
+            // Fetch last device used
+            InputDevice lastDevice = action.activeControl.device;
 
-            // All other devices are assumed to be controller
-            default:
-                GLOBAL.CurrentInputDevice = GLOBAL.InputMode.Controller;
-                break;
+
+            // Switch device type
+            switch (lastDevice.layout.ToLower())
+            {
+                // KbnM layout
+                case "mouse":
+                case "keyboard":
+                    GLOBAL.CurrentInputDevice = GLOBAL.InputMode.Keyboard;
+                    break;
+
+                // All other devices are assumed to be controller
+                default:
+                    GLOBAL.CurrentInputDevice = GLOBAL.InputMode.Controller;
+                    break;
+            }
         }
     }
 }
