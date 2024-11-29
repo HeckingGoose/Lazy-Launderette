@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerInteractor : MonoBehaviour
@@ -21,42 +22,47 @@ public class PlayerInteractor : MonoBehaviour
     private const string DESCRIBETEXT_NEEDTOHOLDCLOTHESBAG = "Select clothes before using machine.";
 
     // Editor variables
+    [Header("Player Components")]
     [SerializeField]
     private PlayerController _playerController;
     [SerializeField]
+    private ManageInventory _inventory;
+    [Header("Conversation References")]
+    [SerializeField]
     private GameObject _conversationRoot;
     [SerializeField]
-    private ManageConversation conversationManager;
+    private ManageConversation _conversationManager;
+    [Header("Raycasting Definitions")]
     [SerializeField]
-    private Camera view;
+    private Camera _camera;
     [SerializeField]
-    private float rayDistance = 2f;
+    private float _rayDistance = 2f;
+    [Header("UI Settings & References")]
     [SerializeField]
     private float _crossHairTimerMax = 0.15f;
     [SerializeField]
     private float _crosshairMaxScale = 1.5f;
     [SerializeField]
-    private RectTransform crosshair;
+    private RectTransform _crosshairTransform;
     [SerializeField]
-    private Image crosshairImage;
+    private Image _crosshairImage;
     [SerializeField]
     private TextMeshProUGUI _describeText;
+    [Header("Coin Manager")]
     [SerializeField]
     private ManageCoins _coinManager;
+    [Header("Sound Effects")]
     [SerializeField]
-    private AudioClip coinPickup;
+    private AudioClip _coinPickupSound;
     [SerializeField]
-    private AudioSource coinSource;
+    private AudioSource _coinAudioSource;
     [SerializeField]
-    private ManageInventory _inventory;
+    private AudioSource _pickupSoundSource;
     [SerializeField]
-    private AudioSource pickupSource;
+    private AudioClip[] _pickupSounds;
+    [Header("Scene End Script")]
     [SerializeField]
-    private AudioClip[] pickupSounds;
-    [SerializeField]
-    private TranslateToWorldItem translate;
-    [SerializeField]
-    private EndScene endScene;
+    private EndScene _endSceneScript;
 
     // Private variables
 #nullable enable
@@ -64,30 +70,34 @@ public class PlayerInteractor : MonoBehaviour
 #nullable enable
     private GameObject? _targetObject;
     private bool _talking = false;
-    private bool hovering = false;
     private float _crosshairTimer = 0;
     private Vector3 _crosshairSizeBase;
     private Vector3 _crosshairSizeMax;
     private Vector4 _crosshairColourBase;
     private Vector4 _crosshairColourMax;
-    private bool _interacting;
+
+    // Public
+    [HideInInspector]
+    public bool Enabled = true;
 
     // Action map
-    private InputActionMap _freeRoamActionMap;
+#nullable enable
+    private InputActionMap? _freeRoamActionMap;
 
     // Actions
-    private InputAction _interactAction;
+#nullable enable
+    private InputAction? _interactAction;
 
     // Unity Methods
     private void Start()
     {
         // Fetch crosshair base state
-        _crosshairSizeBase = crosshair.localScale;
-        _crosshairColourBase = crosshairImage.color;
+        _crosshairSizeBase = _crosshairTransform.localScale;
+        _crosshairColourBase = _crosshairImage.color;
 
         // Calculate values for max states
         _crosshairSizeMax = _crosshairSizeBase * _crosshairMaxScale;
-        _crosshairColourMax = crosshairImage.color;
+        _crosshairColourMax = _crosshairImage.color;
         _crosshairColourMax.w = 1;
 
         // Fetch action map
@@ -95,14 +105,18 @@ public class PlayerInteractor : MonoBehaviour
 
         // Fetch relevant actions
         _interactAction = _freeRoamActionMap.FindAction(InputDefinitions.FRAM_INTERACT);
+
+        // Subscribe to interact action
+        _interactAction.performed += DoInteract;
     }
+
     private void FixedUpdate()
     {
         // Make a ray from the middle of the screen
-        Ray screenRay = view.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
+        Ray screenRay = _camera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
 
         // Do raycast, true on hit
-        if (Physics.Raycast(screenRay, out RaycastHit hit, rayDistance))
+        if (Physics.Raycast(screenRay, out RaycastHit hit, _rayDistance))
         {
             // Set target to hit
             _targetObject = hit.transform.gameObject;
@@ -307,14 +321,14 @@ public class PlayerInteractor : MonoBehaviour
     private void AnimateCrosshair()
     {
         // Update scale
-        crosshair.localScale = Vector3.Lerp(
+        _crosshairTransform.localScale = Vector3.Lerp(
                     _crosshairSizeBase, // Start
                     _crosshairSizeMax, // End
                     _crosshairTimer / _crossHairTimerMax // Progress
                     );
 
         // Update colour
-        crosshairImage.color = Vector4.Lerp(
+        _crosshairImage.color = Vector4.Lerp(
             _crosshairColourBase, // Start
             _crosshairColourMax, // End
             _crosshairTimer / _crossHairTimerMax // Progress
@@ -346,7 +360,7 @@ public class PlayerInteractor : MonoBehaviour
             Cursor.lockState = CursorLockMode.Confined;
 
             // Move into conversation
-            conversationManager.StartTalk(in characterData, in target, Inventory.GetItemName(_inventory.GetHeldItem()));
+            _conversationManager.StartTalk(in characterData, in target, Inventory.GetItemName(_inventory.GetHeldItem()));
         }
 
     }
@@ -376,5 +390,220 @@ public class PlayerInteractor : MonoBehaviour
         // Reset talking state and log
         _talking = false;
         Debug.Log("Successfully closed conversation.");
+    }
+    /// <summary>
+    /// When called, attempts to interact with whatever the player is (or isn't looking at). (Does nothing in that second case).
+    /// </summary>
+    public void Interact()
+    {
+        // If we are not targetting anything
+        if (_targetObject == null)
+        {
+            // Log and early out
+            Debug.LogWarning("Attempted to interact with no target set!");
+            return;
+        }
+
+        // Otherwise, what're we looking at?
+        switch (_targetObject.tag)
+        {
+            // This is a character we can speak to
+            case TAG_CHARACTER:
+                // Attempt to fetch speech bubble script reference
+                _targetObject.TryGetComponent<HandleInteractBubble>(out HandleInteractBubble speechHandler);
+
+                // Check success
+                if (speechHandler != null)
+                {
+                    // Attempt to start a chat
+                    _describeText.text = string.Empty;
+                    speechHandler.StartTalk(this);
+                }
+                // Otherwise
+                else
+                {
+                    // Log error
+                    Debug.LogError("Character being interacted with has no script!");
+                }
+                break;
+
+            // This is something we can pick up
+            case TAG_TOOL:
+                // Fetch the pickup handler for this tool
+                _targetObject.TryGetComponent(out HandlePickup pickupHandler);
+
+                // Check success
+                if (pickupHandler != null)
+                {
+                    // Predefine success
+                    bool success;
+
+                    // What type of item is this
+                    switch (pickupHandler.item)
+                    {
+                        // A coin
+                        case Inventory.Item.Coin:
+                            // Increment coin counter
+                            _coinManager.numCoins++;
+
+                            // Playback pickup sound
+                            _coinAudioSource.clip = _coinPickupSound;
+                            _coinAudioSource.Play();
+
+                            // Destroy coin
+                            Destroy(pickupHandler.gameObject);
+                            break;
+
+                        // Washed clothes
+                        case Inventory.Item.WashedClothes:
+                            // Are we holding an empty bag
+                            if (_inventory.GetHeldItem() == Inventory.Item.EmptyBag)
+                            {
+                                // Remove bag
+                                _inventory.TryRemoveItem();
+
+                                // Add full bag
+                                success = _inventory.TryAddItem(Inventory.Item.BagHoldingSamsClothes);
+
+                                // If we were able to add the item
+                                if (success)
+                                {
+                                    // Play pickup sounds
+                                    _pickupSoundSource.clip = _pickupSounds[1];
+                                    _pickupSoundSource.Play();
+                                }
+
+                                // Destroy clothes pile
+                                Destroy(pickupHandler.gameObject);
+                            }
+                            break;
+
+                        // A Vent Cover
+                        case Inventory.Item.VentCover:
+                            // If we are holding a screwdriver
+                            if (_inventory.GetHeldItem() == Inventory.Item.Screwdriver)
+                            {
+                                // Add screws
+                                success = _inventory.TryAddItem(Inventory.Item.Screws);
+
+                                // If succeeded
+                                if (success)
+                                {
+                                    // Then play pickup sound
+                                    _pickupSoundSource.clip = _pickupSounds[2];
+                                    _pickupSoundSource.Play();
+                                }
+
+                                // Remove vent
+                                Destroy(pickupHandler.gameObject);
+
+                                // Play vent destroy sound effect
+                                _pickupSoundSource.clip = _pickupSounds[3];
+                                _pickupSoundSource.Play();
+                            }
+                            break;
+
+                        // Any other type of item
+                        default:
+                            // Add item to inventory
+                            success = _inventory.TryAddItem(pickupHandler.item, false);
+
+                            // If we succeeded
+                            if (success)
+                            {
+                                // Destroy object
+                                Destroy(pickupHandler.gameObject);
+
+                                // Playback correct sound file
+                                switch (pickupHandler.item)
+                                {
+                                    case Inventory.Item.Choccy: // Chocolate
+                                        _pickupSoundSource.clip = _pickupSounds[0];
+                                        _pickupSoundSource.Play();
+                                        break;
+                                    case Inventory.Item.Screws: // screws
+                                    case Inventory.Item.Screwdriver: // Screwdriver
+                                        _pickupSoundSource.clip = _pickupSounds[2];
+                                        _pickupSoundSource.Play();
+                                        break;
+                                    default: // Bag
+                                        _pickupSoundSource.clip = _pickupSounds[1];
+                                        _pickupSoundSource.Play();
+                                        break;
+                                }
+                            }
+                            break;
+                    }
+                }
+                // Otherwise
+                else
+                {
+                    // Log error
+                    Debug.LogError("Tool does not have pickup script!");
+                }
+                break;
+
+            // This is a washing machine
+            case TAG_WASHINGMACHINE:
+                // Try to fetch the machine's script
+                _targetObject.transform.parent.parent.parent.TryGetComponent(out Machine_Main machineScript);
+
+                // Check success
+                if (machineScript != null)
+                {
+                    // Toggle the machine's door
+                    machineScript.ToggleDoor();
+                }
+                // Otherwise
+                else
+                {
+                    // Log error
+                    Debug.LogError("Washing machine has no main script!");
+                }
+                break;
+
+            // This is the area to place our clothes in (to win the game)
+            case TAG_GOAL:
+                // If we have enough coins and that we are holding a bag
+                if (_coinManager.numCoins < GameRules.COINS_TOWIN || _inventory.GetHeldItem() != Inventory.Item.ClothesBag)
+                {
+                    // Early out
+                    return;
+                }
+
+                // Rob the player
+                _coinManager.numCoins -= GameRules.COINS_TOWIN;
+
+                // Attempt to
+                try
+                {
+                    // End the scene
+                    _endSceneScript.Begin();
+                }
+                // On error
+                catch
+                {
+                    // Log error
+                    Debug.LogError("Failed to run scene end!");
+
+                    // Jump to the menu
+                    GLOBAL.LoadTarget = "Menu";
+                    SceneManager.LoadScene("Loading");
+                }
+                break;
+        }
+    }
+    /// <summary>
+    /// Subscribed to the interact action <3
+    /// </summary>
+    /// <param name="obj">Callback params of the input action</param>
+    private void DoInteract(InputAction.CallbackContext obj)
+    {
+        // Are we allowed to do our job?
+        if (Enabled)
+        {
+            // Do interact
+            Interact();
+        }
     }
 }

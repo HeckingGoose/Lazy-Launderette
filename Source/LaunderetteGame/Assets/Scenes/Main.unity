@@ -3328,7 +3328,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
-  m_ActiveFontFeatures: 00000000
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
@@ -4625,6 +4625,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: f4250c677dee6c44faa7f174e0c6753d, type: 3}
   - {fileID: 8300000, guid: 39347000577c8af46b0ffa33a66c7954, type: 3}
   - {fileID: 8300000, guid: 4e90f9d4c43826c40bb24feeab5c3317, type: 3}
+  _playerController: {fileID: 2091255115}
+  _playerInteractor: {fileID: 2091255117}
 --- !u!1 &1364252581
 GameObject:
   m_ObjectHideFlags: 0
@@ -5320,7 +5322,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
-  m_ActiveFontFeatures: 00000000
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
@@ -7144,7 +7146,7 @@ MonoBehaviour:
   _lookDeadZone: 0.1
   _crouchHeight: 0.9
   _timeToCrouch: 0.3
-  _crouching: 0
+  Enabled: 1
 --- !u!143 &2091255116
 CharacterController:
   m_ObjectHideFlags: 0
@@ -7182,28 +7184,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 821d5732ff6cccb40be4d2a1607138ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 2091255115}
-  conversationRoot: {fileID: 1321195301}
-  conversationManager: {fileID: 1321195303}
-  view: {fileID: 963194227}
-  rayDistance: 2
-  timeToMaxSize: 0.2
-  maxScale: 1.5
-  crosshair: {fileID: 1736156779}
-  crosshairImage: {fileID: 1736156780}
-  describeText: {fileID: 619891687}
-  manageCoins: {fileID: 2091255119}
-  coinPickup: {fileID: 8300000, guid: 8da207e1447254a4495b9e349ce59224, type: 3}
-  coinSource: {fileID: 963194230}
-  inventory: {fileID: 2091255118}
-  pickupSource: {fileID: 1120961220}
-  pickupSounds:
+  _playerController: {fileID: 2091255115}
+  _inventory: {fileID: 2091255118}
+  _conversationRoot: {fileID: 1321195301}
+  _conversationManager: {fileID: 1321195303}
+  _camera: {fileID: 963194227}
+  _rayDistance: 2
+  _crossHairTimerMax: 0.15
+  _crosshairMaxScale: 1.5
+  _crosshairTransform: {fileID: 1736156779}
+  _crosshairImage: {fileID: 1736156780}
+  _describeText: {fileID: 619891687}
+  _coinManager: {fileID: 2091255119}
+  _coinPickupSound: {fileID: 8300000, guid: 8da207e1447254a4495b9e349ce59224, type: 3}
+  _coinAudioSource: {fileID: 963194230}
+  _pickupSoundSource: {fileID: 963194230}
+  _pickupSounds:
   - {fileID: 8300000, guid: 4e90f9d4c43826c40bb24feeab5c3317, type: 3}
   - {fileID: 8300000, guid: 39347000577c8af46b0ffa33a66c7954, type: 3}
   - {fileID: 8300000, guid: 97465bdcbb3a4f442bb4878e4fd4a289, type: 3}
   - {fileID: 8300000, guid: 2359ab14e79fff4439027aed764db4c7, type: 3}
-  translate: {fileID: 2091255120}
-  endScene: {fileID: 2091255121}
+  _endSceneScript: {fileID: 2091255121}
+  Enabled: 1
 --- !u!114 &2091255118
 MonoBehaviour:
   m_ObjectHideFlags: 0

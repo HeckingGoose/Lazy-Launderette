@@ -25,10 +25,12 @@ public class PlayerController : MonoBehaviour
     // Private variables
     private CharacterController _characterController;
     private float _crouchTimer;
-    [SerializeField]
-    private bool _crouching;
     private float _baseHeight;
     private bool _inVentZone = false;
+
+    // Public
+    [HideInInspector]
+    public bool Enabled = true;
 
     // Action map
     private InputActionMap _freeRoamActionMap;
@@ -59,130 +61,133 @@ public class PlayerController : MonoBehaviour
     }
     void Update()
     {
-
-        // Create objects for movement and rotation
-        Vector3 movement = new Vector3();
-
-        // Read look action
-        Vector2 look = _lookAction.ReadValue<Vector2>();
-
-        // If we are working with a controller
-        if (_lookAction.activeControl != null &&
-            _lookAction.activeControl.device.layout.ToLower() != "mouse" &&
-            _lookAction.activeControl.device.layout.ToLower() != "keyboard")
+        // Are we allowed to do our job?
+        if (Enabled)
         {
-            // Scale by deltatime
-            look *= Time.deltaTime * 600;
-        }
+            // Create objects for movement and rotation
+            Vector3 movement = new Vector3();
 
-        // Deadzone it
-        if (look.magnitude < _lookDeadZone)
-        {
-            // Zero it
-            look = Vector2.zero;
-        }
+            // Read look action
+            Vector2 look = _lookAction.ReadValue<Vector2>();
 
-        // Apply sensitivity settings
-        look *= _lookSensitivity;
-
-        // Read walk action
-        Vector2 walk = _walkAction.ReadValue<Vector2>();
-
-        // Calculate movement from Z direction
-        movement.x += _velocity * Time.deltaTime * walk.y * Mathf.Sin(transform.localEulerAngles.y * Mathf.Deg2Rad);
-        movement.z += _velocity * Time.deltaTime * walk.y * Mathf.Sin((90 - transform.localEulerAngles.y) * Mathf.Deg2Rad);
-
-        // Calculate movement from X direction
-        movement.x += _velocity * Time.deltaTime * walk.x * Mathf.Sin((90 - transform.localEulerAngles.y) * Mathf.Deg2Rad);
-        movement.z += -_velocity * Time.deltaTime * walk.x * Mathf.Sin(transform.localEulerAngles.y * Mathf.Deg2Rad);
-
-        // Read crouch action
-        bool crouched = _crouchAction.IsPressed();
-
-        // If we are crouching (or in a vent zone)
-        if (crouched || InVentZone)
-        {
-            // Half movement speed
-            movement /= 2;
-        }
-
-        // Apply movement and rotation
-        _characterController.Move(movement);
-        transform.eulerAngles += new Vector3(0, look.x, 0);
-
-        // Handle looking up and down
-        float newAngle = _cameraTransform.eulerAngles.x + look.y;
-
-        // Patch
-        if (newAngle < 0)
-        {
-            newAngle += 360;
-        }
-
-        // If unity refuses the existence of negative numbers
-        if (newAngle > 180)
-        {
-            newAngle = Mathf.Clamp(newAngle, 360 - _lookRange / 2, 360);
-        }
-        else
-        {
-            newAngle = Mathf.Clamp(newAngle, 0, _lookRange / 2);
-        }
-
-        // Apply camera transform
-        _cameraTransform.eulerAngles = new Vector3(
-            newAngle,
-            _cameraTransform.eulerAngles.y,
-            0
-            );
-
-        // As long as we are not in a vent zone
-        if (!_inVentZone)
-        {
-            // If we are crouching
-            if (crouched)
+            // If we are working with a controller
+            if (_lookAction.activeControl != null &&
+                _lookAction.activeControl.device.layout.ToLower() != "mouse" &&
+                _lookAction.activeControl.device.layout.ToLower() != "keyboard")
             {
-                // Increment crouch timer
-                _crouchTimer += Time.deltaTime;
-
-                // Should we have finished crouching?
-                if (_crouchTimer > _timeToCrouch)
-                {
-                    // Cap timer
-                    _crouchTimer = _timeToCrouch;
-                }
+                // Scale by deltatime
+                look *= Time.deltaTime * 600;
             }
-            // If we are not crouching
+
+            // Deadzone it
+            if (look.magnitude < _lookDeadZone)
+            {
+                // Zero it
+                look = Vector2.zero;
+            }
+
+            // Apply sensitivity settings
+            look *= _lookSensitivity;
+
+            // Read walk action
+            Vector2 walk = _walkAction.ReadValue<Vector2>();
+
+            // Calculate movement from Z direction
+            movement.x += _velocity * Time.deltaTime * walk.y * Mathf.Sin(transform.localEulerAngles.y * Mathf.Deg2Rad);
+            movement.z += _velocity * Time.deltaTime * walk.y * Mathf.Sin((90 - transform.localEulerAngles.y) * Mathf.Deg2Rad);
+
+            // Calculate movement from X direction
+            movement.x += _velocity * Time.deltaTime * walk.x * Mathf.Sin((90 - transform.localEulerAngles.y) * Mathf.Deg2Rad);
+            movement.z += -_velocity * Time.deltaTime * walk.x * Mathf.Sin(transform.localEulerAngles.y * Mathf.Deg2Rad);
+
+            // Read crouch action
+            bool crouched = _crouchAction.IsPressed();
+
+            // If we are crouching (or in a vent zone)
+            if (crouched || InVentZone)
+            {
+                // Half movement speed
+                movement /= 2;
+            }
+
+            // Apply movement and rotation
+            _characterController.Move(movement);
+            transform.eulerAngles += new Vector3(0, look.x, 0);
+
+            // Handle looking up and down
+            float newAngle = _cameraTransform.eulerAngles.x + look.y;
+
+            // Patch
+            if (newAngle < 0)
+            {
+                newAngle += 360;
+            }
+
+            // If unity refuses the existence of negative numbers
+            if (newAngle > 180)
+            {
+                newAngle = Mathf.Clamp(newAngle, 360 - _lookRange / 2, 360);
+            }
             else
             {
-                // Decrement timer
-                _crouchTimer -= Time.deltaTime;
-
-                // If the timer is below 0
-                if (_crouchTimer < 0)
-                {
-                    // Cap it
-                    _crouchTimer = 0;
-                }
+                newAngle = Mathf.Clamp(newAngle, 0, _lookRange / 2);
             }
 
-            // Do maths to figure height stuff out
-            float currentHeight = Mathf.Lerp(_baseHeight, _crouchHeight, _crouchTimer / _timeToCrouch);
-            float currentOffset = currentHeight / -2f;
-
-            // Do some crazy stuff that I don't want to change or read over
-            _characterController.height = currentHeight;
-            _characterController.center = new Vector3(
-                _characterController.center.x,
-                currentOffset,
-                _characterController.center.z
+            // Apply camera transform
+            _cameraTransform.eulerAngles = new Vector3(
+                newAngle,
+                _cameraTransform.eulerAngles.y,
+                0
                 );
 
-            transform.position = new Vector3(
-                transform.position.x,
-                currentHeight,
-                transform.position.z
-                );
+            // As long as we are not in a vent zone
+            if (!_inVentZone)
+            {
+                // If we are crouching
+                if (crouched)
+                {
+                    // Increment crouch timer
+                    _crouchTimer += Time.deltaTime;
+
+                    // Should we have finished crouching?
+                    if (_crouchTimer > _timeToCrouch)
+                    {
+                        // Cap timer
+                        _crouchTimer = _timeToCrouch;
+                    }
+                }
+                // If we are not crouching
+                else
+                {
+                    // Decrement timer
+                    _crouchTimer -= Time.deltaTime;
+
+                    // If the timer is below 0
+                    if (_crouchTimer < 0)
+                    {
+                        // Cap it
+                        _crouchTimer = 0;
+                    }
+                }
+
+                // Do maths to figure height stuff out
+                float currentHeight = Mathf.Lerp(_baseHeight, _crouchHeight, _crouchTimer / _timeToCrouch);
+                float currentOffset = currentHeight / -2f;
+
+                // Do some crazy stuff that I don't want to change or read over
+                _characterController.height = currentHeight;
+                _characterController.center = new Vector3(
+                    _characterController.center.x,
+                    currentOffset,
+                    _characterController.center.z
+                    );
+
+                transform.position = new Vector3(
+                    transform.position.x,
+                    currentHeight,
+                    transform.position.z
+                    );
+            }
         }
     }
 

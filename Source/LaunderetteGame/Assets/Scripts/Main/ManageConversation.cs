@@ -34,6 +34,11 @@ public class ManageConversation : MonoBehaviour
     private AudioSource altSource;
     [SerializeField]
     private AudioClip[] altSounds;
+    [Header("Player Controller Components")]
+    [SerializeField]
+    private PlayerController _playerController;
+    [SerializeField]
+    private PlayerInteractor _playerInteractor;
 
     // Private variables
     private bool talking = false;
@@ -48,7 +53,6 @@ public class ManageConversation : MonoBehaviour
     private Material characterMat;
 
     // Input maps
-    private InputActionMap _freeRoamActionMap;
     private InputActionMap _dialogueActionMap;
 
     // Input actions
@@ -59,7 +63,6 @@ public class ManageConversation : MonoBehaviour
     private void Start()
     {
         // Fetch action maps
-        _freeRoamActionMap = InputSystem.actions.FindActionMap(InputDefinitions.ACTIONMAP_FREEROAM);
         _dialogueActionMap = InputSystem.actions.FindActionMap(InputDefinitions.ACTIONMAP_DIALOGUE);
 
         // Fetch actions
@@ -239,7 +242,7 @@ public class ManageConversation : MonoBehaviour
     // External functions
     public void StartTalk(in CharacterData _characterData, in Transform target, string heldItemName)
     {
-        Debug.Log($"Received conversation {_characterData.conversationName}.");
+        Debug.Log($"Received conversation '{_characterData.conversationName}'.");
         // Set up boxes
         nameText.text = _characterData.characterName;
         nameBackground.color = _characterData.characterColour;
@@ -267,7 +270,8 @@ public class ManageConversation : MonoBehaviour
                 Debug.Log("Entering conversation...");
 
                 // Disable free roam action map
-                _freeRoamActionMap.Disable();
+                _playerController.Enabled = false;
+                _playerInteractor.Enabled = false;
             }
 
             try
@@ -291,6 +295,7 @@ public class ManageConversation : MonoBehaviour
         interactor.EndTalk();
 
         // Re-enable the free roam controls
-        _freeRoamActionMap.Enable();
+        _playerController.Enabled = true;
+        _playerInteractor.Enabled = true;
     }
 }
