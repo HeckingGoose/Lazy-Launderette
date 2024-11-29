@@ -1,3 +1,14 @@
 # ninja log v5
-1	70	7542627895990117	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	e013aff5c86becc
 71	236	7542627897655411	F:/GithubRepos/Lazy-Launderette/Source/LaunderetteGame/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/6r4n493f/obj/armeabi-v7a/libswappywrapper.so	5afb4f40da226cf2
+1	70	7542627895990117	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	e013aff5c86becc
+29	196	7545322289951752	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	e013aff5c86becc
+21	645	7545322294386080	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	39b7fd235c032d95
+8	653	7545322294479351	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	4ee181f483f9de96
+2	653	7545322294502238	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	ae894c2bebfc2c55
+18	680	7545322294751787	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	7f8cff726071bf1
+25	745	7545322295423725	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	7f0f87961512dde3
+5	759	7545322295569782	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	953b6177ceddcb18
+14	1032	7545322298305658	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	41d63b9ea25497f6
+11	1033	7545322298313198	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	ead376a0c0977c9e
+197	1061	7545322298655232	F:/GithubRepos/Lazy-Launderette/Source/LaunderetteGame/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/6r4n493f/obj/armeabi-v7a/libswappywrapper.so	5afb4f40da226cf2
+1034	1110	7545322299124962	F:/GithubRepos/Lazy-Launderette/Source/LaunderetteGame/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/6r4n493f/obj/armeabi-v7a/libgame.so	edc6d4ff70469009
