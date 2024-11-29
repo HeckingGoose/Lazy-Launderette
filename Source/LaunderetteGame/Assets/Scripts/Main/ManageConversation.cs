@@ -187,7 +187,18 @@ public class ManageConversation : MonoBehaviour
                         lineRead = true;
                     }
 
-                    timer += Time.deltaTime;
+                    // If we are intending to skip through
+                    if (_skipThroughAction.IsPressed())
+                    {
+                        // Skip timer by a lot
+                        timer += 90 * Time.deltaTime * timeBetweenLetters;
+                    }
+
+                    // Otherwise
+                    else
+                    {
+                        timer += Time.deltaTime;
+                    }
 
                     if (timer > timeBetweenLetters)
                     {
@@ -210,10 +221,18 @@ public class ManageConversation : MonoBehaviour
                         else
                         {
                             doneSaying = true;
+
+                            // Skip ahead if skip is held
+                            if (_skipThroughAction.IsPressed())
+                            {
+                                lineNumber++;
+                                lineRead = false;
+                                timer = 0;
+                            }
                         }
                     }
 
-                    if (_advanceSpeechAction.WasPressedThisFrame() || _skipThroughAction.IsPressed())
+                    if (_advanceSpeechAction.WasPressedThisFrame())
                     {
                         if (doneSaying)
                         {
