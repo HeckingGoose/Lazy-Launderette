@@ -10,6 +10,7 @@ public class InputSwitcher : MonoBehaviour
         InputSystem.onActionChange += ReadDeviceType;
     }
 
+    // Private methods
     private void ReadDeviceType(object inputAction, InputActionChange changeDone)
     {
         // Check type

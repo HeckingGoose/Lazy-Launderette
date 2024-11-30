@@ -60,6 +60,9 @@ public class PlayerInteractor : MonoBehaviour
     private AudioSource _pickupSoundSource;
     [SerializeField]
     private AudioClip[] _pickupSounds;
+    [Header("Rumble")]
+    [SerializeField]
+    private Rumbler _rumbler;
     [Header("Scene End Script")]
     [SerializeField]
     private EndScene _endSceneScript;
@@ -534,6 +537,9 @@ public class PlayerInteractor : MonoBehaviour
                             }
                             break;
                     }
+
+                    // Call rumbler with item type
+                    _rumbler.StartHaptics(pickupHandler.item);
                 }
                 // Otherwise
                 else

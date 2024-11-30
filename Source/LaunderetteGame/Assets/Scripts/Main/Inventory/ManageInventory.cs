@@ -5,12 +5,16 @@ using UnityEngine.UI;
 public class ManageInventory : MonoBehaviour
 {
     // Editor variables
+    [Header("Inventory Objects")]
     [SerializeField]
     private InventorySlot[] _slots;
     [SerializeField]
     private Image _heldItemDisplay;
+    [Header("Script References")]
     [SerializeField]
     private TranslateToWorldItem _toWorldItemHandler;
+    [SerializeField]
+    private Rumbler _rumbler;
 
     // Private variables
     private int _currentSlot;
@@ -66,8 +70,12 @@ public class ManageInventory : MonoBehaviour
         // Drop current item if drop axis is pressed, but not held
         if (_dropAction.WasPressedThisFrame())
         {
-            // Drop item
-            _toWorldItemHandler.DropItem(_slots[_currentSlot].TryRemoveItem());
+            // Drop item and cache
+            Inventory.Item item = _slots[_currentSlot].TryRemoveItem();
+            _toWorldItemHandler.DropItem(item);
+
+            // Do a rumble based on item type
+            _rumbler.StartHaptics(item);
 
             // Update visuals
             UpdateHand();

@@ -1253,6 +1253,50 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4002259487110420146, guid: 5c69abf3fd3c7a44393a8449250c1f09, type: 3}
   m_PrefabInstance: {fileID: 1935495762}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &345415351
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 345415352}
+  - component: {fileID: 345415353}
+  m_Layer: 0
+  m_Name: Rumbler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &345415352
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 345415351}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1374972094}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &345415353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 345415351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caa9156060c466a4983194488a97bffa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &351974661 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7841392648306204551, guid: 71060195afd2544488e3d61ee91f3f6f, type: 3}
@@ -2300,7 +2344,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 725742590}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 576df3afbbe51664794e67d531284f8e, type: 3}
+  m_Script: {fileID: 11500000, guid: 449bdf1cbb40aec429c7a43e1017d6c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &733369247
@@ -4977,6 +5021,7 @@ Transform:
   - {fileID: 241935833}
   - {fileID: 693292292}
   - {fileID: 725742591}
+  - {fileID: 345415352}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1401510533
@@ -7204,6 +7249,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 39347000577c8af46b0ffa33a66c7954, type: 3}
   - {fileID: 8300000, guid: 97465bdcbb3a4f442bb4878e4fd4a289, type: 3}
   - {fileID: 8300000, guid: 2359ab14e79fff4439027aed764db4c7, type: 3}
+  _rumbler: {fileID: 345415353}
   _endSceneScript: {fileID: 2091255121}
   Enabled: 1
 --- !u!114 &2091255118
@@ -7224,6 +7270,7 @@ MonoBehaviour:
   - {fileID: 240989538}
   _heldItemDisplay: {fileID: 879527502}
   _toWorldItemHandler: {fileID: 2091255120}
+  _rumbler: {fileID: 345415353}
 --- !u!114 &2091255119
 MonoBehaviour:
   m_ObjectHideFlags: 0
