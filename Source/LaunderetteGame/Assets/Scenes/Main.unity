@@ -7654,7 +7654,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e5ee7e2d8f045b4a92bcd4395475a11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerController: {fileID: 2091255115}
+  _playerInteractor: {fileID: 2091255117}
+  _playerController: {fileID: 2091255115}
   cover: {fileID: 1198704070}
   text: {fileID: 802679570}
 --- !u!1 &2122869887

@@ -5,8 +5,12 @@ using UnityEngine.UI;
 
 public class EndScene : MonoBehaviour
 {
+    [Header("Player Controls")]
     [SerializeField]
-    private PlayerController playerController;
+    private PlayerInteractor _playerInteractor;
+    [SerializeField]
+    private PlayerController _playerController;
+    [Header("Scene End Components")]
     [SerializeField]
     private Image cover;
     [SerializeField]
@@ -19,7 +23,11 @@ public class EndScene : MonoBehaviour
     private float textSpeed = 0.05f;
     public void Begin()
     {
-        playerController.enabled = false;
+        // Disable player controls
+        _playerInteractor.Enabled = false;
+        _playerController.Enabled = false;
+
+        // Setup end scene stuff
         text.enabled = true;
         state = 1;
     }
