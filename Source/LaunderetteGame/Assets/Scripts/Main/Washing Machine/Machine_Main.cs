@@ -9,19 +9,18 @@ public class Machine_Main : MonoBehaviour
 
     // Private variables
     private Animator _animator;
-    private BoxCollider _boxCollider;
 
     // Unity Methods
     private void Start()
     {
         // Fetch components, return false on any fail
-        bool success = TryGetComponent(out _animator) ? TryGetComponent(out _boxCollider) ? true : false : false;
+        bool success = TryGetComponent(out _animator);
 
         // Did we fail
         if (!success)
         {
             // Log the error
-            Debug.LogError($"Failed to fetch Animator/BoxCollider on {name}!");
+            Debug.LogError($"Failed to fetch Animator on {name}!");
         }
     }
 
@@ -37,7 +36,6 @@ public class Machine_Main : MonoBehaviour
             // Flip door state
             bool doorOpen = _animator.GetBool("DoorOpen");
             _animator.SetBool("DoorOpen", !doorOpen);
-            _boxCollider.enabled = doorOpen;
         }
         // If machine is running
         else
