@@ -13,6 +13,7 @@ public class PlayerInteractor : MonoBehaviour
     private const string TAG_GOAL = "WashSpot";
     private const string DESCRIBETEXT_TALK = "Talk";
     private const string DESCRIBETEXT_PICKUP = "Pickup";
+    private const string DESCRIBETEXT_INVENTORYFULL = "Inventory Full";
     private const string DESCRIBETEXT_NEEDCLEANBAG = "Need empty bag";
     private const string DESCRIBETEXT_PICKUPVENT = "Remove";
     private const string DESCRIBETEXT_NEEDSCREWDRIVER = "Needs a screwdriver";
@@ -211,6 +212,17 @@ public class PlayerInteractor : MonoBehaviour
                             {
                                 // Inform the player that they need a screwdriver
                                 _describeText.text = DESCRIBETEXT_NEEDSCREWDRIVER;
+                            }
+                        }
+
+                        // Otherwise
+                        else
+                        {
+                            // Check inventory capacity for full
+                            if (_inventory.IsFull)
+                            {
+                                // Show full text
+                                _describeText.text = DESCRIBETEXT_INVENTORYFULL;
                             }
                         }
                     }

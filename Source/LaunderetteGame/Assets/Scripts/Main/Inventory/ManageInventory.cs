@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -289,6 +290,14 @@ public class ManageInventory : MonoBehaviour
 
             // Update visuals
             SelectSlot(_currentSlot);
+        }
+    }
+    public bool IsFull
+    {
+        get
+        {
+            // Return whether all items contain the same value
+            return _slots.All(val => val.Item != Inventory.Item.None);
         }
     }
 }
