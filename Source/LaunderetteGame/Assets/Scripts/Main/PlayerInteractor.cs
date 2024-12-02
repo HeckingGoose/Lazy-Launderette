@@ -188,13 +188,22 @@ public class PlayerInteractor : MonoBehaviour
                     // If we found something
                     if (pickupHandle != null)
                     {
-                        // If this is Sam's washed clothes and we do not have a bag
-                        if (pickupHandle.item == Inventory.Item.WashedClothes &&
-                            _inventory.GetHeldItem() != Inventory.Item.EmptyBag
-                            )
+                        // If this is Sam's washed clothes
+                        if (pickupHandle.item == Inventory.Item.WashedClothes)
                         {
-                            // Inform player that they need a bag
-                            _describeText.text = DESCRIBETEXT_NEEDCLEANBAG;
+                            // Do we have a bag
+                            if (_inventory.GetHeldItem() != Inventory.Item.EmptyBag)
+                            {
+                                // Inform player that they need a bag
+                                _describeText.text = DESCRIBETEXT_NEEDCLEANBAG;
+                            }
+
+                            // Otherwise
+                            else
+                            {
+                                // Inform player they can pickup
+                                _describeText.text = DESCRIBETEXT_PICKUP;
+                            }
                         }
 
                         // If this is a vent cover
