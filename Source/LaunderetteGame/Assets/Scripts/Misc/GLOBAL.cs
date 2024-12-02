@@ -14,6 +14,12 @@ public static class GLOBAL
     public static string LoadTarget = "Menu";
     public static InputMode CurrentInputDevice = InputMode.Keyboard;
     public static ControllerType CurrentControllerType = ControllerType.Playstation;
-    public static bool AutoDetectInputType = true;
-    public static bool AutoDetectControllerType = true;
+
+
+    // User data
+    public static PlayerData RuntimePlayerData = new PlayerData(
+        crouchToggleEnabled: false,
+        allowAutoDetectInputType: true,
+        allowAutoDetectControllerType: true
+        );
 }

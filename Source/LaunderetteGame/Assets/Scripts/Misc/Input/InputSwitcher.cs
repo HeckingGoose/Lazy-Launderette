@@ -14,7 +14,7 @@ public class InputSwitcher : MonoBehaviour
     private void ReadDeviceType(object inputAction, InputActionChange changeDone)
     {
         // Are we allowed to auto-detect input device?
-        if (!GLOBAL.AutoDetectInputType)
+        if (!GLOBAL.RuntimePlayerData.AllowAutoDetectInputType)
         {
             // Early out if not allowed
             return;
@@ -52,7 +52,7 @@ public class InputSwitcher : MonoBehaviour
                     GLOBAL.CurrentInputDevice = GLOBAL.InputMode.Controller;
 
                     // Are we allowed to detect controller type?
-                    if (GLOBAL.AutoDetectControllerType)
+                    if (GLOBAL.RuntimePlayerData.AllowAutoDetectControllerType)
                     {
                         // Set type to xbox
                         GLOBAL.CurrentControllerType = GLOBAL.ControllerType.Xbox;
@@ -65,7 +65,7 @@ public class InputSwitcher : MonoBehaviour
                     GLOBAL.CurrentInputDevice = GLOBAL.InputMode.Controller;
 
                     // Are we allowed to detect controller type?
-                    if (GLOBAL.AutoDetectControllerType)
+                    if (GLOBAL.RuntimePlayerData.AllowAutoDetectControllerType)
                     {
                         // Set type to xbox
                         GLOBAL.CurrentControllerType = GLOBAL.ControllerType.Xbox;
