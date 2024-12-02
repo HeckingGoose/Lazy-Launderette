@@ -555,10 +555,10 @@ public class PlayerInteractor : MonoBehaviour
                                         _pickupSoundSource.Play();
                                         break;
                                 }
-                            }
 
-                            // Call rumbler with item type
-                            _rumbler.StartHaptics(pickupHandler.item);
+                                // Call rumbler with item type
+                                _rumbler.StartHaptics(pickupHandler.item);
+                            }
 
                             break;
                     }

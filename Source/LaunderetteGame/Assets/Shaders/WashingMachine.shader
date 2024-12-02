@@ -1,8 +1,9 @@
-Shader "Lazy Launderette/Textured Cutout"
+Shader "Lazy Launderette/Washing Machine"
 {
     Properties
     {
-        _MainTex("Albedo", 2D) = "white" {}
+        _MainTex("Machine Window", 2D) = "white" {}
+        _ContentsTex("Contents Texture", 2D) = "white" {}
         _Alpha("Alpha", Range(0, 1)) = 0.5
     }
 
@@ -13,7 +14,7 @@ Shader "Lazy Launderette/Textured Cutout"
             "RenderType" = "Opaque"
         }
 
-        Cull Off
+        Cull back
         LOD 200
 
         // Include
@@ -26,14 +27,25 @@ Shader "Lazy Launderette/Textured Cutout"
 
         #include "UnityCG.cginc"
 
+        struct appdata
+        {
+            float4 vertex : POSITION;
+            float2 texcoord : TEXCOORD0;
+            float2 texcoord1 : TEXCOORD1;
+            half4 color : COLOR0;
+            UNITY_VERTEX_INPUT_INSTANCE_ID
+        };
         struct v2f
         {
             float4 position : POSITION;
             float2 uv : TEXCOORD0;
+            float2 uv1 : TEXCOORD1;
+            half4 colour : COLOR0;
             UNITY_VERTEX_INPUT_INSTANCE_ID
         };
 
         sampler2D _MainTex;
+        sampler2D _ContentsTex;
         float _Alpha;
 
         ENDCG
@@ -44,7 +56,7 @@ Shader "Lazy Launderette/Textured Cutout"
             CGPROGRAM
 
 
-            v2f vert(appdata_base v)
+            v2f vert(appdata v)
             {
                 // Declare output
                 v2f output;
@@ -56,6 +68,8 @@ Shader "Lazy Launderette/Textured Cutout"
                 // Pass in values
                 output.position = UnityObjectToClipPos(v.vertex);
                 output.uv = v.texcoord.xy;
+                output.uv1 = v.texcoord1.xy;
+                output.colour = v.color;
 
                 // Return output
                 return output;
@@ -68,8 +82,14 @@ Shader "Lazy Launderette/Textured Cutout"
                 // Declare output
                 half4 output;
 
-                // Pass in texture colour
+                // Pass in texture colour from UV0
                 output = tex2D(_MainTex, input.uv);
+
+                // Multiply by colour from UV1
+                output *= tex2D(_ContentsTex, input.uv1);
+
+                // Multiply by vertex colour
+                output *= input.colour;
 
                 // Clip to alpha
                 clip(output.a - _Alpha);

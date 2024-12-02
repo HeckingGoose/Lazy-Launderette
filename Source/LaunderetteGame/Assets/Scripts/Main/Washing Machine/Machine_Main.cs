@@ -6,23 +6,11 @@ public class Machine_Main : MonoBehaviour
     [Header("Is the machine in use?")]
     [SerializeField]
     private bool _running;
-
-    // Private variables
+    [Header("Machine Components")]
+    [SerializeField]
     private Animator _animator;
-
-    // Unity Methods
-    private void Start()
-    {
-        // Fetch components, return false on any fail
-        bool success = TryGetComponent(out _animator);
-
-        // Did we fail
-        if (!success)
-        {
-            // Log the error
-            Debug.LogError($"Failed to fetch Animator on {name}!");
-        }
-    }
+    [SerializeField]
+    private BoxCollider _boxCollider;
 
     // Externally accessible methods
     /// <summary>
@@ -36,6 +24,9 @@ public class Machine_Main : MonoBehaviour
             // Flip door state
             bool doorOpen = _animator.GetBool("DoorOpen");
             _animator.SetBool("DoorOpen", !doorOpen);
+
+            // Toggle collider for blocking raycast
+            _boxCollider.enabled = doorOpen;
         }
         // If machine is running
         else
