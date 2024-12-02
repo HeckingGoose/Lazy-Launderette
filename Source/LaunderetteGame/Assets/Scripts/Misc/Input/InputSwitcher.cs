@@ -48,14 +48,28 @@ public class InputSwitcher : MonoBehaviour
 
                 // If the device is an xbox controller
                 case "xbox controller":
+                    // Set to controller
                     GLOBAL.CurrentInputDevice = GLOBAL.InputMode.Controller;
-                    GLOBAL.CurrentControllerType = GLOBAL.ControllerType.Xbox;
+
+                    // Are we allowed to detect controller type?
+                    if (GLOBAL.AutoDetectControllerType)
+                    {
+                        // Set type to xbox
+                        GLOBAL.CurrentControllerType = GLOBAL.ControllerType.Xbox;
+                    }
                     break;
 
                 // All other devices are assumed to be an x360 controller
                 default:
+                    // Set to controller
                     GLOBAL.CurrentInputDevice = GLOBAL.InputMode.Controller;
-                    GLOBAL.CurrentControllerType = GLOBAL.ControllerType.Xbox;
+
+                    // Are we allowed to detect controller type?
+                    if (GLOBAL.AutoDetectControllerType)
+                    {
+                        // Set type to xbox
+                        GLOBAL.CurrentControllerType = GLOBAL.ControllerType.Xbox;
+                    }
                     break;
             }
         }

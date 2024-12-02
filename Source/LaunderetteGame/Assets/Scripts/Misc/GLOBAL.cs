@@ -15,4 +15,5 @@ public static class GLOBAL
     public static InputMode CurrentInputDevice = InputMode.Keyboard;
     public static ControllerType CurrentControllerType = ControllerType.Playstation;
     public static bool AutoDetectInputType = true;
+    public static bool AutoDetectControllerType = true;
 }
