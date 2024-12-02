@@ -13,6 +13,13 @@ public class InputSwitcher : MonoBehaviour
     // Private methods
     private void ReadDeviceType(object inputAction, InputActionChange changeDone)
     {
+        // Are we allowed to auto-detect input device?
+        if (!GLOBAL.AutoDetectInputType)
+        {
+            // Early out if not allowed
+            return;
+        }
+
         // Check type
         if (!(inputAction is InputAction))
         {

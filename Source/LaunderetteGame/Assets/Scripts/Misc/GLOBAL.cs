@@ -14,4 +14,5 @@ public static class GLOBAL
     public static string LoadTarget = "Menu";
     public static InputMode CurrentInputDevice = InputMode.Keyboard;
     public static ControllerType CurrentControllerType = ControllerType.Playstation;
+    public static bool AutoDetectInputType = true;
 }
