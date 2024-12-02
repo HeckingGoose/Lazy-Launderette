@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: -8679921383154817045}
   - component: {fileID: -5754084199372789682}
   - component: {fileID: -7511558181221131132}
+  - component: {fileID: 5393123039966895646}
   m_Layer: 7
   m_Name: Speech
   m_TagString: Untagged
@@ -86,6 +87,22 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &5393123039966895646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132149155446097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 893e56612c48c364e906f60ece859cdd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _keyboardPrompt: {fileID: 2100000, guid: 0c66092faef79f54f85b6144ad697cf3, type: 2}
+  _playstationPrompt: {fileID: 2100000, guid: 5bc7fb550d0b584408fe656a590fdf30, type: 2}
+  _xboxPrompt: {fileID: 2100000, guid: f0cf5791d6335194d800e8ea14d3c5ee, type: 2}
+  _glyphDisplay: {fileID: -7511558181221131132}
 --- !u!1 &1397081690421324894
 GameObject:
   m_ObjectHideFlags: 0

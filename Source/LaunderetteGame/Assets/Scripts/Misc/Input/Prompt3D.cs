@@ -5,14 +5,14 @@ public class Prompt3D : MonoBehaviour
     // Editor variables
     [Header("Representing:")]
     [SerializeField]
-    private Texture2D _keyboardPrompt;
+    private Material _keyboardPrompt;
     [SerializeField]
-    private Texture2D _playstationPrompt;
+    private Material _playstationPrompt;
     [SerializeField]
-    private Texture2D _xboxPrompt;
+    private Material _xboxPrompt;
     [Header("Target")]
     [SerializeField]
-    private Material _glyphDisplay;
+    private MeshRenderer _glyphDisplay;
 
     // Private variables
     private GLOBAL.InputMode _deviceLastFrame;
@@ -75,19 +75,19 @@ public class Prompt3D : MonoBehaviour
     private void ShowControllerGlyph()
     {
         // Unhide glyph
-        _glyphDisplay.color = Color.white;
+        _glyphDisplay.enabled = true;
 
         // What type of controller is connected
         switch (_controllerLastFrame)
         {
             // Playstation
             case GLOBAL.ControllerType.Playstation:
-                _glyphDisplay.SetTexture("_MainTex", _playstationPrompt);
+                _glyphDisplay.material = _playstationPrompt;
                 break;
 
             // Xbox
             case GLOBAL.ControllerType.Xbox:
-                _glyphDisplay.SetTexture("_MainTex", _xboxPrompt);
+                _glyphDisplay.material = _xboxPrompt;
                 break;
 
             // Unknown
@@ -102,10 +102,10 @@ public class Prompt3D : MonoBehaviour
     private void ShowKeyboardGlyph()
     {
         // Unhide glyph
-        _glyphDisplay.color = Color.white;
+        _glyphDisplay.enabled = true;
 
         // Set keyboard glyph
-        _glyphDisplay.SetTexture("_MainTex", _keyboardPrompt);
+        _glyphDisplay.material = _keyboardPrompt;
     }
     /// <summary>
     /// Hides all glyph displays.
@@ -113,6 +113,6 @@ public class Prompt3D : MonoBehaviour
     private void HideAll()
     {
         // Hide glyph display
-        _glyphDisplay.color = Color.clear;
+        _glyphDisplay.enabled = false;
     }
 }
