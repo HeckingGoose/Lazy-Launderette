@@ -30,7 +30,6 @@ public class InputSwitcher : MonoBehaviour
             // Fetch last device used
             InputDevice lastDevice = action.activeControl.device;
 
-            Debug.Log(lastDevice.displayName);
             // Switch device type
             switch (lastDevice.displayName.ToLower())
             {
