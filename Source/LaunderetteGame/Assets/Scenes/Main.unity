@@ -277,6 +277,10 @@ PrefabInstance:
       propertyPath: running
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2224046710452338787, guid: 5c69abf3fd3c7a44393a8449250c1f09, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9948158a8c5c2a4479039e0ac67d2bfb, type: 2}
     - target: {fileID: 2831809937003015630, guid: 5c69abf3fd3c7a44393a8449250c1f09, type: 3}
       propertyPath: referenceCamera
       value: 
@@ -2124,6 +2128,10 @@ PrefabInstance:
       propertyPath: m_ExcludeLayers.m_Bits
       value: 128
       objectReference: {fileID: 0}
+    - target: {fileID: 2224046710452338787, guid: 5c69abf3fd3c7a44393a8449250c1f09, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9948158a8c5c2a4479039e0ac67d2bfb, type: 2}
     - target: {fileID: 2831809937003015630, guid: 5c69abf3fd3c7a44393a8449250c1f09, type: 3}
       propertyPath: referenceCamera
       value: 
@@ -4786,7 +4794,7 @@ PrefabInstance:
       objectReference: {fileID: 2800000, guid: 0d5a1aac2c07442478762dfb411ace1c, type: 3}
     - target: {fileID: 2037665494295476851, guid: 20f7ecd8cb9f57a42b96d9376a401643, type: 3}
       propertyPath: conversations.Array.size
-      value: 47
+      value: 43
       objectReference: {fileID: 0}
     - target: {fileID: 2037665494295476851, guid: 20f7ecd8cb9f57a42b96d9376a401643, type: 3}
       propertyPath: 'conversations.Array.data[0]'
@@ -4814,71 +4822,71 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2037665494295476851, guid: 20f7ecd8cb9f57a42b96d9376a401643, type: 3}
       propertyPath: 'conversations.Array.data[6]'
-      value: Anyhow, come say hi again if you need something to do
+      value: '!POSE 1'
       objectReference: {fileID: 0}
     - target: {fileID: 2037665494295476851, guid: 20f7ecd8cb9f57a42b96d9376a401643, type: 3}
       propertyPath: 'conversations.Array.data[7]'
-      value: '!MOVE QuestIntro'
+      value: Anyhow, I think our washing's just finished up.
       objectReference: {fileID: 0}
     - target: {fileID: 2037665494295476851, guid: 20f7ecd8cb9f57a42b96d9376a401643, type: 3}
       propertyPath: 'conversations.Array.data[8]'
-      value: '!END'
+      value: Would you kindly go and fetch it for us so that me and him can get leaving?
       objectReference: {fileID: 0}
     - target: {fileID: 2037665494295476851, guid: 20f7ecd8cb9f57a42b96d9376a401643, type: 3}
       propertyPath: 'conversations.Array.data[9]'
-      value: QuestIntro
+      value: Oh and by the way, our machine's the second one from the wall.
       objectReference: {fileID: 0}
     - target: {fileID: 2037665494295476851, guid: 20f7ecd8cb9f57a42b96d9376a401643, type: 3}
       propertyPath: 'conversations.Array.data[10]'
-      value: So uh, could you go check if our washing's finished?
+      value: It's hard to miss, it's basically filled to the brim.
       objectReference: {fileID: 0}
     - target: {fileID: 2037665494295476851, guid: 20f7ecd8cb9f57a42b96d9376a401643, type: 3}
       propertyPath: 'conversations.Array.data[11]'
-      value: '!POSE 1'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2037665494295476851, guid: 20f7ecd8cb9f57a42b96d9376a401643, type: 3}
-      propertyPath: 'conversations.Array.data[12]'
-      value: Our machine's the second one from the wall on the bottom row
-      objectReference: {fileID: 0}
-    - target: {fileID: 2037665494295476851, guid: 20f7ecd8cb9f57a42b96d9376a401643, type: 3}
-      propertyPath: 'conversations.Array.data[13]'
-      value: '!POSE 2'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2037665494295476851, guid: 20f7ecd8cb9f57a42b96d9376a401643, type: 3}
-      propertyPath: 'conversations.Array.data[14]'
-      value: I'm getting a bit sick of Sam's sleep talking to be honest :v
-      objectReference: {fileID: 0}
-    - target: {fileID: 2037665494295476851, guid: 20f7ecd8cb9f57a42b96d9376a401643, type: 3}
-      propertyPath: 'conversations.Array.data[15]'
-      value: '!POSE 1'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2037665494295476851, guid: 20f7ecd8cb9f57a42b96d9376a401643, type: 3}
-      propertyPath: 'conversations.Array.data[16]'
-      value: I can give you a choccy bar for your efforts
-      objectReference: {fileID: 0}
-    - target: {fileID: 2037665494295476851, guid: 20f7ecd8cb9f57a42b96d9376a401643, type: 3}
-      propertyPath: 'conversations.Array.data[17]'
       value: '!POSE 0'
       objectReference: {fileID: 0}
     - target: {fileID: 2037665494295476851, guid: 20f7ecd8cb9f57a42b96d9376a401643, type: 3}
-      propertyPath: 'conversations.Array.data[18]'
+      propertyPath: 'conversations.Array.data[12]'
+      value: There'll be some choccy init for you if you'd do it for us.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2037665494295476851, guid: 20f7ecd8cb9f57a42b96d9376a401643, type: 3}
+      propertyPath: 'conversations.Array.data[13]'
       value: '!NEED Sam''s Clothes'
       objectReference: {fileID: 0}
     - target: {fileID: 2037665494295476851, guid: 20f7ecd8cb9f57a42b96d9376a401643, type: 3}
-      propertyPath: 'conversations.Array.data[19]'
+      propertyPath: 'conversations.Array.data[14]'
       value: '!MOVE CheckNeed'
       objectReference: {fileID: 0}
     - target: {fileID: 2037665494295476851, guid: 20f7ecd8cb9f57a42b96d9376a401643, type: 3}
-      propertyPath: 'conversations.Array.data[20]'
+      propertyPath: 'conversations.Array.data[15]'
       value: '!END'
       objectReference: {fileID: 0}
     - target: {fileID: 2037665494295476851, guid: 20f7ecd8cb9f57a42b96d9376a401643, type: 3}
-      propertyPath: 'conversations.Array.data[21]'
+      propertyPath: 'conversations.Array.data[16]'
       value: CheckNeed
       objectReference: {fileID: 0}
     - target: {fileID: 2037665494295476851, guid: 20f7ecd8cb9f57a42b96d9376a401643, type: 3}
-      propertyPath: 'conversations.Array.data[22]'
+      propertyPath: 'conversations.Array.data[17]'
       value: So uhh, are they done yet?
+      objectReference: {fileID: 0}
+    - target: {fileID: 2037665494295476851, guid: 20f7ecd8cb9f57a42b96d9376a401643, type: 3}
+      propertyPath: 'conversations.Array.data[18]'
+      value: '!POSE 1'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2037665494295476851, guid: 20f7ecd8cb9f57a42b96d9376a401643, type: 3}
+      propertyPath: 'conversations.Array.data[19]'
+      value: Remember, our machine's the second one from the wall on the bottom row
+      objectReference: {fileID: 0}
+    - target: {fileID: 2037665494295476851, guid: 20f7ecd8cb9f57a42b96d9376a401643, type: 3}
+      propertyPath: 'conversations.Array.data[20]'
+      value: '!POSE 0'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2037665494295476851, guid: 20f7ecd8cb9f57a42b96d9376a401643, type: 3}
+      propertyPath: 'conversations.Array.data[21]'
+      value: '!END'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2037665494295476851, guid: 20f7ecd8cb9f57a42b96d9376a401643, type: 3}
+      propertyPath: 'conversations.Array.data[22]'
+      value: Sam's Clothes
       objectReference: {fileID: 0}
     - target: {fileID: 2037665494295476851, guid: 20f7ecd8cb9f57a42b96d9376a401643, type: 3}
       propertyPath: 'conversations.Array.data[23]'
@@ -4886,94 +4894,98 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2037665494295476851, guid: 20f7ecd8cb9f57a42b96d9376a401643, type: 3}
       propertyPath: 'conversations.Array.data[24]'
-      value: Remember, our machine's the second one from the wall on the bottom row
-      objectReference: {fileID: 0}
-    - target: {fileID: 2037665494295476851, guid: 20f7ecd8cb9f57a42b96d9376a401643, type: 3}
-      propertyPath: 'conversations.Array.data[25]'
-      value: '!POSE 0'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2037665494295476851, guid: 20f7ecd8cb9f57a42b96d9376a401643, type: 3}
-      propertyPath: 'conversations.Array.data[26]'
-      value: '!END'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2037665494295476851, guid: 20f7ecd8cb9f57a42b96d9376a401643, type: 3}
-      propertyPath: 'conversations.Array.data[27]'
-      value: Sam's Clothes
-      objectReference: {fileID: 0}
-    - target: {fileID: 2037665494295476851, guid: 20f7ecd8cb9f57a42b96d9376a401643, type: 3}
-      propertyPath: 'conversations.Array.data[28]'
-      value: '!POSE 1'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2037665494295476851, guid: 20f7ecd8cb9f57a42b96d9376a401643, type: 3}
-      propertyPath: 'conversations.Array.data[29]'
       value: Oh nice, they're done!
       objectReference: {fileID: 0}
     - target: {fileID: 2037665494295476851, guid: 20f7ecd8cb9f57a42b96d9376a401643, type: 3}
-      propertyPath: 'conversations.Array.data[30]'
+      propertyPath: 'conversations.Array.data[25]'
       value: '!STRIPHELD garbagedata'
       objectReference: {fileID: 0}
     - target: {fileID: 2037665494295476851, guid: 20f7ecd8cb9f57a42b96d9376a401643, type: 3}
-      propertyPath: 'conversations.Array.data[31]'
+      propertyPath: 'conversations.Array.data[26]'
       value: '!SATISFY Sam''s Clothes'
       objectReference: {fileID: 0}
     - target: {fileID: 2037665494295476851, guid: 20f7ecd8cb9f57a42b96d9376a401643, type: 3}
-      propertyPath: 'conversations.Array.data[32]'
+      propertyPath: 'conversations.Array.data[27]'
       value: '!GIVE Choccy'
       objectReference: {fileID: 0}
     - target: {fileID: 2037665494295476851, guid: 20f7ecd8cb9f57a42b96d9376a401643, type: 3}
-      propertyPath: 'conversations.Array.data[33]'
+      propertyPath: 'conversations.Array.data[28]'
       value: '!POSE 0'
       objectReference: {fileID: 0}
     - target: {fileID: 2037665494295476851, guid: 20f7ecd8cb9f57a42b96d9376a401643, type: 3}
-      propertyPath: 'conversations.Array.data[34]'
+      propertyPath: 'conversations.Array.data[29]'
       value: Hey Sam, we can finally leave this place
       objectReference: {fileID: 0}
     - target: {fileID: 2037665494295476851, guid: 20f7ecd8cb9f57a42b96d9376a401643, type: 3}
-      propertyPath: 'conversations.Array.data[35]'
+      propertyPath: 'conversations.Array.data[30]'
       value: '!NAME Other Sam'
       objectReference: {fileID: 0}
     - target: {fileID: 2037665494295476851, guid: 20f7ecd8cb9f57a42b96d9376a401643, type: 3}
-      propertyPath: 'conversations.Array.data[36]'
+      propertyPath: 'conversations.Array.data[31]'
       value: Zzzzz ...zzzz
       objectReference: {fileID: 0}
     - target: {fileID: 2037665494295476851, guid: 20f7ecd8cb9f57a42b96d9376a401643, type: 3}
-      propertyPath: 'conversations.Array.data[37]'
+      propertyPath: 'conversations.Array.data[32]'
       value: '!NAME Sam'
       objectReference: {fileID: 0}
     - target: {fileID: 2037665494295476851, guid: 20f7ecd8cb9f57a42b96d9376a401643, type: 3}
-      propertyPath: 'conversations.Array.data[38]'
-      value: I guess I'm gonna have to wait here a while -_-
+      propertyPath: 'conversations.Array.data[33]'
+      value: I've got a feeling that he's not gonna wake up...
       objectReference: {fileID: 0}
     - target: {fileID: 2037665494295476851, guid: 20f7ecd8cb9f57a42b96d9376a401643, type: 3}
-      propertyPath: 'conversations.Array.data[39]'
+      propertyPath: 'conversations.Array.data[34]'
+      value: I think I'm gonna be here for a while ;-;
+      objectReference: {fileID: 0}
+    - target: {fileID: 2037665494295476851, guid: 20f7ecd8cb9f57a42b96d9376a401643, type: 3}
+      propertyPath: 'conversations.Array.data[35]'
       value: '!MOVE Done'
       objectReference: {fileID: 0}
     - target: {fileID: 2037665494295476851, guid: 20f7ecd8cb9f57a42b96d9376a401643, type: 3}
-      propertyPath: 'conversations.Array.data[40]'
+      propertyPath: 'conversations.Array.data[36]'
       value: '!END'
       objectReference: {fileID: 0}
     - target: {fileID: 2037665494295476851, guid: 20f7ecd8cb9f57a42b96d9376a401643, type: 3}
-      propertyPath: 'conversations.Array.data[41]'
+      propertyPath: 'conversations.Array.data[37]'
       value: Done
       objectReference: {fileID: 0}
     - target: {fileID: 2037665494295476851, guid: 20f7ecd8cb9f57a42b96d9376a401643, type: 3}
-      propertyPath: 'conversations.Array.data[42]'
+      propertyPath: 'conversations.Array.data[38]'
       value: Thanks for grabbing our clothes for us
       objectReference: {fileID: 0}
     - target: {fileID: 2037665494295476851, guid: 20f7ecd8cb9f57a42b96d9376a401643, type: 3}
-      propertyPath: 'conversations.Array.data[43]'
+      propertyPath: 'conversations.Array.data[39]'
       value: '!POSE 2'
       objectReference: {fileID: 0}
     - target: {fileID: 2037665494295476851, guid: 20f7ecd8cb9f57a42b96d9376a401643, type: 3}
-      propertyPath: 'conversations.Array.data[44]'
+      propertyPath: 'conversations.Array.data[40]'
       value: Too bad someone isn't awake to know it :/
       objectReference: {fileID: 0}
     - target: {fileID: 2037665494295476851, guid: 20f7ecd8cb9f57a42b96d9376a401643, type: 3}
-      propertyPath: 'conversations.Array.data[45]'
+      propertyPath: 'conversations.Array.data[41]'
       value: '!POSE 0'
       objectReference: {fileID: 0}
     - target: {fileID: 2037665494295476851, guid: 20f7ecd8cb9f57a42b96d9376a401643, type: 3}
+      propertyPath: 'conversations.Array.data[42]'
+      value: '!END'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2037665494295476851, guid: 20f7ecd8cb9f57a42b96d9376a401643, type: 3}
+      propertyPath: 'conversations.Array.data[43]'
+      value: '!END'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2037665494295476851, guid: 20f7ecd8cb9f57a42b96d9376a401643, type: 3}
+      propertyPath: 'conversations.Array.data[44]'
+      value: '!END'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2037665494295476851, guid: 20f7ecd8cb9f57a42b96d9376a401643, type: 3}
+      propertyPath: 'conversations.Array.data[45]'
+      value: '!END'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2037665494295476851, guid: 20f7ecd8cb9f57a42b96d9376a401643, type: 3}
       propertyPath: 'conversations.Array.data[46]'
+      value: '!END'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2037665494295476851, guid: 20f7ecd8cb9f57a42b96d9376a401643, type: 3}
+      propertyPath: 'conversations.Array.data[47]'
       value: '!END'
       objectReference: {fileID: 0}
     - target: {fileID: 4867569905417455755, guid: 20f7ecd8cb9f57a42b96d9376a401643, type: 3}
@@ -7445,6 +7457,22 @@ PrefabInstance:
       propertyPath: m_IncludeLayers.m_Bits
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1614428438537482309, guid: 5c69abf3fd3c7a44393a8449250c1f09, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -89.98021
+      objectReference: {fileID: 0}
+    - target: {fileID: 1614428438537482309, guid: 5c69abf3fd3c7a44393a8449250c1f09, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -179.99998
+      objectReference: {fileID: 0}
+    - target: {fileID: 1614428438537482309, guid: 5c69abf3fd3c7a44393a8449250c1f09, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2224046710452338787, guid: 5c69abf3fd3c7a44393a8449250c1f09, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9948158a8c5c2a4479039e0ac67d2bfb, type: 2}
     - target: {fileID: 2831809937003015630, guid: 5c69abf3fd3c7a44393a8449250c1f09, type: 3}
       propertyPath: referenceCamera
       value: 
@@ -7509,6 +7537,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5420702956893537836, guid: 5c69abf3fd3c7a44393a8449250c1f09, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -89.98021
+      objectReference: {fileID: 0}
     - target: {fileID: 5883388641362562150, guid: 5c69abf3fd3c7a44393a8449250c1f09, type: 3}
       propertyPath: m_Layer
       value: 0
@@ -7529,9 +7561,25 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8371440328121204568, guid: 5c69abf3fd3c7a44393a8449250c1f09, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8371440328121204568, guid: 5c69abf3fd3c7a44393a8449250c1f09, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8371440328121204568, guid: 5c69abf3fd3c7a44393a8449250c1f09, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8987545670014604995, guid: 5c69abf3fd3c7a44393a8449250c1f09, type: 3}
       propertyPath: m_Layer
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9205285632394760058, guid: 5c69abf3fd3c7a44393a8449250c1f09, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 89.98021
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 843188945496099311, guid: 5c69abf3fd3c7a44393a8449250c1f09, type: 3}
@@ -8096,6 +8144,10 @@ PrefabInstance:
       propertyPath: m_IncludeLayers.m_Bits
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2224046710452338787, guid: 5c69abf3fd3c7a44393a8449250c1f09, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9948158a8c5c2a4479039e0ac67d2bfb, type: 2}
     - target: {fileID: 2831809937003015630, guid: 5c69abf3fd3c7a44393a8449250c1f09, type: 3}
       propertyPath: referenceCamera
       value: 
