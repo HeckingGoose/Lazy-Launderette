@@ -18,10 +18,13 @@ public class Machine_Running : MonoBehaviour
     private AudioClip _rollingAmbient;
     [SerializeField]
     private AudioClip[] _rollingDrop;
+    [Header("References")]
+    [SerializeField]
+    private Machine_Main _machineMainScript;
+    [SerializeField]
+    private AudioSource _machineAudioSource;
 
     // Internal variables
-    private Machine_Main _machineMainScript;
-    private AudioSource _machineAudioSource;
     private float _rollTimer;
     private float _nextRollTime;
     private System.Random _random;
@@ -29,26 +32,6 @@ public class Machine_Running : MonoBehaviour
     // Unity Methods
     private void Start()
     {
-        // Try to fetch the main machine script
-        bool success = TryGetComponent(out _machineMainScript);
-
-        // If we fail
-        if (!success)
-        {
-            // Log the error
-            Debug.LogError($"Failed to fetch Machine_Main on {name}!");
-        }
-
-        // Try to fetch the audio source
-        success = TryGetComponent(out _machineAudioSource);
-
-        // If we fail
-        if (!success)
-        {
-            // Log the error
-            Debug.LogError($"Failed to fetch AudioSource on {name}!");
-        }
-
         // Setup the time till next roll
         _nextRollTime = _timeToStart + UnityEngine.Random.Range(_minTimeBetweenRolls, _maxTimeBetweenRolls);
 
@@ -58,62 +41,49 @@ public class Machine_Running : MonoBehaviour
 
     private void Update()
     {
-        // If we managed to find main
-        if (_machineMainScript != null && _machineAudioSource != null)
+        // If the machine is currently running
+        if (_machineMainScript.Running)
         {
-            // If the machine is currently running
-            if (_machineMainScript.Running)
-            {
-                // Increment rollTimer
-                _rollTimer += Time.deltaTime;
+            // Increment rollTimer
+            _rollTimer += Time.deltaTime;
 
-                // Added inertia so sound doesn't play while door is closing
-                if (_rollTimer > _timeToStart)
+            // Added inertia so sound doesn't play while door is closing
+            if (_rollTimer > _timeToStart)
+            {
+                // Roll in volume
+                if (_rollTimer <= _timeToStart + 1)
                 {
-                    // Roll in volume
-                    if (_rollTimer <= _timeToStart + 1)
-                    {
-                        // Do volume maths
-                        _machineAudioSource.volume = (_rollTimer - _timeToStart) * _volume;
-                    }
-
-                    // If the audio source is not at max volume and we are not fading in
-                    else if (_machineAudioSource.volume < _volume)
-                    {
-                        // Set voluem directly
-                        _machineAudioSource.volume = _volume;
-                    }
-
-                    // Play ambient sound if there is no sound playing
-                    if (!_machineAudioSource.isPlaying)
-                    {
-                        // Play ambient sound
-                        _machineAudioSource.clip = _rollingAmbient;
-                        _machineAudioSource.loop = true;
-                        _machineAudioSource.Play();
-                    }
-
-                    // Play random roll sound when needed
-                    if (_rollTimer > _nextRollTime)
-                    {
-                        // Reset rollTimer, ignoring the initial time to start on door close
-                        _rollTimer = _timeToStart;
-
-                        // Play random roll sound effect
-                        _machineAudioSource.clip = _rollingDrop[_random.Next(0, _rollingDrop.Length)];
-                        _machineAudioSource.loop = false;
-                        _machineAudioSource.Play();
-                    }
+                    // Do volume maths
+                    _machineAudioSource.volume = (_rollTimer - _timeToStart) * _volume;
                 }
-            }
-            // If the machine is not running
-            else
-            {
-                // Set rollTimer to 0
-                _rollTimer = 0;
 
-                // Reset volume
-                _machineAudioSource.volume = 0;
+                // If the audio source is not at max volume and we are not fading in
+                else if (_machineAudioSource.volume < _volume)
+                {
+                    // Set voluem directly
+                    _machineAudioSource.volume = _volume;
+                }
+
+                // Play ambient sound if there is no sound playing
+                if (!_machineAudioSource.isPlaying)
+                {
+                    // Play ambient sound
+                    _machineAudioSource.clip = _rollingAmbient;
+                    _machineAudioSource.loop = true;
+                    _machineAudioSource.Play();
+                }
+
+                // Play random roll sound when needed
+                if (_rollTimer > _nextRollTime)
+                {
+                    // Reset rollTimer, ignoring the initial time to start on door close
+                    _rollTimer = _timeToStart;
+
+                    // Play random roll sound effect
+                    _machineAudioSource.clip = _rollingDrop[_random.Next(0, _rollingDrop.Length)];
+                    _machineAudioSource.loop = false;
+                    _machineAudioSource.Play();
+                }
             }
         }
     }

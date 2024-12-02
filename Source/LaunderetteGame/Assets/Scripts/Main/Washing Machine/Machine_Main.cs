@@ -12,6 +12,13 @@ public class Machine_Main : MonoBehaviour
     [SerializeField]
     private BoxCollider _boxCollider;
 
+    // Unity Methods
+    private void Start()
+    {
+        // Set machine contents animation based on running
+        _animator.SetBool("Running", _running);
+    }
+
     // Externally accessible methods
     /// <summary>
     /// Toggles the door state between open and closed, as long as the machine is not running.

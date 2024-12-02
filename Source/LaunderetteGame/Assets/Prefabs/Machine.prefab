@@ -227,6 +227,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: ec0eddf69fe93234da03abdf7d8df388, type: 3}
   - {fileID: 8300000, guid: 5242b2690dc04bd449f6b136b3bb996e, type: 3}
   - {fileID: 8300000, guid: 9a0fe3a9170a44343ad79fbe6bc5240b, type: 3}
+  _machineMainScript: {fileID: 1353585867385559988}
+  _machineAudioSource: {fileID: 259688159750590771}
 --- !u!95 &1410396113792197105
 Animator:
   serializedVersion: 7
