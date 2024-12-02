@@ -13,6 +13,9 @@ public class InventorySlot : MonoBehaviour
     private Image _itemImage;
     [SerializeField]
     private TextMeshProUGUI _itemText;
+    [Header("Drop Prompt")]
+    [SerializeField]
+    private GameObject _dropPrompt;
     [Header("Self Transform")]
     [SerializeField]
     private RectTransform _selfTransform;
@@ -49,6 +52,9 @@ public class InventorySlot : MonoBehaviour
             _baseRotation.y,
             _baseRotation.z + _rotationAmount
             );
+
+        // Update drop prompt
+        ManageDropPrompt();
     }
     private void Update()
     {
@@ -95,6 +101,9 @@ public class InventorySlot : MonoBehaviour
 
         // Set itemID
         _item = item;
+
+        // Update drop prompt
+        ManageDropPrompt();
     }
     /// <summary>
     /// Attempts to remove any held item from this slot.
@@ -114,7 +123,10 @@ public class InventorySlot : MonoBehaviour
         // Hide item sprite
         _itemImage.color = Color.clear;
 
-        // Return old item (can be -1 if there never was an item).
+        // Update drop prompt
+        ManageDropPrompt();
+
+        // Return old item (can be None if there never was an item).
         return temp;
     }
     /// <summary>
@@ -122,14 +134,40 @@ public class InventorySlot : MonoBehaviour
     /// </summary>
     public void Select()
     {
+        // Set slot to be selected
         _selected = true;
+
+        // Update drop prompt
+        ManageDropPrompt();
     }
     /// <summary>
     /// Tells this slot that it is not highlighted.
     /// </summary>
     public void DeSelect()
     {
+        // Set slot to be selected
         _selected = false;
+
+        // Update drop prompt
+        ManageDropPrompt();
+    }
+    /// <summary>
+    /// Toggles the drop prompt text based on whether this slot contains an item and if it is selected.
+    /// </summary>
+    private void ManageDropPrompt()
+    {
+        // If we are not holding an item, or are not selected
+        if (_item == Inventory.Item.None || !_selected)
+        {
+            // Disable drop prompt
+            _dropPrompt.SetActive(false);
+
+            // Early out
+            return;
+        }
+
+        // Otherwise enable drop prompt
+        _dropPrompt.SetActive(true);
     }
 
     // Accessors
