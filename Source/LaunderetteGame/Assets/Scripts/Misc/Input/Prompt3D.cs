@@ -1,19 +1,18 @@
 using UnityEngine;
-using UnityEngine.UI;
 
-public class KeyPrompt : MonoBehaviour
+public class Prompt3D : MonoBehaviour
 {
     // Editor variables
     [Header("Representing:")]
     [SerializeField]
-    private Sprite _keyboardPrompt;
+    private Texture2D _keyboardPrompt;
     [SerializeField]
-    private Sprite _playstationPrompt;
+    private Texture2D _playstationPrompt;
     [SerializeField]
-    private Sprite _xboxPrompt;
+    private Texture2D _xboxPrompt;
     [Header("Target")]
     [SerializeField]
-    private Image _glyphDisplay;
+    private Material _glyphDisplay;
 
     // Private variables
     private GLOBAL.InputMode _deviceLastFrame;
@@ -83,12 +82,12 @@ public class KeyPrompt : MonoBehaviour
         {
             // Playstation
             case GLOBAL.ControllerType.Playstation:
-                _glyphDisplay.sprite = _playstationPrompt;
+                _glyphDisplay.SetTexture("_MainTex", _playstationPrompt);
                 break;
 
             // Xbox
             case GLOBAL.ControllerType.Xbox:
-                _glyphDisplay.sprite = _xboxPrompt;
+                _glyphDisplay.SetTexture("_MainTex", _xboxPrompt);
                 break;
 
             // Unknown
@@ -106,7 +105,7 @@ public class KeyPrompt : MonoBehaviour
         _glyphDisplay.color = Color.white;
 
         // Set keyboard glyph
-        _glyphDisplay.sprite = _keyboardPrompt;
+        _glyphDisplay.SetTexture("_MainTex", _keyboardPrompt);
     }
     /// <summary>
     /// Hides all glyph displays.

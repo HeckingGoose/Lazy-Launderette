@@ -6,6 +6,12 @@ public static class GLOBAL
         Keyboard,
         Controller
     }
+    public enum ControllerType
+    {
+        Playstation,
+        Xbox
+    }
     public static string LoadTarget = "Menu";
     public static InputMode CurrentInputDevice = InputMode.Keyboard;
+    public static ControllerType CurrentControllerType = ControllerType.Playstation;
 }

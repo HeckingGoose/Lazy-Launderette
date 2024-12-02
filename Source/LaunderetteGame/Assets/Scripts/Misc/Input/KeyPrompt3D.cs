@@ -1,23 +1,19 @@
 using UnityEngine;
-using UnityEngine.UI;
 
-public class KeyPrompt : MonoBehaviour
+public class KeyPrompt3D : MonoBehaviour
 {
     // Editor variables
     [Header("Representing:")]
     [SerializeField]
-    private Sprite _keyboardPrompt;
+    private Texture2D _keyboardPrompt;
     [SerializeField]
-    private Sprite _playstationPrompt;
-    [SerializeField]
-    private Sprite _xboxPrompt;
+    private Texture2D _controllerPrompt;
     [Header("Target")]
     [SerializeField]
-    private Image _glyphDisplay;
+    private Material _glyphDisplay;
 
     // Private variables
     private GLOBAL.InputMode _deviceLastFrame;
-    private GLOBAL.ControllerType _controllerLastFrame;
 
     // Unity methods
     private void Start()
@@ -28,20 +24,17 @@ public class KeyPrompt : MonoBehaviour
     }
     private void Update()
     {
-        // Check if input device or controller type has changed
-        if (_deviceLastFrame != GLOBAL.CurrentInputDevice ||
-            _controllerLastFrame != GLOBAL.CurrentControllerType
-            )
+        // Check if input device has changed
+        if (_deviceLastFrame != GLOBAL.CurrentInputDevice)
         {
             // Hide all displays
             HideAll();
 
-            // Update the device and type trackers
-            _deviceLastFrame = GLOBAL.CurrentInputDevice;
-            _controllerLastFrame = GLOBAL.CurrentControllerType;
-
             // Show correct glyph
             ShowGlyph();
+
+            // Update the device tracker
+            _deviceLastFrame = GLOBAL.CurrentInputDevice;
         }
     }
 
@@ -52,7 +45,7 @@ public class KeyPrompt : MonoBehaviour
     private void ShowGlyph()
     {
         // What device is active?
-        switch (_deviceLastFrame)
+        switch (GLOBAL.CurrentInputDevice)
         {
             // Keyboard
             case GLOBAL.InputMode.Keyboard:
@@ -78,24 +71,8 @@ public class KeyPrompt : MonoBehaviour
         // Unhide glyph
         _glyphDisplay.color = Color.white;
 
-        // What type of controller is connected
-        switch (_controllerLastFrame)
-        {
-            // Playstation
-            case GLOBAL.ControllerType.Playstation:
-                _glyphDisplay.sprite = _playstationPrompt;
-                break;
-
-            // Xbox
-            case GLOBAL.ControllerType.Xbox:
-                _glyphDisplay.sprite = _xboxPrompt;
-                break;
-
-            // Unknown
-            default:
-                Debug.LogWarning($"Unknown controller type: '{_controllerLastFrame.ToString()}'");
-                break;
-        }
+        // Set controller glyph
+        _glyphDisplay.SetTexture("MainTex", _controllerPrompt);
     }
     /// <summary>
     /// Shows the keyboard glyph for this prompt.
@@ -106,7 +83,7 @@ public class KeyPrompt : MonoBehaviour
         _glyphDisplay.color = Color.white;
 
         // Set keyboard glyph
-        _glyphDisplay.sprite = _keyboardPrompt;
+        _glyphDisplay.SetTexture("MainTex", _keyboardPrompt);
     }
     /// <summary>
     /// Hides all glyph displays.

@@ -30,9 +30,9 @@ public class InputSwitcher : MonoBehaviour
             // Fetch last device used
             InputDevice lastDevice = action.activeControl.device;
 
-
+            Debug.Log(lastDevice.displayName);
             // Switch device type
-            switch (lastDevice.layout.ToLower())
+            switch (lastDevice.displayName.ToLower())
             {
                 // KbnM layout
                 case "mouse":
@@ -40,9 +40,16 @@ public class InputSwitcher : MonoBehaviour
                     GLOBAL.CurrentInputDevice = GLOBAL.InputMode.Keyboard;
                     break;
 
-                // All other devices are assumed to be controller
+                // If the device is an xbox controller
+                case "xbox controller":
+                    GLOBAL.CurrentInputDevice = GLOBAL.InputMode.Controller;
+                    GLOBAL.CurrentControllerType = GLOBAL.ControllerType.Xbox;
+                    break;
+
+                // All other devices are assumed to be an x360 controller
                 default:
                     GLOBAL.CurrentInputDevice = GLOBAL.InputMode.Controller;
+                    GLOBAL.CurrentControllerType = GLOBAL.ControllerType.Xbox;
                     break;
             }
         }

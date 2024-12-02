@@ -59,7 +59,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _keyboardPrompt: {fileID: -781711601, guid: cab57730a65f742408438f612073eedf, type: 3}
-  _controllerPrompt: {fileID: -781711601, guid: cab57730a65f742408438f612073eedf, type: 3}
+  _playstationPrompt: {fileID: -1011080413, guid: 213992efbe0259e43800cb100028d6e7, type: 3}
+  _xboxPrompt: {fileID: 1036817305, guid: 640b85f64ddfcd6439be18f6d9ed43a6, type: 3}
   _glyphDisplay: {fileID: 6989295867504314063}
 --- !u!1 &7800943101507592973
 GameObject:

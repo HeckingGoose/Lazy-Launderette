@@ -1081,11 +1081,19 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3792639239720411005, guid: 71060195afd2544488e3d61ee91f3f6f, type: 3}
+      propertyPath: _xboxPrompt
+      value: 
+      objectReference: {fileID: 2087465926, guid: 640b85f64ddfcd6439be18f6d9ed43a6, type: 3}
+    - target: {fileID: 3792639239720411005, guid: 71060195afd2544488e3d61ee91f3f6f, type: 3}
       propertyPath: _keyboardPrompt
       value: 
       objectReference: {fileID: 1661054721, guid: cab57730a65f742408438f612073eedf, type: 3}
     - target: {fileID: 3792639239720411005, guid: 71060195afd2544488e3d61ee91f3f6f, type: 3}
       propertyPath: _controllerPrompt
+      value: 
+      objectReference: {fileID: 1096000858, guid: 213992efbe0259e43800cb100028d6e7, type: 3}
+    - target: {fileID: 3792639239720411005, guid: 71060195afd2544488e3d61ee91f3f6f, type: 3}
+      propertyPath: _playstationPrompt
       value: 
       objectReference: {fileID: 1096000858, guid: 213992efbe0259e43800cb100028d6e7, type: 3}
     - target: {fileID: 7841392648306204551, guid: 71060195afd2544488e3d61ee91f3f6f, type: 3}
@@ -5023,11 +5031,19 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3792639239720411005, guid: 71060195afd2544488e3d61ee91f3f6f, type: 3}
+      propertyPath: _xboxPrompt
+      value: 
+      objectReference: {fileID: -1620598382, guid: 640b85f64ddfcd6439be18f6d9ed43a6, type: 3}
+    - target: {fileID: 3792639239720411005, guid: 71060195afd2544488e3d61ee91f3f6f, type: 3}
       propertyPath: _keyboardPrompt
       value: 
       objectReference: {fileID: 1695816070, guid: cab57730a65f742408438f612073eedf, type: 3}
     - target: {fileID: 3792639239720411005, guid: 71060195afd2544488e3d61ee91f3f6f, type: 3}
       propertyPath: _controllerPrompt
+      value: 
+      objectReference: {fileID: 1158025741, guid: 213992efbe0259e43800cb100028d6e7, type: 3}
+    - target: {fileID: 3792639239720411005, guid: 71060195afd2544488e3d61ee91f3f6f, type: 3}
+      propertyPath: _playstationPrompt
       value: 
       objectReference: {fileID: 1158025741, guid: 213992efbe0259e43800cb100028d6e7, type: 3}
     - target: {fileID: 7841392648306204551, guid: 71060195afd2544488e3d61ee91f3f6f, type: 3}
@@ -5149,6 +5165,7 @@ Transform:
   - {fileID: 693292292}
   - {fileID: 725742591}
   - {fileID: 345415352}
+  - {fileID: 1728284310}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1401510533
@@ -5746,6 +5763,54 @@ AudioReverbZone:
   m_Density: 100
   m_LFReference: 250
   m_RoomLF: 0
+--- !u!1 &1728284309
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1728284310}
+  - component: {fileID: 1728284311}
+  m_Layer: 0
+  m_Name: SpeechPromptSwitcher
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1728284310
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1728284309}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1374972094}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1728284311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1728284309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 893e56612c48c364e906f60ece859cdd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _keyboardPrompt: {fileID: 2800000, guid: bd14caf0f198d284482e391f1c345dc3, type: 3}
+  _playstationPrompt: {fileID: 2800000, guid: 38f74195e82205343a0966dcc9c359db, type: 3}
+  _xboxPrompt: {fileID: 2800000, guid: baebd65ad234a8b49afb44e6c6f86057, type: 3}
+  _glyphDisplay: {fileID: 2100000, guid: efb4e3b456ed90442942efdd7006b75f, type: 2}
 --- !u!1 &1736156778
 GameObject:
   m_ObjectHideFlags: 0
@@ -7959,11 +8024,19 @@ PrefabInstance:
       value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 3792639239720411005, guid: 71060195afd2544488e3d61ee91f3f6f, type: 3}
+      propertyPath: _xboxPrompt
+      value: 
+      objectReference: {fileID: -2075935404, guid: 640b85f64ddfcd6439be18f6d9ed43a6, type: 3}
+    - target: {fileID: 3792639239720411005, guid: 71060195afd2544488e3d61ee91f3f6f, type: 3}
       propertyPath: _keyboardPrompt
       value: 
       objectReference: {fileID: 1662080556, guid: cab57730a65f742408438f612073eedf, type: 3}
     - target: {fileID: 3792639239720411005, guid: 71060195afd2544488e3d61ee91f3f6f, type: 3}
       propertyPath: _controllerPrompt
+      value: 
+      objectReference: {fileID: 585728829, guid: 213992efbe0259e43800cb100028d6e7, type: 3}
+    - target: {fileID: 3792639239720411005, guid: 71060195afd2544488e3d61ee91f3f6f, type: 3}
+      propertyPath: _playstationPrompt
       value: 
       objectReference: {fileID: 585728829, guid: 213992efbe0259e43800cb100028d6e7, type: 3}
     - target: {fileID: 7113504247164168966, guid: 71060195afd2544488e3d61ee91f3f6f, type: 3}
