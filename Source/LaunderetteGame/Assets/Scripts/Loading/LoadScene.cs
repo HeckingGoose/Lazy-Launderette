@@ -11,6 +11,8 @@ public class LoadScene : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI _doneText;
     [SerializeField]
+    private Image _doneImage;
+    [SerializeField]
     private Image _loadingImage;
     [SerializeField]
     private Image _loadingImageBackground;
@@ -76,6 +78,14 @@ public class LoadScene : MonoBehaviour
                 _doneText.color.r,
                 _doneText.color.g,
                 _doneText.color.b,
+                Mathf.Lerp(0, 1, _textFadeTimer / _textFadeTime)
+                );
+
+            // Fade in image, according to time
+            _doneImage.color = new Color(
+                _doneImage.color.r,
+                _doneImage.color.g,
+                _doneImage.color.b,
                 Mathf.Lerp(0, 1, _textFadeTimer / _textFadeTime)
                 );
 

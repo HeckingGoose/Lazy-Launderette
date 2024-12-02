@@ -2,13 +2,16 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MoveOnClick : MonoBehaviour
 {
     // Editor variables
     [Header("Scene References")]
     [SerializeField]
-    private TextMeshProUGUI _clickText;
+    private TextMeshProUGUI _goText;
+    [SerializeField]
+    private Image _goImage;
     [Header("Timer Values")]
     [SerializeField]
     private float _fadeDoneAt = 3;
@@ -39,11 +42,19 @@ public class MoveOnClick : MonoBehaviour
             SceneManager.LoadScene("Loading");
         }
 
-        // Lerp in the fade text
-        _clickText.color = new Color(
-            _clickText.color.r,
-            _clickText.color.g,
-            _clickText.color.b,
+        // Lerp in the go text
+        _goText.color = new Color(
+            _goText.color.r,
+            _goText.color.g,
+            _goText.color.b,
+            Mathf.Lerp(0, 1, Mathf.Clamp((_timer - _beginFadeAt) / (_fadeDoneAt - _beginFadeAt), 0, 1))
+            );
+
+        // Lerp in the go image
+        _goImage.color = new Color(
+            _goImage.color.r,
+            _goImage.color.g,
+            _goImage.color.b,
             Mathf.Lerp(0, 1, Mathf.Clamp((_timer - _beginFadeAt) / (_fadeDoneAt - _beginFadeAt), 0, 1))
             );
 
