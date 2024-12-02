@@ -455,6 +455,9 @@ public class PlayerInteractor : MonoBehaviour
 
                             // Destroy coin
                             Destroy(pickupHandler.gameObject);
+
+                            // Call rumbler with item type
+                            _rumbler.StartHaptics(pickupHandler.item);
                             break;
 
                         // Washed clothes
@@ -478,6 +481,9 @@ public class PlayerInteractor : MonoBehaviour
 
                                 // Destroy clothes pile
                                 Destroy(pickupHandler.gameObject);
+
+                                // Call rumbler with item type
+                                _rumbler.StartHaptics(pickupHandler.item);
                             }
                             break;
 
@@ -503,6 +509,9 @@ public class PlayerInteractor : MonoBehaviour
                                 // Play vent destroy sound effect
                                 _pickupSoundSource.clip = _pickupSounds[3];
                                 _pickupSoundSource.Play();
+
+                                // Call rumbler with item type
+                                _rumbler.StartHaptics(pickupHandler.item);
                             }
                             break;
 
@@ -535,11 +544,12 @@ public class PlayerInteractor : MonoBehaviour
                                         break;
                                 }
                             }
+
+                            // Call rumbler with item type
+                            _rumbler.StartHaptics(pickupHandler.item);
+
                             break;
                     }
-
-                    // Call rumbler with item type
-                    _rumbler.StartHaptics(pickupHandler.item);
                 }
                 // Otherwise
                 else
