@@ -227,8 +227,8 @@ public class PlayerInteractor : MonoBehaviour
                         // Otherwise
                         else
                         {
-                            // Check inventory capacity for full
-                            if (_inventory.IsFull)
+                            // Check inventory capacity for full (given the item is not a coin)
+                            if (_inventory.IsFull && pickupHandle.item != Inventory.Item.Coin)
                             {
                                 // Show full text
                                 _describeText.text = DESCRIBETEXT_INVENTORYFULL;
