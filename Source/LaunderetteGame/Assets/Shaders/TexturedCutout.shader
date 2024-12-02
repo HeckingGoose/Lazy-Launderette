@@ -10,7 +10,8 @@ Shader "Lazy Launderette/Textured Cutout"
     {
         Tags
         {
-            "RenderType" = "Opaque"
+            "RenderType" = "Transparent"
+            "Queue" = "Transparent"
         }
 
         Cull Off
