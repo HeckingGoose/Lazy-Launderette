@@ -34,8 +34,11 @@ Shader "Lazy Launderette/Textured Cutout"
             UNITY_VERTEX_INPUT_INSTANCE_ID
         };
 
+        // Declare all properties in one buffer
+        CBUFFER_START(UnityPerMaterial)
         sampler2D _MainTex;
         float _Alpha;
+        CBUFFER_END
 
         ENDCG
 

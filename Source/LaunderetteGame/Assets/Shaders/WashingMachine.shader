@@ -44,9 +44,12 @@ Shader "Lazy Launderette/Washing Machine"
             UNITY_VERTEX_INPUT_INSTANCE_ID
         };
 
+        // Declare all properties in one buffer
+        CBUFFER_START(UnityPerMaterial)
         sampler2D _MainTex;
         sampler2D _ContentsTex;
         float _Alpha;
+        CBUFFER_END
 
         ENDCG
 
