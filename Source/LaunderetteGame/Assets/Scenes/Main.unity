@@ -3255,6 +3255,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 802679568}
   m_CullTransparentMesh: 1
+--- !u!1 &831543517 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2379870933869275847, guid: ececd9e6e491489408c089f47d22fe1a, type: 3}
+  m_PrefabInstance: {fileID: 521095782}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &874708990
 GameObject:
   m_ObjectHideFlags: 0
@@ -5462,6 +5467,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1321195302}
   - component: {fileID: 1321195303}
+  - component: {fileID: 1321195304}
   m_Layer: 5
   m_Name: ConversationRoot
   m_TagString: Untagged
@@ -5536,6 +5542,20 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 4e90f9d4c43826c40bb24feeab5c3317, type: 3}
   _playerController: {fileID: 2091255115}
   _playerInteractor: {fileID: 2091255117}
+--- !u!114 &1321195304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1321195301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90ecaeb3f17900e4499931eea317caaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _target: {fileID: 831543517}
+  _timeBetweenToggles: 0.65
 --- !u!1 &1364252581
 GameObject:
   m_ObjectHideFlags: 0
