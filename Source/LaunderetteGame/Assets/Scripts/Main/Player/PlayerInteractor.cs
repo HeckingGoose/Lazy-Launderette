@@ -189,7 +189,7 @@ public class PlayerInteractor : MonoBehaviour
                     if (pickupHandle != null)
                     {
                         // If this is Sam's washed clothes
-                        if (pickupHandle.item == Inventory.Item.WashedClothes)
+                        if (pickupHandle.Item == Inventory.Item.WashedClothes)
                         {
                             // Do we have a bag
                             if (_inventory.GetHeldItem() != Inventory.Item.EmptyBag)
@@ -207,7 +207,7 @@ public class PlayerInteractor : MonoBehaviour
                         }
 
                         // If this is a vent cover
-                        else if (pickupHandle.item == Inventory.Item.VentCover)
+                        else if (pickupHandle.Item == Inventory.Item.VentCover)
                         {
                             // If the player has a screwdriver
                             if (_inventory.GetHeldItem() == Inventory.Item.Screwdriver)
@@ -228,7 +228,7 @@ public class PlayerInteractor : MonoBehaviour
                         else
                         {
                             // Check inventory capacity for full (given the item is not a coin)
-                            if (_inventory.IsFull && pickupHandle.item != Inventory.Item.Coin)
+                            if (_inventory.IsFull && pickupHandle.Item != Inventory.Item.Coin)
                             {
                                 // Show full text
                                 _describeText.text = DESCRIBETEXT_INVENTORYFULL;
@@ -463,7 +463,7 @@ public class PlayerInteractor : MonoBehaviour
                     bool success;
 
                     // What type of item is this
-                    switch (pickupHandler.item)
+                    switch (pickupHandler.Item)
                     {
                         // A coin
                         case Inventory.Item.Coin:
@@ -478,7 +478,7 @@ public class PlayerInteractor : MonoBehaviour
                             Destroy(pickupHandler.gameObject);
 
                             // Call rumbler with item type
-                            _rumbler.StartHaptics(pickupHandler.item);
+                            _rumbler.StartHaptics(pickupHandler.Item);
                             break;
 
                         // Washed clothes
@@ -504,7 +504,7 @@ public class PlayerInteractor : MonoBehaviour
                                 Destroy(pickupHandler.gameObject);
 
                                 // Call rumbler with item type
-                                _rumbler.StartHaptics(pickupHandler.item);
+                                _rumbler.StartHaptics(pickupHandler.Item);
                             }
                             break;
 
@@ -532,14 +532,14 @@ public class PlayerInteractor : MonoBehaviour
                                 _pickupSoundSource.Play();
 
                                 // Call rumbler with item type
-                                _rumbler.StartHaptics(pickupHandler.item);
+                                _rumbler.StartHaptics(pickupHandler.Item);
                             }
                             break;
 
                         // Any other type of item
                         default:
                             // Add item to inventory
-                            success = _inventory.TryAddItem(pickupHandler.item, false);
+                            success = _inventory.TryAddItem(pickupHandler.Item, false);
 
                             // If we succeeded
                             if (success)
@@ -548,7 +548,7 @@ public class PlayerInteractor : MonoBehaviour
                                 Destroy(pickupHandler.gameObject);
 
                                 // Playback correct sound file
-                                switch (pickupHandler.item)
+                                switch (pickupHandler.Item)
                                 {
                                     case Inventory.Item.Choccy: // Chocolate
                                         _pickupSoundSource.clip = _pickupSounds[0];
@@ -566,7 +566,7 @@ public class PlayerInteractor : MonoBehaviour
                                 }
 
                                 // Call rumbler with item type
-                                _rumbler.StartHaptics(pickupHandler.item);
+                                _rumbler.StartHaptics(pickupHandler.Item);
                             }
 
                             break;
