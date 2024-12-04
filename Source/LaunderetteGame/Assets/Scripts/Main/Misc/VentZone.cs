@@ -3,7 +3,7 @@ using UnityEngine;
 public class VentZone : MonoBehaviour
 {
     // Cache
-    private PlayerController playerControllerCache = null;
+    private PlayerController _playerControllerCache = null;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -13,10 +13,10 @@ public class VentZone : MonoBehaviour
             try
             {
                 // Fetch the player that has just entered the vent
-                playerControllerCache = other.gameObject.GetComponent<PlayerController>();
+                _playerControllerCache = other.gameObject.GetComponent<PlayerController>();
 
                 // Tell it that it is now in the vent
-                playerControllerCache.InVentZone = true;
+                _playerControllerCache.InVentZone = true;
             }
             catch { }
         }
@@ -27,10 +27,10 @@ public class VentZone : MonoBehaviour
         if (other.gameObject.name == "Player")
         {
             // If we have something cached
-            if (playerControllerCache != null)
+            if (_playerControllerCache != null)
             {
                 // Modify this and return
-                playerControllerCache.InVentZone = true;
+                _playerControllerCache.InVentZone = true;
             }
             // Otherwise barrel ahead
             try
@@ -46,10 +46,10 @@ public class VentZone : MonoBehaviour
         if (other.gameObject.name == "Player")
         {
             // Given that we have something cached
-            if (playerControllerCache != null)
+            if (_playerControllerCache != null)
             {
                 // Tell it that it has left, then return
-                playerControllerCache.InVentZone = false;
+                _playerControllerCache.InVentZone = false;
                 return;
             }
 

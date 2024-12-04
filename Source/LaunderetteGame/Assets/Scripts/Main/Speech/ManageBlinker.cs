@@ -1,33 +1,32 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class ManageBlinker : MonoBehaviour
 {
     // Editor variables
+    [Header("References")]
     [SerializeField]
-    private float timeBetweenToggles;
+    private GameObject _target;
+    [Header("Config")]
+    [SerializeField]
+    private float _timeBetweenToggles = 0.65f;
 
     // Private variables
-    private float timer;
-    private Image image;
+    private float _timer;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        image = GetComponent<Image>();
-    }
-
-    // Update is called once per frame
+    // Unity Methods
     void Update()
     {
-        if (timer > timeBetweenToggles)
+        // Is it time to swap?
+        if (_timer > _timeBetweenToggles)
         {
-            image.enabled = !image.enabled;
-            timer = 0;
+            // Swap
+            _target.SetActive(!_target.activeSelf);
+
+            // Reset timer
+            _timer = 0;
         }
 
-        timer += Time.deltaTime;
+        // Increment timer
+        _timer += Time.deltaTime;
     }
 }
