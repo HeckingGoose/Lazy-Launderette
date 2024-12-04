@@ -7,7 +7,7 @@ public class FaceCamera : MonoBehaviour
 
     // Editor variables
     [SerializeField]
-    private Transform referenceCamera;
+    private Transform _referenceCamera;
 
     // Update is called once per frame
     void Update()
@@ -16,7 +16,7 @@ public class FaceCamera : MonoBehaviour
         Vector3 cache = transform.eulerAngles;
 
         // Get direction between this and camera
-        Vector3 directionBetween = referenceCamera.transform.position - transform.position;
+        Vector3 directionBetween = _referenceCamera.transform.position - transform.position;
 
         // Set it
         transform.forward = directionBetween;
