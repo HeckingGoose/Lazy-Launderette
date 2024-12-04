@@ -77,8 +77,5 @@ Shader "Lazy Launderette/Unlit Vertex Colour"
 
             ENDCG
         }
-
-        // Yoink unity shadowcaster pass
-        UsePass "Legacy Shaders/VertexLit/SHADOWCASTER"
     }
 }

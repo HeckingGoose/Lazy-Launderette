@@ -65,8 +65,8 @@ Shader "Lazy Launderette/Washing Machine"
                 v2f output;
 
                 // Handle instancing stuff
-                UNITY_SETUP_INSTANCE_ID(vert);
-                UNITY_TRANSFER_INSTANCE_ID(vert, output);
+                UNITY_SETUP_INSTANCE_ID(v);
+                UNITY_TRANSFER_INSTANCE_ID(v, output);
 
                 // Pass in values
                 output.position = UnityObjectToClipPos(v.vertex);
