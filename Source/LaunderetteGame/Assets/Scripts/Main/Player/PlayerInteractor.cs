@@ -270,7 +270,7 @@ public class PlayerInteractor : MonoBehaviour
                 // Object is a washing up spot
                 case TAG_GOAL:
                     // Do we have enough coins to wash clothes?
-                    if (_coinManager.numCoins >= GameRules.COINS_TOWIN)
+                    if (_coinManager.CoinCount >= GameRules.COINS_TOWIN)
                     {
                         // Are we holding a clothes bag?
                         if (_inventory.GetHeldItem() == Inventory.Item.ClothesBag)
@@ -291,7 +291,7 @@ public class PlayerInteractor : MonoBehaviour
                     else
                     {
                         // Generate text for player not having enough coins
-                        _describeText.text = $"£{_coinManager.numCoins}/£{GameRules.COINS_TOWIN}, cannot afford yet";
+                        _describeText.text = $"£{_coinManager.CoinCount}/£{GameRules.COINS_TOWIN}, cannot afford yet";
                     }
                     break;
 
@@ -468,7 +468,7 @@ public class PlayerInteractor : MonoBehaviour
                         // A coin
                         case Inventory.Item.Coin:
                             // Increment coin counter
-                            _coinManager.numCoins++;
+                            _coinManager.CoinCount++;
 
                             // Playback pickup sound
                             _coinAudioSource.clip = _coinPickupSound;
@@ -602,14 +602,14 @@ public class PlayerInteractor : MonoBehaviour
             // This is the area to place our clothes in (to win the game)
             case TAG_GOAL:
                 // If we have enough coins and that we are holding a bag
-                if (_coinManager.numCoins < GameRules.COINS_TOWIN || _inventory.GetHeldItem() != Inventory.Item.ClothesBag)
+                if (_coinManager.CoinCount < GameRules.COINS_TOWIN || _inventory.GetHeldItem() != Inventory.Item.ClothesBag)
                 {
                     // Early out
                     return;
                 }
 
                 // Rob the player
-                _coinManager.numCoins -= GameRules.COINS_TOWIN;
+                _coinManager.CoinCount -= GameRules.COINS_TOWIN;
 
                 // Attempt to
                 try

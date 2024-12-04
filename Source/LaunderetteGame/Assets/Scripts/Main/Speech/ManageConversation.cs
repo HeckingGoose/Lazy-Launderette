@@ -116,7 +116,7 @@ public class ManageConversation : MonoBehaviour
                             switch (data)
                             {
                                 case "Coin":
-                                    manageCoins.numCoins++;
+                                    manageCoins.CoinCount++;
                                     altSource.clip = coinSound;
                                     altSource.Play();
                                     while (speechSource.isPlaying) { }
