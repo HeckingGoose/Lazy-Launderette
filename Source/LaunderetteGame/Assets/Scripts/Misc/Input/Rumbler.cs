@@ -13,7 +13,7 @@ public class Rumbler : MonoBehaviour
     // Motor times per item
     private const float T_DEFAULT = 0.025f;
     private const float T_EMPTYBAG = 0.1f;
-    private const float T_CHOCCY = 0.001f;
+    private const float T_CHOCCY = 0.05f;
     private const float T_SCREW = 0.1f;
     private const float T_VENT = 0.3f;
 
@@ -82,6 +82,10 @@ public class Rumbler : MonoBehaviour
             Debug.LogWarning("No gamepads connected for rumble!");
         }
     }
+    /// <summary>
+    /// Begins haptic feedback on the current controller for the given motor speed and time.
+    /// </summary>
+    /// <param name="item">The item to rumble for.</param>
     public void StartHaptics(Inventory.Item item)
     {
         // What item is it?
@@ -123,5 +127,8 @@ public class Rumbler : MonoBehaviour
                 StartHaptics(MS_DEFAULT.L, MS_DEFAULT.R, T_DEFAULT);
                 break;
         }
+
+        // Log Done
+        Debug.Log($"Rumbled for '{item.ToString()}'");
     }
 }

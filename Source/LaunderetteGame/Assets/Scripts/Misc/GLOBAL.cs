@@ -1,5 +1,6 @@
 public static class GLOBAL
 {
+    public static string temp = "yuh";
     // Public values
     public enum InputMode
     {
