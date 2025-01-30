@@ -1200,6 +1200,10 @@ PrefabInstance:
       propertyPath: _scaleMultiplier
       value: 1.2
       objectReference: {fileID: 0}
+    - target: {fileID: 2128632116236115585, guid: 71060195afd2544488e3d61ee91f3f6f, type: 3}
+      propertyPath: _inputManager
+      value: 
+      objectReference: {fileID: 725742592}
     - target: {fileID: 2237503655645819931, guid: 71060195afd2544488e3d61ee91f3f6f, type: 3}
       propertyPath: m_text
       value: 2
@@ -1208,6 +1212,10 @@ PrefabInstance:
       propertyPath: _xboxPrompt
       value: 
       objectReference: {fileID: 2087465926, guid: 640b85f64ddfcd6439be18f6d9ed43a6, type: 3}
+    - target: {fileID: 3792639239720411005, guid: 71060195afd2544488e3d61ee91f3f6f, type: 3}
+      propertyPath: _inputManager
+      value: 
+      objectReference: {fileID: 725742592}
     - target: {fileID: 3792639239720411005, guid: 71060195afd2544488e3d61ee91f3f6f, type: 3}
       propertyPath: _keyboardPrompt
       value: 
@@ -1749,6 +1757,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1227560342, guid: 640b85f64ddfcd6439be18f6d9ed43a6, type: 3}
     - target: {fileID: 4739984373726537792, guid: ececd9e6e491489408c089f47d22fe1a, type: 3}
+      propertyPath: _inputManager
+      value: 
+      objectReference: {fileID: 725742592}
+    - target: {fileID: 4739984373726537792, guid: ececd9e6e491489408c089f47d22fe1a, type: 3}
       propertyPath: _keyboardPrompt
       value: 
       objectReference: {fileID: -2023738596, guid: cab57730a65f742408438f612073eedf, type: 3}
@@ -1995,6 +2007,10 @@ PrefabInstance:
       propertyPath: _xboxPrompt
       value: 
       objectReference: {fileID: 1039716132, guid: 640b85f64ddfcd6439be18f6d9ed43a6, type: 3}
+    - target: {fileID: 4739984373726537792, guid: ececd9e6e491489408c089f47d22fe1a, type: 3}
+      propertyPath: _inputManager
+      value: 
+      objectReference: {fileID: 725742592}
     - target: {fileID: 4739984373726537792, guid: ececd9e6e491489408c089f47d22fe1a, type: 3}
       propertyPath: _keyboardPrompt
       value: 
@@ -2953,7 +2969,7 @@ GameObject:
   - component: {fileID: 725742591}
   - component: {fileID: 725742592}
   m_Layer: 0
-  m_Name: InputSwitcher
+  m_Name: InputDeviceManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2983,7 +2999,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 725742590}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 449bdf1cbb40aec429c7a43e1017d6c6, type: 3}
+  m_Script: {fileID: 11500000, guid: 521693380b1569e488f75483ed9e953f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &733369247
@@ -4480,6 +4496,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.01353
       objectReference: {fileID: 0}
+    - target: {fileID: 5393123039966895646, guid: 20f7ecd8cb9f57a42b96d9376a401643, type: 3}
+      propertyPath: _inputManager
+      value: 
+      objectReference: {fileID: 725742592}
     - target: {fileID: 6365116767278990314, guid: 20f7ecd8cb9f57a42b96d9376a401643, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
@@ -5440,6 +5460,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.01029
       objectReference: {fileID: 0}
+    - target: {fileID: 5393123039966895646, guid: 20f7ecd8cb9f57a42b96d9376a401643, type: 3}
+      propertyPath: _inputManager
+      value: 
+      objectReference: {fileID: 725742592}
     - target: {fileID: 6365116767278990314, guid: 20f7ecd8cb9f57a42b96d9376a401643, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
@@ -5776,6 +5800,10 @@ PrefabInstance:
       propertyPath: _scaleMultiplier
       value: 1.2
       objectReference: {fileID: 0}
+    - target: {fileID: 2128632116236115585, guid: 71060195afd2544488e3d61ee91f3f6f, type: 3}
+      propertyPath: _inputManager
+      value: 
+      objectReference: {fileID: 725742592}
     - target: {fileID: 2237503655645819931, guid: 71060195afd2544488e3d61ee91f3f6f, type: 3}
       propertyPath: m_text
       value: 3
@@ -5784,6 +5812,10 @@ PrefabInstance:
       propertyPath: _xboxPrompt
       value: 
       objectReference: {fileID: -1620598382, guid: 640b85f64ddfcd6439be18f6d9ed43a6, type: 3}
+    - target: {fileID: 3792639239720411005, guid: 71060195afd2544488e3d61ee91f3f6f, type: 3}
+      propertyPath: _inputManager
+      value: 
+      objectReference: {fileID: 725742592}
     - target: {fileID: 3792639239720411005, guid: 71060195afd2544488e3d61ee91f3f6f, type: 3}
       propertyPath: _keyboardPrompt
       value: 
@@ -6816,6 +6848,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.00508
       objectReference: {fileID: 0}
+    - target: {fileID: 5393123039966895646, guid: 20f7ecd8cb9f57a42b96d9376a401643, type: 3}
+      propertyPath: _inputManager
+      value: 
+      objectReference: {fileID: 725742592}
     - target: {fileID: 6365116767278990314, guid: 20f7ecd8cb9f57a42b96d9376a401643, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
@@ -7696,6 +7732,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.01314
       objectReference: {fileID: 0}
+    - target: {fileID: 5393123039966895646, guid: 20f7ecd8cb9f57a42b96d9376a401643, type: 3}
+      propertyPath: _inputManager
+      value: 
+      objectReference: {fileID: 725742592}
     - target: {fileID: 6365116767278990314, guid: 20f7ecd8cb9f57a42b96d9376a401643, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
@@ -7969,6 +8009,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.00575
       objectReference: {fileID: 0}
+    - target: {fileID: 5393123039966895646, guid: 20f7ecd8cb9f57a42b96d9376a401643, type: 3}
+      propertyPath: _inputManager
+      value: 
+      objectReference: {fileID: 725742592}
     - target: {fileID: 6365116767278990314, guid: 20f7ecd8cb9f57a42b96d9376a401643, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
@@ -9045,6 +9089,10 @@ PrefabInstance:
       propertyPath: _scaleMultiplier
       value: 1.2
       objectReference: {fileID: 0}
+    - target: {fileID: 2128632116236115585, guid: 71060195afd2544488e3d61ee91f3f6f, type: 3}
+      propertyPath: _inputManager
+      value: 
+      objectReference: {fileID: 725742592}
     - target: {fileID: 2237503655645819931, guid: 71060195afd2544488e3d61ee91f3f6f, type: 3}
       propertyPath: m_text
       value: 1
@@ -9057,6 +9105,10 @@ PrefabInstance:
       propertyPath: _xboxPrompt
       value: 
       objectReference: {fileID: -2075935404, guid: 640b85f64ddfcd6439be18f6d9ed43a6, type: 3}
+    - target: {fileID: 3792639239720411005, guid: 71060195afd2544488e3d61ee91f3f6f, type: 3}
+      propertyPath: _inputManager
+      value: 
+      objectReference: {fileID: 725742592}
     - target: {fileID: 3792639239720411005, guid: 71060195afd2544488e3d61ee91f3f6f, type: 3}
       propertyPath: _keyboardPrompt
       value: 
@@ -9422,6 +9474,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.01237
       objectReference: {fileID: 0}
+    - target: {fileID: 5393123039966895646, guid: 20f7ecd8cb9f57a42b96d9376a401643, type: 3}
+      propertyPath: _inputManager
+      value: 
+      objectReference: {fileID: 725742592}
     - target: {fileID: 6365116767278990314, guid: 20f7ecd8cb9f57a42b96d9376a401643, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
@@ -9490,6 +9546,10 @@ PrefabInstance:
     - target: {fileID: 2854615726699074056, guid: 9dea716f2543ba0479729c9bedbd9256, type: 3}
       propertyPath: m_Name
       value: GlyphManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 2854615726699074056, guid: 9dea716f2543ba0479729c9bedbd9256, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

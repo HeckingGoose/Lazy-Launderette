@@ -41,6 +41,6 @@ public class FPSDisplay : MonoBehaviour
         }
 
         // Update display
-        _display.text = $"{PREFACE}{1 / _fpsCache.Average()}\nDevice: {GLOBAL.temp}";
+        _display.text = $"{PREFACE}{1 / _fpsCache.Average()}";
     }
 }

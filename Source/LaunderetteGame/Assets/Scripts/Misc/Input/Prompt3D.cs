@@ -3,6 +3,9 @@ using UnityEngine;
 public class Prompt3D : MonoBehaviour
 {
     // Editor variables
+    [Header("Input System")]
+    [SerializeField]
+    private InputDeviceManager _inputManager;
     [Header("Representing:")]
     [SerializeField]
     private Material _keyboardPrompt;
@@ -14,85 +17,71 @@ public class Prompt3D : MonoBehaviour
     [SerializeField]
     private MeshRenderer _glyphDisplay;
 
-    // Private variables
-    private GLOBAL.InputMode _deviceLastFrame;
-    private GLOBAL.ControllerType _controllerLastFrame;
-
     // Unity methods
     private void Start()
     {
+        // Subscribe to input manager
+        _inputManager.OnInputDeviceChanged += DeviceChanged;
+        _inputManager.OnControllerTypeChanged += ControllerChanged;
+
         // Hide and show glyphs for first frame
         HideAll();
-        ShowGlyph();
-    }
-    private void Update()
-    {
-        // Check if input device or controller type has changed
-        if (_deviceLastFrame != GLOBAL.CurrentInputDevice ||
-            _controllerLastFrame != GLOBAL.CurrentControllerType
-            )
-        {
-            // Hide all displays
-            HideAll();
-
-            // Update the device and type trackers
-            _deviceLastFrame = GLOBAL.CurrentInputDevice;
-            _controllerLastFrame = GLOBAL.CurrentControllerType;
-
-            // Show correct glyph
-            ShowGlyph();
-        }
+        ShowGlyph(
+            _inputManager.CurrentInputDevice,
+            _inputManager.CurrentControllerType
+            );
     }
 
-    // Methods
+    // Private Methods
     /// <summary>
-    /// Shows the correct glyph based on the current input device.
+    /// Shows the correct glyph based on the given input device.
     /// </summary>
-    private void ShowGlyph()
+    private void ShowGlyph(InputDeviceManager.Device device,
+        InputDeviceManager.ControllerType controller = InputDeviceManager.ControllerType.None)
     {
         // What device is active?
-        switch (_deviceLastFrame)
+        switch (device)
         {
             // Keyboard
-            case GLOBAL.InputMode.Keyboard:
+            case InputDeviceManager.Device.Keyboard:
                 ShowKeyboardGlyph();
                 break;
 
             // Controller
-            case GLOBAL.InputMode.Controller:
-                ShowControllerGlyph();
+            case InputDeviceManager.Device.Controller:
+                ShowControllerGlyph(controller);
                 break;
 
             // Unknown
             default:
-                Debug.LogWarning($"Unknown input device: '{_deviceLastFrame.ToString()}'");
+                Debug.LogWarning($"Unknown input device: '{device.ToString()}'");
                 break;
         }
     }
     /// <summary>
     /// Shows the controller glyph for this prompt.
     /// </summary>
-    private void ShowControllerGlyph()
+    private void ShowControllerGlyph(InputDeviceManager.ControllerType controller)
     {
         // Unhide glyph
         _glyphDisplay.enabled = true;
 
         // What type of controller is connected
-        switch (_controllerLastFrame)
+        switch (controller)
         {
             // Playstation
-            case GLOBAL.ControllerType.Playstation:
+            case InputDeviceManager.ControllerType.Playstation:
                 _glyphDisplay.material = _playstationPrompt;
                 break;
 
             // Xbox
-            case GLOBAL.ControllerType.Xbox:
+            case InputDeviceManager.ControllerType.Xbox:
                 _glyphDisplay.material = _xboxPrompt;
                 break;
 
             // Unknown
             default:
-                Debug.LogWarning($"Unknown controller type: '{_controllerLastFrame.ToString()}'");
+                Debug.LogWarning($"Unknown controller type: '{controller.ToString()}'");
                 break;
         }
     }
@@ -114,5 +103,15 @@ public class Prompt3D : MonoBehaviour
     {
         // Hide glyph display
         _glyphDisplay.enabled = false;
+    }
+
+    // Callbacks
+    private void DeviceChanged(InputDeviceManager.Device device, InputDeviceManager.ControllerType controller)
+    {
+        ShowGlyph(device, controller);
+    }
+    private void ControllerChanged(InputDeviceManager.Device device, InputDeviceManager.ControllerType controller)
+    {
+        ShowGlyph(device, controller);
     }
 }
