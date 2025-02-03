@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour
+public class Player_Move : MonoBehaviour
 {
     // Editor variables
     [Header("Reference Camera Transform")]

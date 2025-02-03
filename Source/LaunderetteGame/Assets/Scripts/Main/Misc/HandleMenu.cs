@@ -6,7 +6,7 @@ public class HandleMenu : MonoBehaviour
 {
     // Editor variables
     [SerializeField]
-    private PlayerController _playerController;
+    private Player_Move _playerController;
     [SerializeField]
     private GameObject _menuRoot;
 

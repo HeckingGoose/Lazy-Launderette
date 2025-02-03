@@ -73,7 +73,7 @@ public class HandleInteractBubble : MonoBehaviour
     /// Begins a conversation with the character referenced by this script.
     /// </summary>
     /// <param name="caller">The player requesting this conversation.</param>
-    public void StartTalk(in PlayerInteractor caller)
+    public void StartTalk(in Player_Interact caller)
     {
         // Log that something happened
         Debug.Log($"Conversation requested by {caller.gameObject.name}");

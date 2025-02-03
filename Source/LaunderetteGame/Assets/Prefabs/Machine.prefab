@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2847666381199231315}
   - component: {fileID: 2899593112035953069}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PlayerWashing
   m_TagString: WashSpot
   m_Icon: {fileID: 0}
@@ -42,10 +42,10 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 4
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -61,6 +61,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8789804748104785403, guid: 3e5fa3ed3ad583c4c9f721e8c5e791af, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: -8789804748104785403, guid: 3e5fa3ed3ad583c4c9f721e8c5e791af, type: 3}
       propertyPath: m_TagString
       value: Machine
@@ -105,9 +109,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -4562266686271685020, guid: 3e5fa3ed3ad583c4c9f721e8c5e791af, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: -2514481724022489808, guid: 3e5fa3ed3ad583c4c9f721e8c5e791af, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 3e5fa3ed3ad583c4c9f721e8c5e791af, type: 3}
       propertyPath: m_Name
       value: Machine
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3e5fa3ed3ad583c4c9f721e8c5e791af, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 3e5fa3ed3ad583c4c9f721e8c5e791af, type: 3}
       propertyPath: m_IsActive
@@ -116,6 +132,14 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 3e5fa3ed3ad583c4c9f721e8c5e791af, type: 3}
       propertyPath: m_TagString
       value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 3471493928760564374, guid: 3e5fa3ed3ad583c4c9f721e8c5e791af, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3969100189313163294, guid: 3e5fa3ed3ad583c4c9f721e8c5e791af, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4912596164040265217, guid: 3e5fa3ed3ad583c4c9f721e8c5e791af, type: 3}
       propertyPath: m_LocalScale.x
@@ -128,6 +152,14 @@ PrefabInstance:
     - target: {fileID: 4912596164040265217, guid: 3e5fa3ed3ad583c4c9f721e8c5e791af, type: 3}
       propertyPath: m_LocalScale.z
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5528860797864257434, guid: 3e5fa3ed3ad583c4c9f721e8c5e791af, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7036213049465896255, guid: 3e5fa3ed3ad583c4c9f721e8c5e791af, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -170,10 +202,10 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 5
+    m_Bits: 4
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0

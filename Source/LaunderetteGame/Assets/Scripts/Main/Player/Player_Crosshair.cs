@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Crosshair : MonoBehaviour
+public class Player_Crosshair : MonoBehaviour
 {
     // Const
     private const int ANIM_START_TIME = 0;
@@ -10,7 +10,7 @@ public class Crosshair : MonoBehaviour
     // Editor Variables
     [Header("Player References")]
     [SerializeField]
-    private PlayerInteractor _player;
+    private Player_Interact _player;
     [Header("Crosshair Config")]
     [SerializeField]
     private float _animationTime = 0.15f;

@@ -3,14 +3,14 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
-public class PlayerInteractor : MonoBehaviour
+public class Player_Interact : MonoBehaviour
 {
     // Const
     // -- Object Type Tags --
-    private const string TAG_WASHINGMACHINE = "Machine";
-    private const string TAG_CHARACTER = "Talkable";
-    private const string TAG_TOOL = "Pickup";
-    private const string TAG_GOAL = "WashSpot";
+    public const string TAG_WASHINGMACHINE = "Machine";
+    public const string TAG_CHARACTER = "Talkable";
+    public const string TAG_TOOL = "Pickup";
+    public const string TAG_GOAL = "WashSpot";
 
     // -- Raycast Layers --
     private readonly string[] RAYCAST_LAYERS =
@@ -19,21 +19,16 @@ public class PlayerInteractor : MonoBehaviour
         "PickupRaycast"
     };
 
-    private const string DESCRIBETEXT_TALK = "Talk";
-    private const string DESCRIBETEXT_PICKUP = "Pickup";
-    private const string DESCRIBETEXT_INVENTORYFULL = "Inventory Full";
-    private const string DESCRIBETEXT_NEEDCLEANBAG = "Need empty bag";
-    private const string DESCRIBETEXT_PICKUPVENT = "Remove";
-    private const string DESCRIBETEXT_NEEDSCREWDRIVER = "Needs a screwdriver";
-    private const string DESCRIBETEXT_MACHINEDOOR = "Toggle Door";
-    private const string DESCRIBETEXT_MACHINEINUSE = "Someone else is using this machine";
-    private const string DESCRIBETEXT_PROMPTWASHCLOTHES = "Wash clothes?";
-    private const string DESCRIBETEXT_NEEDTOHOLDCLOTHESBAG = "Select clothes before using machine.";
+    // Events
+    public event LookTargetChanged OnLookTargetChanged;
+
+    // Delegates
+    public delegate void LookTargetChanged(GameObject lookTarget);
 
     // Editor variables
     [Header("Player Components")]
     [SerializeField]
-    private PlayerController _playerController;
+    private Player_Move _playerController;
     [SerializeField]
     private ManageInventory _inventory;
     [Header("Conversation References")]
@@ -101,9 +96,13 @@ public class PlayerInteractor : MonoBehaviour
         // Make a ray from the middle of the screen
         Ray screenRay = _camera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
 
+        // Declare cache
+        GameObject? cache = _targetObject;
+
         // Do raycast, true on hit
         if (Physics.Raycast(screenRay, out RaycastHit hit, _rayDistance, _layerMask))
         {
+            Debug.Log($"Hit {hit.transform.gameObject.name}");
             // Set target to hit
             _targetObject = hit.transform.gameObject;
         }
@@ -113,11 +112,22 @@ public class PlayerInteractor : MonoBehaviour
             // Set target to null
             _targetObject = null;
         }
+
+        // Check equality
+        if (cache != _targetObject)
+        {
+            // Check if anyone's listening
+            if (OnLookTargetChanged != null)
+            {
+                // Then raise it
+                OnLookTargetChanged.Invoke(_targetObject);
+            }
+        }
     }
-    private void Update() // This entire method should be removed and moved into 'Crosshair.cs' and 'DescribeText.cs'
+    private void Update() // This entire method should be removed and moved into 'DescribeText.cs'
     {
         // Check if we are looking at something
-        if (_targetObject != null)
+        /*if (_targetObject != null)
         {
             // What are we looking at?
             switch (_targetObject.tag)
@@ -225,27 +235,6 @@ public class PlayerInteractor : MonoBehaviour
                         return;
                     }
                     break;
-
-                // Object is a washing machine
-                case TAG_WASHINGMACHINE:
-                    // Set describe text
-                    _describeText.text = DESCRIBETEXT_MACHINEDOOR;
-
-                    // Try to fetch script for this machine (It's a messed up hierarchy)
-                    _targetObject.transform.parent.parent.parent.TryGetComponent(out Machine_Main machineMainScript);
-
-                    // If we found something
-                    if (machineMainScript != null)
-                    {
-                        // If the machine is running
-                        if (machineMainScript.Running)
-                        {
-                            // Change text accordingly
-                            _describeText.text = DESCRIBETEXT_MACHINEINUSE;
-                        }
-                    }
-                    break;
-
                 // Object is a washing up spot
                 case TAG_GOAL:
                     // Do we have enough coins to wash clothes?
@@ -289,7 +278,7 @@ public class PlayerInteractor : MonoBehaviour
         {
             // Run the method for if we are looking at nothing
             LookingAtNothing();
-        }
+        }*/
     }
 
     // Private methods

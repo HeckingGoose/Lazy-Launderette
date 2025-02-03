@@ -21,11 +21,10 @@ public static class InputDeviceManager
 
     // Events
     public static event DeviceChangeEventHandler OnInputDeviceChanged;
-    public static event ControllerTypeChangeEventHandler OnControllerTypeChanged;
+    public static event DeviceChangeEventHandler OnControllerTypeChanged;
 
     // Delegates
     public delegate void DeviceChangeEventHandler(Device device, ControllerType controller);
-    public delegate void ControllerTypeChangeEventHandler(Device device, ControllerType controller);
 
     // Private Variables
     private static Device _currentInputDevice;

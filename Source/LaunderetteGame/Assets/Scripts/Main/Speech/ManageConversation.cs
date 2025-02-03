@@ -13,7 +13,7 @@ public class ManageConversation : MonoBehaviour
     [SerializeField]
     private Image nameBackground;
     [SerializeField]
-    private PlayerInteractor interactor;
+    private Player_Interact interactor;
     [SerializeField]
     private GameObject crosshair;
     [SerializeField]
@@ -36,9 +36,9 @@ public class ManageConversation : MonoBehaviour
     private AudioClip[] altSounds;
     [Header("Player Controller Components")]
     [SerializeField]
-    private PlayerController _playerController;
+    private Player_Move _playerController;
     [SerializeField]
-    private PlayerInteractor _playerInteractor;
+    private Player_Interact _playerInteractor;
 
     // Private variables
     private bool talking = false;

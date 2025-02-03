@@ -7,9 +7,9 @@ public class EndScene : MonoBehaviour
 {
     [Header("Player Controls")]
     [SerializeField]
-    private PlayerInteractor _playerInteractor;
+    private Player_Interact _playerInteractor;
     [SerializeField]
-    private PlayerController _playerController;
+    private Player_Move _playerController;
     [Header("Scene End Components")]
     [SerializeField]
     private Image cover;
