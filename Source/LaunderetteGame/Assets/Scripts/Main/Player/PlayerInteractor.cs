@@ -2,15 +2,23 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class PlayerInteractor : MonoBehaviour
 {
     // Const
+    // -- Object Type Tags --
     private const string TAG_WASHINGMACHINE = "Machine";
     private const string TAG_CHARACTER = "Talkable";
     private const string TAG_TOOL = "Pickup";
     private const string TAG_GOAL = "WashSpot";
+
+    // -- Raycast Layers --
+    private readonly string[] RAYCAST_LAYERS =
+    {
+        "SpeechRaycast",
+        "PickupRaycast"
+    };
+
     private const string DESCRIBETEXT_TALK = "Talk";
     private const string DESCRIBETEXT_PICKUP = "Pickup";
     private const string DESCRIBETEXT_INVENTORYFULL = "Inventory Full";
@@ -38,15 +46,6 @@ public class PlayerInteractor : MonoBehaviour
     private Camera _camera;
     [SerializeField]
     private float _rayDistance = 2f;
-    [Header("UI Settings & References")]
-    [SerializeField]
-    private float _crossHairTimerMax = 0.15f;
-    [SerializeField]
-    private float _crosshairMaxScale = 1.5f;
-    [SerializeField]
-    private RectTransform _crosshairTransform;
-    [SerializeField]
-    private Image _crosshairImage;
     [SerializeField]
     private TextMeshProUGUI _describeText;
     [Header("Coin Manager")]
@@ -74,44 +73,27 @@ public class PlayerInteractor : MonoBehaviour
 #nullable enable
     private GameObject? _targetObject;
     private bool _talking = false;
-    private float _crosshairTimer = 0;
-    private Vector3 _crosshairSizeBase;
-    private Vector3 _crosshairSizeMax;
-    private Vector4 _crosshairColourBase;
-    private Vector4 _crosshairColourMax;
+
+    private int _layerMask;
 
     // Public
     [HideInInspector]
     public bool Enabled = true;
 
-    // Action map
-#nullable enable
-    private InputActionMap? _freeRoamActionMap;
-
-    // Actions
-#nullable enable
-    private InputAction? _interactAction;
-
     // Unity Methods
     private void Start()
     {
-        // Fetch crosshair base state
-        _crosshairSizeBase = _crosshairTransform.localScale;
-        _crosshairColourBase = _crosshairImage.color;
-
-        // Calculate values for max states
-        _crosshairSizeMax = _crosshairSizeBase * _crosshairMaxScale;
-        _crosshairColourMax = _crosshairImage.color;
-        _crosshairColourMax.w = 1;
+        // Generate raycast layer mask
+        _layerMask = LayerMask.GetMask(RAYCAST_LAYERS);
 
         // Fetch action map
-        _freeRoamActionMap = InputSystem.actions.FindActionMap(InputDefinitions.ACTIONMAP_FREEROAM);
+        InputActionMap map = InputSystem.actions.FindActionMap(InputDefinitions.ACTIONMAP_FREEROAM);
 
         // Fetch relevant actions
-        _interactAction = _freeRoamActionMap.FindAction(InputDefinitions.FRAM_INTERACT);
+        InputAction action = map.FindAction(InputDefinitions.FRAM_INTERACT);
 
         // Subscribe to interact action
-        _interactAction.performed += DoInteract;
+        action.performed += DoInteract;
     }
 
     private void FixedUpdate()
@@ -120,7 +102,7 @@ public class PlayerInteractor : MonoBehaviour
         Ray screenRay = _camera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
 
         // Do raycast, true on hit
-        if (Physics.Raycast(screenRay, out RaycastHit hit, _rayDistance))
+        if (Physics.Raycast(screenRay, out RaycastHit hit, _rayDistance, _layerMask))
         {
             // Set target to hit
             _targetObject = hit.transform.gameObject;
@@ -132,11 +114,8 @@ public class PlayerInteractor : MonoBehaviour
             _targetObject = null;
         }
     }
-    private void Update()
+    private void Update() // This entire method should be removed and moved into 'Crosshair.cs' and 'DescribeText.cs'
     {
-        // Handle crosshair display animation
-        AnimateCrosshair();
-
         // Check if we are looking at something
         if (_targetObject != null)
         {
@@ -303,9 +282,6 @@ public class PlayerInteractor : MonoBehaviour
                     // Early out to avoid timer update
                     return;
             }
-
-            // Increment crosshair animation timer, cap at max size
-            _crosshairTimer = Mathf.Min(_crosshairTimer + Time.deltaTime, _crossHairTimerMax);
         }
 
         // If we are not looking at something
@@ -334,29 +310,6 @@ public class PlayerInteractor : MonoBehaviour
             // Get rid of the reference
             _interactBubbleHandle = null;
         }
-
-        // Decrement crosshair animation timer, cap at 0
-        _crosshairTimer = Mathf.Max(_crosshairTimer - Time.deltaTime, 0);
-    }
-
-    /// <summary>
-    /// When called, updates the crosshair visual.
-    /// </summary>
-    private void AnimateCrosshair()
-    {
-        // Update scale
-        _crosshairTransform.localScale = Vector3.Lerp(
-                    _crosshairSizeBase, // Start
-                    _crosshairSizeMax, // End
-                    _crosshairTimer / _crossHairTimerMax // Progress
-                    );
-
-        // Update colour
-        _crosshairImage.color = Vector4.Lerp(
-            _crosshairColourBase, // Start
-            _crosshairColourMax, // End
-            _crosshairTimer / _crossHairTimerMax // Progress
-            );
     }
 
     // Public methods
@@ -641,6 +594,32 @@ public class PlayerInteractor : MonoBehaviour
         {
             // Do interact
             Interact();
+        }
+    }
+
+    // Accessors
+    /// <summary>
+    /// Gets the object that is currently being looked at.
+    /// </summary>
+    public GameObject? LookingAt
+    {
+        get
+        {
+            return _targetObject;
+        }
+        private set
+        {
+            _targetObject = value;
+        }
+    }
+    /// <summary>
+    /// Returns true when the player is looking at something.
+    /// </summary>
+    public bool IsLookingAtSomething
+    {
+        get
+        {
+            return LookingAt != null;
         }
     }
 }

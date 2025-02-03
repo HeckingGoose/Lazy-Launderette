@@ -3,9 +3,6 @@ using UnityEngine;
 public class Prompt3D : MonoBehaviour
 {
     // Editor variables
-    [Header("Input System")]
-    [SerializeField]
-    private InputDeviceManager _inputManager;
     [Header("Representing:")]
     [SerializeField]
     private Material _keyboardPrompt;
@@ -21,18 +18,25 @@ public class Prompt3D : MonoBehaviour
     private void Start()
     {
         // Subscribe to input manager
-        _inputManager.OnInputDeviceChanged += DeviceChanged;
-        _inputManager.OnControllerTypeChanged += ControllerChanged;
+        InputDeviceManager.OnInputDeviceChanged += DeviceChanged;
+        InputDeviceManager.OnControllerTypeChanged += ControllerChanged;
 
         // Hide and show glyphs for first frame
         HideAll();
-        ShowGlyph(
-            _inputManager.CurrentInputDevice,
-            _inputManager.CurrentControllerType
-            );
+        ShowGlyph();
     }
 
     // Private Methods
+    /// <summary>
+    /// Alternate version of ShowGlyph that directly uses InputDeviceManager for the current device.
+    /// </summary>
+    private void ShowGlyph()
+    {
+        ShowGlyph(
+            InputDeviceManager.CurrentInputDevice,
+            InputDeviceManager.CurrentControllerType
+            );
+    }
     /// <summary>
     /// Shows the correct glyph based on the given input device.
     /// </summary>

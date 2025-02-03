@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class InputDeviceManager : MonoBehaviour
+public static class InputDeviceManager
 {
     // Enum
     public enum Device
@@ -20,26 +20,26 @@ public class InputDeviceManager : MonoBehaviour
     }
 
     // Events
-    public event DeviceChangeEventHandler OnInputDeviceChanged;
-    public event ControllerTypeChangeEventHandler OnControllerTypeChanged;
+    public static event DeviceChangeEventHandler OnInputDeviceChanged;
+    public static event ControllerTypeChangeEventHandler OnControllerTypeChanged;
 
     // Delegates
     public delegate void DeviceChangeEventHandler(Device device, ControllerType controller);
     public delegate void ControllerTypeChangeEventHandler(Device device, ControllerType controller);
 
     // Private Variables
-    private Device _currentInputDevice;
-    private ControllerType _currentControllerType;
+    private static Device _currentInputDevice;
+    private static ControllerType _currentControllerType;
 
-    // Unity methods
-    private void Start()
+    // Constructor
+    static InputDeviceManager()
     {
         // Subscribe to all action events
         InputSystem.onActionChange += ReadDeviceType;
     }
 
     // Private methods
-    private void ReadDeviceType(object inputAction, InputActionChange changeDone)
+    private static void ReadDeviceType(object inputAction, InputActionChange changeDone)
     {
         // Are we allowed to auto-detect input device?
         if (Settings.InputTypeOverride != Device.None)
@@ -122,7 +122,7 @@ public class InputDeviceManager : MonoBehaviour
     /// <summary>
     /// Gets or sets the current input device.
     /// </summary>
-    public Device CurrentInputDevice
+    public static Device CurrentInputDevice
     {
         get { return Settings.InputTypeOverride == Device.None ? _currentInputDevice : Settings.InputTypeOverride; }
         private set { _currentInputDevice = value; }
@@ -130,7 +130,7 @@ public class InputDeviceManager : MonoBehaviour
     /// <summary>
     /// Gets or sets the current controller type.
     /// </summary>
-    public ControllerType CurrentControllerType
+    public static ControllerType CurrentControllerType
     {
         get { return Settings.ControllerTypeOverride == ControllerType.None ? _currentControllerType : Settings.ControllerTypeOverride; }
         private set { _currentControllerType = value; }
