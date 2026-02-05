@@ -1,0 +1,17 @@
+# Rye' initial conversation
+
+# Suggest player needs money
+act_speak ["Good evening to you, fellow interloper."]
+act_speak ["I can sense that you are in need of some money"]
+act_speak ["Perhaps three pounds is all you need?"]
+act_speak ["..."]
+
+# Provide them with a quest
+act_speak ["I take it you're not the talkative type, rather instead one for the dark and brooding persona"]
+act_speak ["I shan't dawdle any longer then"]
+act_speak ["I require one 'Choccy bar'"]
+act_speak ["In exchange you will receive three whole pounds"]
+act_speak ["Now be gone, lest you dampen my mystique"]
+
+# Swap to checking for choccy
+set_script ["WaitingOnChoccy"]

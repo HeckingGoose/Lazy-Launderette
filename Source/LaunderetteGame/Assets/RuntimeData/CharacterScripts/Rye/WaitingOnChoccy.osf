@@ -1,0 +1,44 @@
+# Script for waiting for chocolate
+
+# Check if player has the chocolate
+check_has ["Player", "Choccy", "Success", "Failure"]
+
+
+
+# On success
+line_marker ["Success"]
+
+# Be happy
+act_speak ["Is that... [NAMEBRAND] chocolate you have?"]
+set_sprite ["POSE_1"]
+act_speak ["Why that's my favourite!"]
+
+# Remove player item and mark as delivered
+strip_held []
+deliver_gift ["Rye", "Choccy"]
+act_speak ["My good friend, here's your reward"]
+
+# Reward player
+give_item ["Coin"]
+give_item ["Coin"]
+give_item ["Coin"]
+
+# Conclude
+act_speak ["Now please excuse me"]
+set_sprite ["POSE_2"]
+set_script ["FinalScript"]
+jump_to ["End"]
+
+
+
+# On failure
+line_marker ["Failure"]
+
+# Complain
+act_speak ["You return without chocolate?"]
+act_speak ["Be gone once more"]
+
+
+
+# EOF
+line_marker ["End"]
