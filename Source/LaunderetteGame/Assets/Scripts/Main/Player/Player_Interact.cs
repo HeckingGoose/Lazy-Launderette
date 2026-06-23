@@ -102,7 +102,7 @@ public class Player_Interact : MonoBehaviour
         // Do raycast, true on hit
         if (Physics.Raycast(screenRay, out RaycastHit hit, _rayDistance, _layerMask))
         {
-            Debug.Log($"Hit {hit.transform.gameObject.name}");
+            //Debug.Log($"Hit {hit.transform.gameObject.name}");
             // Set target to hit
             _targetObject = hit.transform.gameObject;
         }
@@ -119,6 +119,7 @@ public class Player_Interact : MonoBehaviour
             // Check if anyone's listening
             if (OnLookTargetChanged != null)
             {
+                Debug.Log("Yep");
                 // Then raise it
                 OnLookTargetChanged.Invoke(_targetObject);
             }
@@ -127,7 +128,7 @@ public class Player_Interact : MonoBehaviour
     private void Update() // This entire method should be removed and moved into 'DescribeText.cs'
     {
         // Check if we are looking at something
-        /*if (_targetObject != null)
+        if (_targetObject != null)
         {
             // What are we looking at?
             switch (_targetObject.tag)
@@ -138,7 +139,7 @@ public class Player_Interact : MonoBehaviour
                     if (!_talking)
                     {
                         // Display the interaction text as 'Talk'
-                        _describeText.text = DESCRIBETEXT_TALK;
+                        _describeText.text = "Talk";
 
                         // Attempt to fetch a handle to the interact bubble
                         _targetObject.TryGetComponent<HandleInteractBubble>(out _interactBubbleHandle);
@@ -169,7 +170,7 @@ public class Player_Interact : MonoBehaviour
                 // Object is a pickup
                 case TAG_TOOL:
                     // Set describe text accordingly
-                    _describeText.text = DESCRIBETEXT_PICKUP;
+                    _describeText.text = "Pickup";
 
                     // Attempt to fetch a reference to its pickup script
                     _targetObject.TryGetComponent(out HandlePickup pickupHandle);
@@ -184,14 +185,14 @@ public class Player_Interact : MonoBehaviour
                             if (_inventory.GetHeldItem() != Inventory.Item.EmptyBag)
                             {
                                 // Inform player that they need a bag
-                                _describeText.text = DESCRIBETEXT_NEEDCLEANBAG;
+                                _describeText.text = "Needs clean bag";
                             }
 
                             // Otherwise
                             else
                             {
                                 // Inform player they can pickup
-                                _describeText.text = DESCRIBETEXT_PICKUP;
+                                _describeText.text = "Pickup";
                             }
                         }
 
@@ -202,14 +203,14 @@ public class Player_Interact : MonoBehaviour
                             if (_inventory.GetHeldItem() == Inventory.Item.Screwdriver)
                             {
                                 // Inform the player that they can remove the vent
-                                _describeText.text = DESCRIBETEXT_PICKUPVENT;
+                                _describeText.text = "Remove Vent";
                             }
 
                             // If they do not have a screwdriver
                             else
                             {
                                 // Inform the player that they need a screwdriver
-                                _describeText.text = DESCRIBETEXT_NEEDSCREWDRIVER;
+                                _describeText.text = "Needs Screwdriver";
                             }
                         }
 
@@ -220,7 +221,7 @@ public class Player_Interact : MonoBehaviour
                             if (_inventory.IsFull && pickupHandle.Item != Inventory.Item.Coin)
                             {
                                 // Show full text
-                                _describeText.text = DESCRIBETEXT_INVENTORYFULL;
+                                _describeText.text = "Inventory Full";
                             }
                         }
                     }
@@ -244,14 +245,14 @@ public class Player_Interact : MonoBehaviour
                         if (_inventory.GetHeldItem() == Inventory.Item.ClothesBag)
                         {
                             // Inform the player that they can wash their clothes
-                            _describeText.text = DESCRIBETEXT_PROMPTWASHCLOTHES;
+                            _describeText.text = "Wash Clothes";
                         }
 
                         // We are not holding the clothes bag
                         else
                         {
                             // Inform the player that they need to hold their clothes bag
-                            _describeText.text = DESCRIBETEXT_NEEDTOHOLDCLOTHESBAG;
+                            _describeText.text = "Needs clothes bag";
                         }
                     }
 
@@ -259,7 +260,7 @@ public class Player_Interact : MonoBehaviour
                     else
                     {
                         // Generate text for player not having enough coins
-                        _describeText.text = $"£{_coinManager.CoinCount}/£{GameRules.COINS_TOWIN}, cannot afford yet";
+                        _describeText.text = $"Â£{_coinManager.CoinCount}/Â£{GameRules.COINS_TOWIN}, cannot afford yet";
                     }
                     break;
 
@@ -278,7 +279,7 @@ public class Player_Interact : MonoBehaviour
         {
             // Run the method for if we are looking at nothing
             LookingAtNothing();
-        }*/
+        }
     }
 
     // Private methods

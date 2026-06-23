@@ -29,6 +29,7 @@ public class ManageInventory : MonoBehaviour
     private InputAction _slotThreeAction;
     private InputAction _nextSlotAction;
     private InputAction _dropAction;
+    private InputAction _modeSwitch;
 
     // Unity methods
     private void Start()
@@ -46,7 +47,8 @@ public class ManageInventory : MonoBehaviour
         _slotOneAction = _freeRoamActionMap.FindAction(InputDefinitions.FRAM_INVSLOTONE);
         _slotTwoAction = _freeRoamActionMap.FindAction(InputDefinitions.FRAM_INVSLOTTWO);
         _slotThreeAction = _freeRoamActionMap.FindAction(InputDefinitions.FRAM_INVSLOTTHREE);
-        _dropAction = _freeRoamActionMap.FindAction(InputDefinitions.FRAM_DROPITEM);
+        _dropAction = _freeRoamActionMap.FindAction(InputDefinitions.FRAM_CROUCH);
+        _modeSwitch = _freeRoamActionMap.FindAction(InputDefinitions.FRAM_MODESWITCH);
         _nextSlotAction = _freeRoamActionMap.FindAction(InputDefinitions.FRAM_NEXTSLOT);
 
     }
@@ -79,7 +81,7 @@ public class ManageInventory : MonoBehaviour
         }
 
         // Drop current item if drop axis is pressed, but not held
-        if (_dropAction.WasPressedThisFrame())
+        if (_dropAction.WasPressedThisFrame() && _modeSwitch.IsPressed())
         {
             // Drop item and cache
             Inventory.Item item = _slots[_currentSlot].TryRemoveItem();

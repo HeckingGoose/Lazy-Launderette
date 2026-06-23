@@ -16,6 +16,8 @@ public class InventorySlot : MonoBehaviour
     [Header("Drop Prompt")]
     [SerializeField]
     private GameObject _dropPrompt;
+    [SerializeField]
+    private GameObject _nextPrompt;
     [Header("Self Transform")]
     [SerializeField]
     private RectTransform _selfTransform;
@@ -139,6 +141,7 @@ public class InventorySlot : MonoBehaviour
 
         // Update drop prompt
         ManageDropPrompt();
+        _nextPrompt.SetActive(true);
     }
     /// <summary>
     /// Tells this slot that it is not highlighted.
@@ -150,6 +153,7 @@ public class InventorySlot : MonoBehaviour
 
         // Update drop prompt
         ManageDropPrompt();
+        _nextPrompt.SetActive(false);
     }
     /// <summary>
     /// Toggles the drop prompt text based on whether this slot contains an item and if it is selected.

@@ -89,7 +89,7 @@ public class Player_Move : MonoBehaviour
             }
 
             // Apply sensitivity settings
-            look *= _lookSensitivity;
+            look *= _lookSensitivity * Time.deltaTime;
 
             // Read walk action
             Vector2 walk = _walkAction.ReadValue<Vector2>();
