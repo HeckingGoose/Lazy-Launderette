@@ -119,7 +119,7 @@ public class EndScene : MonoBehaviour
                     timer = 0f;
                     finTime = textSpeed;
                     text.text = "";
-                    charactersToAdd = "HeckingGoose, who did literally everything.";
+                    charactersToAdd = "Me (HeckingGoose), who made most of it.";
                 }
                 break;
 
@@ -153,7 +153,7 @@ public class EndScene : MonoBehaviour
                     timer = 0f;
                     finTime = textSpeed;
                     text.text = "";
-                    charactersToAdd = "You, for playing the game.";
+                    charactersToAdd = "And Godzed, who made the radio music.";
                 }
                 break;
 

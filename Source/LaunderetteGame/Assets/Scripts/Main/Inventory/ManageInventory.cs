@@ -27,6 +27,7 @@ public class ManageInventory : MonoBehaviour
     private InputAction _slotOneAction;
     private InputAction _slotTwoAction;
     private InputAction _slotThreeAction;
+    private InputAction _nextSlotAction;
     private InputAction _dropAction;
 
     // Unity methods
@@ -46,10 +47,19 @@ public class ManageInventory : MonoBehaviour
         _slotTwoAction = _freeRoamActionMap.FindAction(InputDefinitions.FRAM_INVSLOTTWO);
         _slotThreeAction = _freeRoamActionMap.FindAction(InputDefinitions.FRAM_INVSLOTTHREE);
         _dropAction = _freeRoamActionMap.FindAction(InputDefinitions.FRAM_DROPITEM);
+        _nextSlotAction = _freeRoamActionMap.FindAction(InputDefinitions.FRAM_NEXTSLOT);
+
     }
 
     private void Update()
     {
+        // Poll next slot
+        if (_nextSlotAction.WasPressedThisFrame())
+        {
+            _currentSlot = _currentSlot == 2 ? 0 : _currentSlot + 1;
+            SelectSlot(_currentSlot);
+        }
+
         // Poll keys
         if (_slotOneAction.WasPressedThisFrame() && _currentSlot != 0)
         {

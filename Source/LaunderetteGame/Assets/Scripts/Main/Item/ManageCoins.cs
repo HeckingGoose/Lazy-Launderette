@@ -4,8 +4,8 @@ using UnityEngine;
 public class ManageCoins : MonoBehaviour
 {
     // Const
-    private const string MONEY_PREFIX = "Money: £";
-    private const string MONEY_SUFFIX = " / £";
+    private const string MONEY_PREFIX = "Money: Â£";
+    private const string MONEY_SUFFIX = " / Â£";
 
     // Editor variables
     [SerializeField]

@@ -16,8 +16,10 @@ public static class InputDefinitions
     public const string FRAM_INVSLOTONE = "InventorySlot1";
     public const string FRAM_INVSLOTTWO = "InventorySlot2";
     public const string FRAM_INVSLOTTHREE = "InventorySlot3";
+    public const string FRAM_NEXTSLOT = "NextSlot";
     public const string FRAM_DROPITEM = "DropItem";
     public const string FRAM_MIDGAMEMENU = "OpenMidGameMenu";
+    public const string FRAM_MODESWITCH = "ModeSwitch";
 
     // Dialogue Actions
     public const string DAM_ADVANCESPEECH = "AdvanceSpeech";

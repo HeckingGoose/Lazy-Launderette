@@ -39,6 +39,7 @@ public class Player_Move : MonoBehaviour
     private InputAction _walkAction;
     private InputAction _lookAction;
     private InputAction _crouchAction;
+    private InputAction _modeSwitch;
 
     // Unity Methods
     void Start()
@@ -58,6 +59,7 @@ public class Player_Move : MonoBehaviour
         _walkAction = _freeRoamActionMap.FindAction(InputDefinitions.FRAM_WALK);
         _lookAction = _freeRoamActionMap.FindAction(InputDefinitions.FRAM_LOOK);
         _crouchAction = _freeRoamActionMap.FindAction(InputDefinitions.FRAM_CROUCH);
+        _modeSwitch = _freeRoamActionMap.FindAction(InputDefinitions.FRAM_MODESWITCH);
     }
     void Update()
     {
@@ -91,6 +93,22 @@ public class Player_Move : MonoBehaviour
 
             // Read walk action
             Vector2 walk = _walkAction.ReadValue<Vector2>();
+
+            // Read mode switch
+            float modeSwitch = _modeSwitch.ReadValue<float>();
+
+            // Swap based on mode (pressed)
+            if (modeSwitch > 0.0f)
+            {
+                walk.y *= 0.0f;
+                look.x *= 0.0f;
+            }
+            // Released
+            else
+            {
+                walk.x *= 0.0f;
+                look.y *= 0.0f;
+            }
 
             // Calculate movement from Z direction
             movement.x += _velocity * Time.deltaTime * walk.y * Mathf.Sin(transform.localEulerAngles.y * Mathf.Deg2Rad);
